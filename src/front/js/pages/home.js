@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import ImageUrl from "../../img/.jpg";
+import tremyImageUrl from "../../img/tremy-logo.png";
 import "../../styles/home.css";
 
 
@@ -13,7 +13,7 @@ export const Home = () => {
 		<div className="text-center mt-5">
 			<h1><strong>Welcome</strong></h1>
 			<p>
-				<img src={ImageUrl} style={{ width: "300px", height: "auto"}}/>	
+				<img src={tremyImageUrl} style={{ width: "300px", height: "auto"}}/>	
 			</p>
 			<div className="alert alert-info">
 				{store.message || "Loading message from the backend (make sure your python backend is running)"}

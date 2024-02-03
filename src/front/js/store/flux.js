@@ -60,7 +60,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					
 					setStore({ token: null });
 			
-					console.log("Youve been logged out");
+					console.log("You have been logged out");
 
 				} catch (error) {
 

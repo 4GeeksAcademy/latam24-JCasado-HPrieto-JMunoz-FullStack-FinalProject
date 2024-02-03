@@ -11,7 +11,7 @@ export const Home = () => {
 	return (
 		
 		<div className="text-center mt-5">
-			<h1><strong>Welcome</strong></h1>
+			<h1><strong></strong></h1>
 			<p>
 				<img src={tremyImageUrl} style={{ width: "300px", height: "auto"}}/>	
 			</p>

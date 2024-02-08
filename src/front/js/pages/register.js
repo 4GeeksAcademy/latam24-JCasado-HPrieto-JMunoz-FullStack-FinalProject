@@ -32,6 +32,13 @@ export const Register = () => {
                             Please enter your email address
                         </div>
                         <div className="col mt-2">
+                        <label htmlFor="inputDateOfBirth" className="form-label">Date of birth</label>
+
+                        <input type="date" name="Date_of_birth" id="inputDateOfBirth" className="form-control" aria-describedby="dateOfBirthHelpBlock" onChange={handleChange} />
+                        <div id="passwordHelpBlock" className="form-text">
+                            Please enter your date of birth
+                        </div>
+                        <div className="col mt-2">
                         <label htmlFor="inputPassword5" className="form-label">Password</label>
 
                         <input type="password" name="password" id="inputPassword5" className="form-control" aria-describedby="passwordHelpBlock" onChange={handleChange} />
@@ -51,5 +58,6 @@ export const Register = () => {
                 </div>
             </div>
         </div>
+    </div>
     )
 }

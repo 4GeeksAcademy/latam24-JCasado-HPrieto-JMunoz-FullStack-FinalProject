@@ -1,5 +1,5 @@
 
-from api.models import db, User, Product, Menu, Service, Favourites, ServiceProducts, Rating, Review, Sale
+from api.models import db, User, Product, Menu, Service, Favourite, ServiceProducts, Rating, Review, Sale
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.utils import generate_sitemap, APIException
 from sqlalchemy.exc import IntegrityError

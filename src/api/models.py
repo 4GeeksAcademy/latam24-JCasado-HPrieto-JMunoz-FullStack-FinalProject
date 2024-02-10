@@ -1,19 +1,21 @@
+
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from enum import Enum
 import pytz
 
-db = SQLAlchemy()
-    
-from flask_sqlalchemy import SQLAlchemy
-from enum import Enum
 
 db = SQLAlchemy()
+
+
 
 class UserRole(Enum):
 
     CLIENT = "client"
     FAIRY = "fairy"
-    ADMIN = "admin"    
+    ADMIN = "admin" 
+
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -29,7 +31,6 @@ class User(db.Model):
     # products = db.relationship("Product", backref="user") #(1 to many)
     #fairy_reviews = db.relationship("Review", backref="fairy") 
     #client_reviews = db.relationship("Review", backref="client") 
-
 
     orders_purchased = db.relationship("Orders", backref="user") 
 
@@ -51,31 +52,8 @@ class User(db.Model):
             
             # do not serialize the password, its a security breach
         }
-
-
-# class Menu(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(100), nullable=False)
-#     image_id = db.Column(db.Integer, db.ForeignKey("image.id")) 
-#     product_id = db.Column(db.Integer, db.ForeignKey("product.id"))
-#     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-
-#     services = db.relationship("Service", backref="menu")
-
-#     def __repr__(self):
-
-#         return f'<Menus {self.id}>'
     
-#     def serialize(self):
 
-#         return {
-
-#             "id": self.id,
-#             "name": self.name,
-#             "image_id": self.image_id,
-#             "product_id": self.product_id,
-#             "user_id": self.user_id
-#         }
 
 class Services (db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -97,6 +75,8 @@ class Services (db.Model):
             "image_id": self.image_id,
         }
     
+
+    
 class ServiceProducts (db.Model):
     id = db.Column(db.Integer, primary_key=True)
     product_id = db.Column(db.Integer, db.ForeignKey("product.id"))
@@ -115,6 +95,7 @@ class ServiceProducts (db.Model):
         }
 
 
+
 class OrderedServices (db.Model):
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer, db.ForeignKey("orders.id"))
@@ -131,6 +112,8 @@ class OrderedServices (db.Model):
             "order_id": self.order_id,
             "services_id": self.services_id,
         }
+    
+
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -156,12 +139,15 @@ class Product(db.Model):
             "service_id": self.service_id
         }
 
+
+
 class Orders(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float, nullable=False) 
     description = db.Column(db.String(256), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
     #ordered_services_id = db.Column(db.Integer, db.ForeignKey('ordered_services.id'), nullable=False)
     #services_requested = db.relationship("OrderedServices", backref="orders")
 
@@ -180,6 +166,8 @@ class Orders(db.Model):
             "user_id": self.user_id,
             "service_id": self.service_id
         }
+    
+
 
 class Rating(Enum):
 
@@ -188,6 +176,7 @@ class Rating(Enum):
     THREE_STARS = 3
     FOUR_STARS = 4
     FIVE_STARS = 5
+
 
     
 class Review(db.Model):

@@ -13,8 +13,8 @@ class UserRole(Enum):
 
     CLIENT = "client"
     FAIRY = "fairy"
-    ADMIN = "admin"
-    
+    ADMIN = "admin"    
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
@@ -26,15 +26,14 @@ class User(db.Model):
     phone = db.Column(db.Integer, nullable=False)
     #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
-    products = db.relationship("Product", backref="user") #(1 to many)
-    sale = db.relationship("Sale", backref="user", foreign_keys=["client_id", "fairy_id"])
     review = db.relationship("Review", backref="user", foreign_keys=["client_id", "fairy_id"])
 
+    # products = db.relationship("Product", backref="user") #(1 to many)
     #fairy_reviews = db.relationship("Review", backref="fairy") 
     #client_reviews = db.relationship("Review", backref="client") 
 
 
-    services_purchased = db.relationship("Service", backref="user") 
+    orders_purchased = db.relationship("Orders", backref="user") 
 
     def __repr__(self):
 
@@ -56,67 +55,36 @@ class User(db.Model):
         }
 
 
-class Menu(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    image_id = db.Column(db.Integer, db.ForeignKey("image.id")) 
-    product_id = db.Column(db.Integer, db.ForeignKey("product.id"))
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+# class Menu(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(100), nullable=False)
+#     image_id = db.Column(db.Integer, db.ForeignKey("image.id")) 
+#     product_id = db.Column(db.Integer, db.ForeignKey("product.id"))
+#     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
-    services = db.relationship("Service", backref="menu")
+#     services = db.relationship("Service", backref="menu")
 
-    def __repr__(self):
+#     def __repr__(self):
 
-        return f'<Menus {self.id}>'
+#         return f'<Menus {self.id}>'
     
-    def serialize(self):
+#     def serialize(self):
 
-        return {
+#         return {
 
-            "id": self.id,
-            "name": self.name,
-            "image_id": self.image_id,
-            "product_id": self.product_id,
-            "user_id": self.user_id
-        }
-    
+#             "id": self.id,
+#             "name": self.name,
+#             "image_id": self.image_id,
+#             "product_id": self.product_id,
+#             "user_id": self.user_id
+#         }
 
-class Product(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    price = db.Column(db.Float, nullable=False) 
-    description = db.Column(db.String(256), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    
-    service_products = db.relationship("ServiceProducts", backref="products")
-    sale = db.relationship("Sale", backref="product")
-
-    def __repr__(self):
-
-        return f'<Products {self.id}>'
-    
-    def serialize(self):
-
-        return {
-
-            "id": self.id,
-            "name": self.name,
-            "price": self.price,
-            "description": self.description,
-            "user_id": self.user_id,
-            "service_id": self.service_id
-        }
-
-
-class Service (db.Model):
+class Services (db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
     price = db.Column(db.Float, nullable=False)
     description = db.Column(db.String(300), nullable=False)
-    menu_id = db.Column(db.Integer, db.ForeignKey("menu.id"))
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-
-    service_products = db.relationship("ServiceProducts", backref="service")
+    service_products = db.relationship("ServiceProducts", backref="services")
 
     def __repr__(self):
 
@@ -127,7 +95,6 @@ class Service (db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "price": self.price,
             "description": self.description,
             "image_id": self.image_id,
         }
@@ -149,6 +116,56 @@ class ServiceProducts (db.Model):
             "service_id": self.service_id,
         }
 
+
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(256), nullable=False)
+    price = db.Column(db.Float, nullable=False) 
+    
+    service_products = db.relationship("ServiceProducts", backref="products")
+
+    def __repr__(self):
+
+        return f'<Products {self.id}>'
+    
+    def serialize(self):
+
+        return {
+
+            "id": self.id,
+            "name": self.name,
+            "price": self.price,
+            "description": self.description,
+            "user_id": self.user_id,
+            "service_id": self.service_id
+        }
+
+class Orders(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    price = db.Column(db.Float, nullable=False) 
+    description = db.Column(db.String(256), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    
+    services_requested = db.relationship("Service", backref="orders")
+
+    def __repr__(self):
+
+        return f'<Products {self.id}>'
+    
+    def serialize(self):
+
+        return {
+
+            "id": self.id,
+            "name": self.name,
+            "price": self.price,
+            "description": self.description,
+            "user_id": self.user_id,
+            "service_id": self.service_id
+        }
+
 class Rating(Enum):
 
     ONE_STAR = 1
@@ -162,12 +179,12 @@ class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     client_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     fairy_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
-    product_id = db.Column(db.Integer, db.ForeignKey("product.id"), nullable=False)
+    order_id = db.Column(db.Integer, db.ForeignKey("order.id"), nullable=False)
     stars = db.Column(db.Enum(Rating), nullable=False) 
     comment = db.Column(db.String(250), nullable=True)
 
-    # client = db.relationship('User', foreign_keys="client_id")
-    # fairy = db.relationship('User', foreign_keys="fairy_id")
+    client = db.relationship('User', foreign_keys="client_id")
+    fairy = db.relationship('User', foreign_keys="fairy_id")
 
     def __repr__(self):
 
@@ -180,33 +197,7 @@ class Review(db.Model):
             "id": self.id,
             "client_id": self.client_id,
             "fairy_id": self.fairy_id,
-            "product_id": self.product_id,
             "stars": self.stars,
             "comment": self.comment
-        }
-    
-class Sale(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    client_id = db.Column(db.Integer, db.ForeignKey("user.id")) 
-    fairy_id = db.Column(db.Integer, db.ForeignKey("user.id")) 
-    product_id = db.Column(db.Integer, db.ForeignKey("product.id"))
-    date = db.Column(db.DateTime, nullable=False, default=datetime.now(pytz.timezone("America/New_York")))
-
-    # client = db.relationship('User', foreign_keys="client_id")
-    # fairy = db.relationship('User', foreign_keys="fairy_id")
-
-    def __repr__(self):
-
-        return f'<Sales {self.id}>'
-    
-    def serialize(self):
-
-        return{
-
-            "id": self.id,
-            "client_id": self.client_id,
-            "fairy_id": self.fairy_id,
-            "product_id": self.product_id,
-            "date": self.date
         }
 

@@ -1,8 +1,11 @@
 
-from api.models import db, User, Product, Menu, Service, Favourite, ServiceProducts, Rating, Review, Sale
+from api.models import db, User, Product, Services, ServiceProducts, Rating, Review
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.utils import generate_sitemap, APIException
 from sqlalchemy.exc import IntegrityError
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS, cross_origin
 from cloudinary.uploader import upload
@@ -126,6 +129,31 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+
+
+@api.route("/signup", methods=['POST'])
+def signup():
+    data = request.get_json()
+    full_name = data.get("full_name")
+    email = data.get("email")
+    password = data.get("password")
+    address = data.get("address")
+    phone = data.get("phone")
+    role = data.get("role")
+
+    register = User(full_name = full_name, email=email, password=password, role=role)
+    # register = User(full_name = full_name, email=email, password=password, address=address, phone=phone, role=role)
+
+    print(register)
+
+    if register is None:
+        return jsonify({"message": "Complete the required fields"}), 400
+    
+    db.session.add(register)
+    db.session.commit()
+
+    return jsonify({"message" : "Signed up successfully"}), 200
 
 
 
@@ -457,52 +485,6 @@ def update_password():
 
 
 
-@api.route("/login", methods=['POST'])
-def login():
-    data = request.json
-    email = data.get("email")
-    password = data.get("password")
-    if not email or not password:
-
-        return jsonify({"message": "Error: email and password are required"}), 400
-    
-    user = User.query.filter_by(email=email, password=password).first()
-
-    if user is None:
-
-        return("Username is not valid"), 400
-    
-    token = create_access_token(identity=user.id)
-
-    return jsonify({"token": token}), 200
-
-
-
-@api.route("/signup", methods=['POST'])
-def signup():
-    data = request.get_json()
-    full_name = data.get("full_name")
-    email = data.get("email")
-    password = data.get("password")
-    address = data.get("address")
-    phone = data.get("phone")
-    role = data.get("role")
-
-    register = User(full_name = full_name, email=email, password=password, role=role)
-    # register = User(full_name = full_name, email=email, password=password, address=address, phone=phone, role=role)
-
-    print(register)
-
-    if register is None:
-        return jsonify({"message": "Complete the required fields"}), 400
-    
-    db.session.add(register)
-    db.session.commit()
-
-    return jsonify({"message" : "Signed up successfully"}), 200
-
-
-
 @api.route('/products/<state>', methods=['GET'])
 def get_all_products_by_status(state):
     product_status = status.query.filter_by(status=state).all()
@@ -510,85 +492,6 @@ def get_all_products_by_status(state):
         ListProducts = [status.product[0].serialize() for status in product_status if status.product]
         return jsonify(ListProducts), 200
     return jsonify([]), 200
-
-
-@api.route("/profile/favourites", methods=['POST'])
-@jwt_required()
-def saveFavourites():
-    current_user = get_jwt_identity()
-    data = request.get_json()
-    product_id = data.get("product_id")
-
-    user = User.query.get(current_user)
-    product = Product.query.get(product_id)
-
-    if not product:
-
-        return jsonify({"mensaje": "Product not found"}), 404
-
-    existing_favourite = Favourites.query.filter_by(user_id=user.id, product_id=product.id).first()
-
-    if existing_favourite:
-
-        return jsonify({"mensaje": "This product is already on your favourites"}), 400
-
-    favourite = Favourites(user_id=user.id, product_id=product.id)
-
-    db.session.add(favourite)
-    db.session.commit()
-
-    return jsonify({"message": "This product has been saved in your favourites"}), 200
-
-
-@api.route("/profile/favorites", methods=['GET'])
-@jwt_required()
-def getFavourites():
-    current_user = get_jwt_identity()
-
-    user = User.query.get(current_user)
-
-    if not user:
-
-        return jsonify({"message": "User not found"}), 404
-
-    favourites = Favourites.query.filter_by(user_id=user.id).all()
-
-    response = []
-    for favourite in favourites:
-        product = Product.query.get(favourite.product_id)
-        response.append({
-            "product_id": product.id,
-            "name": product.name,
-            "description": product.description,
-            "price": product.price,            
-        })
-
-    return jsonify(response), 200
-
-
-
-@api.route("/profile/favorites/<int:product_id>", methods=['PUT'])
-@jwt_required()
-def removeFavourite(product_id):
-
-    current_user = get_jwt_identity()
-
-    user = User.query.get(current_user)
-    product = Product.query.get(product_id)
-
-    if not product:
-
-        return jsonify({"message": "Product not found"}), 404
-
-    favourite = Favourites.query.filter_by(user_id=user.id, product_id=product.id).first()
-
-    if not favourite:
-        return jsonify({"message": "Product not submited as a favourite"}), 404
-
-    db.session.delete(favourite)
-    db.session.commit()
-
-    return jsonify({"message": "Product has been removed from favourites"}), 200
 
 
 

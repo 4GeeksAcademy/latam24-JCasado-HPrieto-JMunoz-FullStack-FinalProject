@@ -213,136 +213,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return store.token; 
 			  
 			  },
-
-
-			getFavorites: () => {
-				const store = getStore();
-				fetch(process.env.BACKEND_URL + `api/profile/favorites`, {
-				  method: "GET",
-				  headers: {
-					"Content-Type": "application/json",
-					"Authorization": `Bearer ${localStorage.getItem("token")}`
-				  }
-				})
-				  .then(response => response.json())
-				  .then(response => {
-					setStore({ favorites: response });
-
-					console.log(response);
-				  });
-			},
-
-
-			postFavorite: async (user_id, product_id) => {
-				const token = localStorage.getItem("token");
-				const store = getStore();
-				
-				const isProductFavorited = store.favorites.some((favorite) => favorite.product_id === product_id);
-			  
-				if (isProductFavorited) {
-				  console.log("El producto ya está guardado como favorito.");
-				  return;
-				}
-				
-				try {
-				  const requestOptions = {
-					method: "POST",
-					headers: {
-					  "Content-Type": "application/json",
-					  Authorization: `Bearer ${token}`,
-					},
-					body: JSON.stringify({ 
-					  user_id: user_id,
-					  product_id: product_id 
-					}),
-					};
-			  
-				  const response = await fetch(`${process.env.BACKEND_URL}api/profile/favorites`, requestOptions);
-
-				  if (response.ok) {
-
-					getActions().getFavorites()
-					// const data = await response.json();
-					// console.log(data);
-					// const updatedFavorites = [...store.favorites, data];
-					// setStore({ favorites: updatedFavorites });
-					// localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-
-				  } else {
-					throw new Error('Error al añadir Favorito');
-				  }
-
-				} catch (error) {
-
-				  console.error("Error:", error);
-				}
-			},
-			  
-
-			putFavorite: (product_id) => {
-				const token = localStorage.getItem("token");
-				const requestOptions = {
-				  method: "PUT",
-				  headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`
-				  }
-				};
-			  
-				fetch(process.env.BACKEND_URL + `api/profile/favorites/${product_id}`, requestOptions)
-				  .then(response => response.json())
-				  .then(data => {
-
-					const updatedFavorites = [...store.favorites, data]
-					setStore({ favorites: updatedFavorites })
-
-					console.log(data);
-				  })
-				  .catch(error => {
-
-					console.error("Error:", error);
-				  });
-			},
-
-
-			removeFavorite: async (user_id, product_id) => {
-
-				const store = getStore();
-
-				const token = localStorage.getItem("token");
-				const requestOptions = {
-				  method: "PUT",
-				  headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				  },
-				};
-			  
-				try {
-				  const response = await fetch(
-					`${process.env.BACKEND_URL}api/profile/favorites/${product_id}`,
-					requestOptions
-				  );
-
-				  if (response.ok) {
-
-					const updatedFavorites = store.favorites.filter(
-					  (favorite) => favorite.product_id !== product_id
-					);
-
-					setStore({ favorites: updatedFavorites });
-					localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-					console.log("Favorite removed successfully");
-
-				  } else {
-					throw new Error("Error removing favorite");
-				  }
-
-				} catch (error) {
-
-				  console.error("Error:", error);
-				}
-			  },
 			  
 
 			getReviews: () => {
@@ -362,6 +232,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
+			
 			getFilters: () => {
 				const store = getStore();
 				fetch(process.env.BACKEND_URL + `api/search-by/<filter>`, {

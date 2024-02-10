@@ -24,10 +24,8 @@ class User(db.Model):
     address = db.Column(db.String(120), nullable=True) 
     role = db.Column(db.Enum(UserRole), nullable=False, default=UserRole.CLIENT)
     phone = db.Column(db.Integer, nullable=False)
+
     #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
-
-    review = db.relationship("Review", backref="user", foreign_keys=["client_id", "fairy_id"])
-
     # products = db.relationship("Product", backref="user") #(1 to many)
     #fairy_reviews = db.relationship("Review", backref="fairy") 
     #client_reviews = db.relationship("Review", backref="client") 
@@ -102,7 +100,7 @@ class Services (db.Model):
 class ServiceProducts (db.Model):
     id = db.Column(db.Integer, primary_key=True)
     product_id = db.Column(db.Integer, db.ForeignKey("product.id"))
-    service_id = db.Column(db.Integer, db.ForeignKey("service.id")) #Many to many
+    service_id = db.Column(db.Integer, db.ForeignKey("services.id")) #Many to many
 
     def __repr__(self):
 
@@ -116,6 +114,23 @@ class ServiceProducts (db.Model):
             "service_id": self.service_id,
         }
 
+
+class OrderedServices (db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    order_id = db.Column(db.Integer, db.ForeignKey("orders.id"))
+    services_id = db.Column(db.Integer, db.ForeignKey("services.id")) #Many to many
+
+    def __repr__(self):
+
+        return f'<Services {self.id}>'
+    
+    def serialize(self):
+
+        return {
+            "id": self.id,
+            "order_id": self.order_id,
+            "services_id": self.services_id,
+        }
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -147,8 +162,8 @@ class Orders(db.Model):
     price = db.Column(db.Float, nullable=False) 
     description = db.Column(db.String(256), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    
-    services_requested = db.relationship("Service", backref="orders")
+    #ordered_services_id = db.Column(db.Integer, db.ForeignKey('ordered_services.id'), nullable=False)
+    #services_requested = db.relationship("OrderedServices", backref="orders")
 
     def __repr__(self):
 
@@ -179,12 +194,12 @@ class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     client_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     fairy_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
-    order_id = db.Column(db.Integer, db.ForeignKey("order.id"), nullable=False)
+    order_id = db.Column(db.Integer, db.ForeignKey("orders.id"), nullable=False)
     stars = db.Column(db.Enum(Rating), nullable=False) 
     comment = db.Column(db.String(250), nullable=True)
 
-    client = db.relationship('User', foreign_keys="client_id")
-    fairy = db.relationship('User', foreign_keys="fairy_id")
+    # client = db.relationship('User', foreign_keys="client_id")
+    # fairy = db.relationship('User', foreign_keys="fairy_id")
 
     def __repr__(self):
 

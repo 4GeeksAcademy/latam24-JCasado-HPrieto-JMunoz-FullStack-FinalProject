@@ -1,7 +1,6 @@
 
 import os
 from flask_admin import Admin
-from enum import Enum
 from flask_admin.contrib.sqla import ModelView
 from .models import db, User, Product, Orders, Services, ServiceProducts, OrderedServices, Rating, Review
 from flask_admin.contrib.sqla import ModelView

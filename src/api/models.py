@@ -1,12 +1,11 @@
 
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from enum import Enum
+from enum import Enum 
 import pytz
 
 
 db = SQLAlchemy()
-
 
 
 class UserRole(Enum):
@@ -14,7 +13,6 @@ class UserRole(Enum):
     CLIENT = "client"
     FAIRY = "fairy"
     ADMIN = "admin" 
-
 
 
 class User(db.Model):
@@ -169,7 +167,7 @@ class Orders(db.Model):
     
 
 
-class Rating(Enum):
+class RatingEnum(Enum):
 
     ONE_STAR = 1
     TWO_STARS = 2
@@ -178,13 +176,23 @@ class Rating(Enum):
     FIVE_STARS = 5
 
 
-    
+class Rating(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    value = db.Column(db.Enum(RatingEnum), nullable=False)
+
+    def set_rating_value(self, rating_enum):
+        self.value = rating_enum.name
+
+    def get_rating_value(self):
+        return RatingEnum[self.value]
+
+
 class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     client_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     fairy_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     order_id = db.Column(db.Integer, db.ForeignKey("orders.id"), nullable=False)
-    stars = db.Column(db.Enum(Rating), nullable=False) 
+    stars = db.Column(db.Enum(RatingEnum), nullable=False) 
     comment = db.Column(db.String(250), nullable=True)
 
     # client = db.relationship('User', foreign_keys="client_id")

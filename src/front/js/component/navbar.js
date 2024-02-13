@@ -2,51 +2,44 @@
 import React, { useContext, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Context } from '../store/appContext';
+import { Navbar, Nav, Form, FormControl, Button, Badge } from 'react-bootstrap';
+import tremyImageUrl from "../../img/tremy-logo.png";
 
-export const Navbar = () => {
+const NavbarTop = () => { 
+  
+  return ( 
+    
+    <Navbar bg="#EBC5F6FF" variant="#EBC5F6FF">
+      <Navbar.Brand href="#home"><img src={tremyImageUrl} style={{ width: "10px", height: "auto"}}/></Navbar.Brand>
+      
+	  <Nav className="mr-auto">
+        <Nav.Link href="#home">Home</Nav.Link>
+        <Nav.Link href="#menu">Menu</Nav.Link>
+        <Nav.Link href="#pricing">Pricing</Nav.Link>
+      </Nav>
 
-	const { store, actions } = useContext(Context);
+      <Form inline>
+        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
 
-	const navigate = useNavigate();
+        <Button variant="outline-info">Search</Button>
 
-	useEffect(() => {
+        <Nav.Link href="#notifications">
 
-		console.log("Navbar");
+          <i className="fas fa-bell"></i>
 
-	}, [store.token]);
+          <Badge variant="danger">4</Badge>
 
-	const handleClick = () => {
+        </Nav.Link>
 
-		if (store.token) {
+        <Nav.Link href="#profile">
 
-			actions.logOut();
+          <img src="avatar.png" alt="User Avatar" style={{ width: '30px', height: '30px', borderRadius: '50%' }} />
 
-		} else {
+        </Nav.Link>
+      </Form>
+    </Navbar>
+ );
+}
 
-			navigate("/login");
-		}
-	};
 
-	return (
-
-		<nav className="navbar navbar-dark bg-dark">
-			<div className="container d-flex">
-				<Link to="/">
-					<button className=" btn btn-primary mb-0 h1">Home</button>
-				</Link>
-				<div className="ml-auto">
-					{store.token ? (
-						<button className="btn btn-primary" onClick={handleClick}>Logout</button>
-					) : (
-						<Link to="/login">
-							<button className="btn btn-primary">Login</button>
-						</Link>
-					)}
-					<Link to="/register">
-						<button className="btn btn-primary mx-4">Register</button>
-					</Link>
-				</div>
-			</div>
-		</nav>
-	);
-};
+export default NavbarTop;

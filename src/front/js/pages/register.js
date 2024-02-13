@@ -53,11 +53,13 @@ export const Register = () => {
                             }
                         }}> Register
                         </button>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
     )
 }

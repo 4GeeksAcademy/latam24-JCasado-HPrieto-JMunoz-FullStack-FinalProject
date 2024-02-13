@@ -1,37 +1,27 @@
 
 import React, { useState } from "react";
-import { Navbar, Nav, Form, FormControl, Button, Badge, Card, Container, Row, Col } from 'react-bootstrap';
+import { Navbar, Nav, Form, Button, Badge, Card, Container, Row, Col } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 
 
 const ClientHome = () => {
 
     const [notifications, setNotifications] = useState(4);
     const [selectedService, setSelectedService] = useState(null);
+    const navigate = useNavigate()
 
     const services = ["Manicure & Pedicure", "Eyelashes & Eyebrows", "Makeup", "Facials", "Haircuts"];
 
     const handleServiceSelection = (service) => {
         setSelectedService(service);
+        
+navigate("/productsMenuView")
 
     };
 
     return (
 
         <div>
-
-            <Form inline>
-                <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-
-                <Button variant="outline-info">Search</Button>
-
-                <Nav.Link href="#notifications">
-                    <i className="fas fa-bell"></i>
-                    <Badge variant="danger">{notifications}</Badge>
-                </Nav.Link>
-                <Nav.Link href="#profile">
-                    <img src="avatar.png" alt="User Avatar" className="avatar-img" />
-                </Nav.Link>
-            </Form>
 
             <Container fluid>
                 <Row>
@@ -58,7 +48,7 @@ const ClientHome = () => {
                             <div className={`card mb-4 ${selectedService === service ? 'selected' : ''}`} onClick={() => handleServiceSelection(service)}>
                                 <div className="card-body">
                                     <h5 className="card-title">{service}</h5>
-                                    <i className="fas fa-cog fa-3x"></i>
+                                    <i role="button" className="fas fa-cog fa-3x"></i>
                                 </div>
                             </div>
 

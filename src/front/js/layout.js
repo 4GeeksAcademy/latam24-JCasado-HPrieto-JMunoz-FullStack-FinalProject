@@ -4,6 +4,8 @@ import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
 import ClientHome from "./pages/clientsPages/clientHome";
+import ProductsMenuView from "./pages/clientsPages/productsMenuView";
+import FairySelection from "./pages/clientsPages/selectFairyView";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
@@ -29,6 +31,8 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route element={<ClientHome />} path="/" />
+                        <Route element={<ProductsMenuView />} path="/productsMenuView" />
+                        <Route element={<FairySelection />} path="/select-fairy" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<Register />} path="/register" />

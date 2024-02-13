@@ -1,8 +1,7 @@
 import React from "react";
-import Navbar from './navbar';
+import { Card, Button, Container } from "react-bootstrap";
 
-
-const Card = ({ user }) => {
+const UserCard = ({ user }) => {
 
     return (
 
@@ -35,7 +34,6 @@ const FairySelection = () => {
     return (
 
         <div>
-            <Navbar />
             <Container fluid>
                 <div>
                     <div md={4}>

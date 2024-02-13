@@ -1,8 +1,7 @@
 
 import React, { useState } from 'react';
 import { Container, Row, Col, Table, Card, Button } from 'react-bootstrap';
-import Navbar from './navbar';
-
+import { useNavigate } from 'react-router-dom';
 
 const OfferCard = () => {
 
@@ -137,16 +136,20 @@ const ProductsMenu = () => {
   };
 
 
+  const navigate = useNavigate()
+
   const handleConfirmSelection = () => {
-    
+    navigate("/select-fairy")
+
     console.log('Selected products:', selectedProducts);
 
   };
 
+
   return (
 
     <div>
-      <Navbar />
+    
       <Container fluid>
 
         <div>

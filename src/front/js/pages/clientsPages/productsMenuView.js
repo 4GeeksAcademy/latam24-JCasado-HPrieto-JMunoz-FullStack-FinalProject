@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Table, Card, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
+
 const OfferCard = () => {
 
   return (
@@ -25,43 +26,34 @@ const OfferCard = () => {
 };
 
 
-const ManicureTable = ({ handleSelection }) => {
-
-  const [selectedManicure, setSelectedManicure] = useState(null);
-
-  const selectManicure = (manicure) => {
-
-    setSelectedManicure(manicure);
-    handleSelection(manicure);
-
-  };
+const ManicureTable = ({ setManicure }) => {
 
   return (
 
     <Table striped bordered hover>
       <tbody>
-        <tr className={selectedManicure === 'Traditional' ? 'selected' : ''} onClick={() => selectManicure('Traditional')}>
-          <div>Traditional</div>
-          <div><i className="fas fa-hand-pointer"></i></div>
-          <div>$20</div>
+        <tr className={""}>
+          <td>Traditional</td>
+          <td><button className='' onClick={() => setManicure('Traditional')}><i className="fas fa-hand-pointer"></i></button></td>
+          <td>$20</td>
         </tr>
 
-        <tr className={selectedManicure === 'SemiPermanent' ? 'selected' : ''} onClick={() => selectManicure('SemiPermanent')}>
-          <div>Traditional</div>
-          <div><i className="fas fa-hand-pointer"></i></div>
-          <div>$40</div>
+        <tr className={""} onClick={() => setManicure('SemiPermanent')}>
+          <td>Traditional</td>
+          <td><i className="fas fa-hand-pointer"></i></td>
+          <td>$40</td>
         </tr>
 
-        <tr className={selectedManicure === 'GelConstruction' ? 'selected' : ''} onClick={() => selectManicure('GelConstruction')}>
-          <div>Gel Construction</div>
-          <div><i className="fas fa-hand-pointer"></i></div>
-          <div>$60</div>
+        <tr className={""} onClick={() => setManicure('GelConstruction')}>
+          <td>Gel Construction</td>
+          <td><i className="fas fa-hand-pointer"></i></td>
+          <td>$60</td>
         </tr>
 
-        <tr className={selectedManicure === 'Acrylic' ? 'selected' : ''} onClick={() => selectManicure('Acrylic')}>
-          <div>Acrylic</div>
-          <div><i className="fas fa-hand-pointer"></i></div>
-          <div>$80</div>
+        <tr className={""} onClick={() => setManicure('Acrylic')}>
+          <td>Acrylic</td>
+          <td><i className="fas fa-hand-pointer"></i></td>
+          <td>$80</td>
         </tr>
         
       </tbody>
@@ -71,45 +63,37 @@ const ManicureTable = ({ handleSelection }) => {
 };
 
 
-const PedicureTable = ({ handleSelection }) => {
+const PedicureTable = ({ setPedicure }) => {
 
-  const [selectedPedicure, setSelectedPedicure] = useState(null);
-
-  const selectPedicure = (pedicure) => {
-
-    setSelectedPedicure(pedicure);
-    handleSelection(pedicure);
-
-  };
 
   return (
 
     <Table striped bordered hover>
       <tbody>
 
-        <div className={selectedPedicure === 'Traditional' ? 'selected' : ''} onClick={() => selectPedicure('Traditional')}>
-          <div>Traditional</div>
-          <div><i className="fas fa-footprints"></i></div>
-          <div>$30</div>
-        </div>
+        <tr className={""} onClick={() => setPedicure('TraditionalPedicure')}>
+          <td>Traditional</td>
+          <td><i className="fa-solid fa-shoe-prints"></i></td>
+          <td>$30</td>
+        </tr>
 
-        <div className={selectedPedicure === 'SemiPermanent' ? 'selected' : ''} onClick={() => selectPedicure('SemiPermanent')}>
-          <div>Semi permanent</div>
-          <div><i className="fas fa-footprints"></i></div>
-          <div>$50</div>
-        </div>
+        <tr className={""} onClick={() => setPedicure('SemiPermanentPedicure')}>
+          <td>Semi permanent</td>
+          <td><i className="fa-solid fa-shoe-prints"></i></td>
+          <td>$50</td>
+        </tr>
 
-        <div className={selectedPedicure === 'GelConstruction' ? 'selected' : ''} onClick={() => selectPedicure('GelConstruction')}>
-          <div>Gel Construction</div>
-          <div><i className="fas fa-footprints"></i></div>
-          <div>$70</div>
-        </div>
+        <tr className={""} onClick={() => setPedicure('GelConstructionPedicure')}>
+          <td>Gel Construction</td>
+          <td><i className="fa-solid fa-shoe-prints"></i></td>
+          <td>$70</td>
+        </tr>
 
-        <div className={selectedPedicure === 'Acrylic' ? 'selected' : ''} onClick={() => selectPedicure('Acrylic')}>
-          <div>Acrylic</div>
-          <div><i className="fas fa-footprints"></i></div>
-          <div>$90</div>
-        </div>
+        <tr className={""} onClick={() => setPedicure('AcrylicPedicure')}>
+          <td>Acrylic</td>
+          <td><i className="fa-solid fa-shoe-prints"></i></td>
+          <td>$90</td>
+        </tr>
 
       </tbody>
     </Table>
@@ -120,28 +104,20 @@ const PedicureTable = ({ handleSelection }) => {
 
 const ProductsMenu = () => {
 
-  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [ manicure, setManicure ] = useState("");
 
-  const handleSelection = (product) => {
-
-    if (selectedProducts.includes(product)) {
-
-      setSelectedProducts(selectedProducts.filter(item => item !== product));
-
-    } else {
-
-      setSelectedProducts([...selectedProducts, product]);
-
-    }
-  };
+  const [ pedicure, setPedicure] = useState("");  
 
 
   const navigate = useNavigate()
 
   const handleConfirmSelection = () => {
+    
     navigate("/select-fairy")
 
-    console.log('Selected products:', selectedProducts);
+    console.log('Manicure:', manicure);
+
+    console.log('Pedicure:', pedicure);
 
   };
 
@@ -155,12 +131,12 @@ const ProductsMenu = () => {
         <div>
           <Col md={6}>
             <h2>Manicure</h2>
-            <ManicureTable handleSelection={handleSelection} />
+            <ManicureTable setManicure={setManicure} />
           </Col>
 
           <Col md={6}>
             <h2>Pedicure</h2>
-            <PedicureTable handleSelection={handleSelection} />
+            <PedicureTable setPedicure={setPedicure} />
           </Col>
         </div>
 

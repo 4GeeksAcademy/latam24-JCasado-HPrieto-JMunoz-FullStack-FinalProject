@@ -1,7 +1,13 @@
 import React from "react";
 import { Card, Button, Container } from "react-bootstrap";
 
-const UserCard = ({ user }) => {
+
+const UserCard = ({ user, onSelect }) => {
+
+    const handleSelect = () => {
+
+        onSelect(user); 
+    };
 
     return (
 
@@ -17,19 +23,21 @@ const UserCard = ({ user }) => {
                     <strong>Availability:</strong> {user.available ? "Available" : "Not Available"}
                 </Card.Text>
 
-                <Button variant="primary">Select</Button>
+                <Button variant="primary" onClick={handleSelect}>Select</Button> {/* Call handleSelect when button is clicked */}
                 <Button variant="secondary" className="mt-2">About</Button>
 
             </Card.Body>
-
         </Card>
-
     );
 };
 
-
-
 const FairySelection = () => {
+
+    const handleSelectFairy = (selectedUser) => {
+        
+        console.log("Selected fairy:", selectedUser);
+        
+    };
 
     return (
 
@@ -41,12 +49,13 @@ const FairySelection = () => {
                         <UserCard
                             user={{
                                 avatar: "url",
-                                name: "Fairy Name",
+                                name: "Miss Ana Gomez",
                                 professionalTitle: "Cosmetologist / Nail tech",
                                 rating: 4.9,
                                 ETA: 20,
                                 available: true
                             }}
+                            onSelect={handleSelectFairy}
                         />
                     </div>
 
@@ -61,6 +70,7 @@ const FairySelection = () => {
                                 ETA: 30,
                                 available: true
                             }}
+                            onSelect={handleSelectFairy}
                         />
                     </div>
 
@@ -75,31 +85,32 @@ const FairySelection = () => {
                                 ETA: 15,
                                 available: true
                             }}
+                            onSelect={handleSelectFairy}
                         />
                     </div>
                 </div>
                
                 <div className="mt-4">
-
                     <Card>
                         <Card.Img variant="top" src="url" />
                         <Card.Body>
                             <Card.Title>Special Promotion</Card.Title>
+
                             <Card.Text>
-                                Get 20% off on your next service
+                                Get 30% off on facial care
                             </Card.Text>
+
                             <Button variant="primary">Learn More</Button>
+
                         </Card.Body>
                     </Card>
-
                 </div>
 
             </Container>
-
         </div>
+
     );
 };
-
 
 
 export default FairySelection;

@@ -18,8 +18,8 @@ const NavbarTop = () => {
         <Nav.Link href="#pricing">Pricing</Nav.Link>
       </Nav>
 
-      <Form inline>
-        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+      <Form>
+        <FormControl type="text" className="mr-sm-2" />
 
         <Button variant="outline-info">Search</Button>
 
@@ -33,7 +33,7 @@ const NavbarTop = () => {
 
         <Nav.Link href="#profile">
 
-          <img src="avatar.png" alt="User Avatar" style={{ width: '30px', height: '30px', borderRadius: '50%' }} />
+          <img src="avatar.png" alt="User Avatar" style={{ width: '100px', height: '90px', borderRadius: '50%' }} />
 
         </Nav.Link>
       </Form>

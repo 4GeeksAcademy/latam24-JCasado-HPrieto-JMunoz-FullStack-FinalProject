@@ -132,31 +132,6 @@ def handle_hello():
 
 
 
-@api.route("/signup", methods=['POST'])
-def signup():
-    data = request.get_json()
-    full_name = data.get("full_name")
-    email = data.get("email")
-    password = data.get("password")
-    address = data.get("address")
-    phone = data.get("phone")
-    role = data.get("role")
-
-    register = User(full_name = full_name, email=email, password=password, role=role)
-    # register = User(full_name = full_name, email=email, password=password, address=address, phone=phone, role=role)
-
-    print(register)
-
-    if register is None:
-        return jsonify({"message": "Complete the required fields"}), 400
-    
-    db.session.add(register)
-    db.session.commit()
-
-    return jsonify({"message" : "Signed up successfully"}), 200
-
-
-
 # def upload_certificate():
 #     current_user = get_jwt_identity()
 #     cloudinary.config(cloud_name = os.getenv('CLOUD_NAME'), api_key=os.getenv('API_KEY'), 
@@ -251,59 +226,6 @@ def get_products():
     serialized_products = [product.serialize() for product in products]
 
     return jsonify(serialized_products), 200
-
-
-
-# @api.route('/profile/changed/<state>', methods=['GET'])
-# @jwt_required()
-# def get_products_by_status_changed(state):
-#     current_user = get_jwt_identity()
-    
-#     product_status = status.query.filter_by(status=state)
-
-#     if product_status:
-#         ListProducts = [status.product[0].serialize() for status in product_status if status.product and status.given_review_id==current_user]
-#         return jsonify(ListProducts), 200
-
-#     return jsonify([]), 200
-
-
-
-# @api.route('/profile/products/<int:product_id>/<new_status>', methods=['PUT'])
-# @jwt_required()
-# def update_product_status(product_id, new_status):
-#     current_user = get_jwt_identity()
-#     product = Product.query.filter_by(id=product_id).first()
-
-#     if product:
-#         status_obj = status.query.filter_by(id=product.status_id).first()
-
-#         if status_obj:
-#             status_obj.status = new_status
-#             db.session.commit()
-
-#             return jsonify({'message': 'Product status updated successfully'}), 200
-        
-#     return jsonify({'message': 'Product not found or invalid status'}), 404
-
-
-
-@api.route("/profile/products/<int:product_id>/<new_status>/status", methods=['PUT'])
-@jwt_required()
-def update_product_status_user(product_id, new_status):
-    current_user = get_jwt_identity()
-    product = Product.query.filter_by(id=product_id).first()
-
-    if product:
-        status_obj = status.query.filter_by(id=product.status_id).first()
-
-        if status_obj:
-            status_obj.status = new_status
-            db.session.commit()
-
-            return jsonify({"message": "Product status updated successfully"}), 200
-        
-    return jsonify({"message": "Product not found or invalid status"}), 404
 
 
 
@@ -425,7 +347,9 @@ def update_menu_configuration():
     product.description = data.get('description')
     product.product_id = data.get('product_id')
     menu.user_id = data.get('user_id')
+
     print(menu.serialize())
+    
     try:
        
         db.session.commit()

@@ -1,45 +1,52 @@
+import React, { useContext, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { Context } from "../store/appContext";
+import tremyIsotipo from "../../img/tremy-isotipo.png";
 
-import React, { useContext, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { Context } from '../store/appContext';
-import { Navbar, Nav, Form, FormControl, Button, Badge } from 'react-bootstrap';
-import tremyImageUrl from "../../img/tremy-logo.png";
+export const Navbar = () => {
+  const { store, actions } = useContext(Context);
 
-const NavbarTop = () => { 
-  
-  return ( 
-    
-    <Navbar bg="#EBC5F6FF" variant="#EBC5F6FF">
-      <Navbar.Brand href="#home"><img src={tremyImageUrl} style={{ width: "10px", height: "auto"}}/></Navbar.Brand>
-      
-	  <Nav className="mr-auto">
-        <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link href="#menu">Menu</Nav.Link>
-        <Nav.Link href="#pricing">Pricing</Nav.Link>
-      </Nav>
+  const navigate = useNavigate();
 
-      <Form>
-        <FormControl type="text" className="mr-sm-2" />
+  useEffect(() => {
+    console.log("Navbar");
+  }, [store.token]);
 
-        <Button variant="outline-info">Search</Button>
+  const handleClick = () => {
+    if (store.token) {
+      actions.logOut();
+    } else {
+      navigate("/login");
+    }
+  };
 
-        <Nav.Link href="#notifications">
+  return (
+    <nav className="navbar">
+      <div className="container-fluid d-flex">
+        <img
+          className="navbar-img mx-3"
+          role="button"
+          src={tremyIsotipo}
+          onClick={() => navigate("/")}
+        ></img>
 
-          <i className="fas fa-bell"></i>
-
-          <Badge variant="danger">4</Badge>
-
-        </Nav.Link>
-
-        <Nav.Link href="#profile">
-
-          <img src="avatar.png" alt="User Avatar" style={{ width: '100px', height: '90px', borderRadius: '50%' }} />
-
-        </Nav.Link>
-      </Form>
-    </Navbar>
- );
-}
-
-
-export default NavbarTop;
+        <div className="ml-auto">
+          {store.token ? (
+            <button className="btn btn-log" onClick={handleClick}>
+              Logout
+            </button>
+          ) : (
+            <Link to="/login">
+              <button className="btn btn-log">Login</button>
+            </Link>
+          )}
+          <Link to="/register">
+            <button className="btn btn-secondary mx-4 register-btn">
+              <i class="fa-solid fa-user"></i>
+            </button>
+          </Link>
+        </div>
+      </div>
+    </nav>
+  );
+};

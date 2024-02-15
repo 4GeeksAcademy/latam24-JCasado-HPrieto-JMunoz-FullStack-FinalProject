@@ -1,52 +1,52 @@
-
-import React, { useContext, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { Context } from '../store/appContext';
+import React, { useContext, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { Context } from "../store/appContext";
+import tremyIsotipo from "../../img/tremy-isotipo.png";
 
 export const Navbar = () => {
+  const { store, actions } = useContext(Context);
 
-	const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
 
-	const navigate = useNavigate();
+  useEffect(() => {
+    console.log("Navbar");
+  }, [store.token]);
 
-	useEffect(() => {
+  const handleClick = () => {
+    if (store.token) {
+      actions.logOut();
+    } else {
+      navigate("/login");
+    }
+  };
 
-		console.log("Navbar");
+  return (
+    <nav className="navbar">
+      <div className="container-fluid d-flex">
+        <img
+          className="navbar-img mx-3"
+          role="button"
+          src={tremyIsotipo}
+          onClick={() => navigate("/")}
+        ></img>
 
-	}, [store.token]);
-
-	const handleClick = () => {
-
-		if (store.token) {
-
-			actions.logOut();
-
-		} else {
-
-			navigate("/login");
-		}
-	};
-
-	return (
-
-		<nav className="navbar navbar-dark bg-dark">
-			<div className="container d-flex">
-				<Link to="/">
-					<button className=" btn btn-primary mb-0 h1">Home</button>
-				</Link>
-				<div className="ml-auto">
-					{store.token ? (
-						<button className="btn btn-primary" onClick={handleClick}>Logout</button>
-					) : (
-						<Link to="/login">
-							<button className="btn btn-primary">Login</button>
-						</Link>
-					)}
-					<Link to="/register">
-						<button className="btn btn-primary mx-4">Register</button>
-					</Link>
-				</div>
-			</div>
-		</nav>
-	);
+        <div className="ml-auto">
+          {store.token ? (
+            <button className="btn btn-log" onClick={handleClick}>
+              Logout
+            </button>
+          ) : (
+            <Link to="/login">
+              <button className="btn btn-log">Login</button>
+            </Link>
+          )}
+          <Link to="/register">
+            <button className="btn btn-secondary mx-4 register-btn">
+              <i class="fa-solid fa-user"></i>
+            </button>
+          </Link>
+        </div>
+      </div>
+    </nav>
+  );
 };

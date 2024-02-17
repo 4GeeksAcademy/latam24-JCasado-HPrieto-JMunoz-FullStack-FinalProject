@@ -1,0 +1,346 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+
+/* Homepage */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+  background-color: #FAF2FDFF;
+  color: var(--c-text-primary);
+}
+
+
+.navbar {
+  background-color: #ebc5f6ff;
+}
+
+.navbar-img {
+  height: 30px;
+  width: 30px;
+}
+
+.btn-log {
+  background-color: #d8048390;
+}
+
+.register-btn {
+  border-radius: 100%;
+  background-color: #d8048390;
+}
+
+/* FOOTER STYLES */
+
+.footer {
+  background: #ebc5f6ff;
+  border-radius: 0px;
+  padding: 0%;
+  position: absolute;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+}
+
+.main-container {
+  margin-bottom: 80px;
+  padding-bottom: 110px;
+}
+
+/* HOME btn */
+.home-icon {
+  font-size: larger;
+}
+
+.home-text {
+  font-size: small;
+  margin: 0%;
+}
+
+.facial_care {
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
+.facial_care-promo {
+  font-size: 2rem;
+  color: rgb(73, 73, 73);
+}
+
+.avatar-img {
+  border-radius: 50%;
+
+}
+
+.button_whatsapp {
+  background-color: rgb(241, 253, 244);
+  color: rgb(56, 121, 60);
+  border-radius: 30px;
+}
+
+/* calendly btn */
+.calendar-icon {
+  font-size: larger
+}
+
+.calendar-text {
+  font-size: small;
+  margin: 0%;
+}
+
+/* messages btn */
+.message-icon {
+  font-size: large;
+}
+
+.message-text {
+  font-size: small;
+  margin: 0%;
+}
+
+/* config btn */
+
+.gear-icon {
+  font-size: larger;
+}
+
+.gear-text {
+  font-size: small;
+  margin: 0%;
+}
+
+/* publicity-card homepage */
+.publicity-card {
+  background: #ebc5f60d;
+  border-radius: 6px 6px 0px 0px;
+}
+
+/* LOGIN */
+
+.login {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.image-login {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-login {
+  background-color: #4589ff;
+  position: absolute;
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffffff;
+  background: #3ebde0ff;
+  border-radius: 6px;
+  width: 250px;
+}
+
+.checkbox {
+  margin-right: 15px;
+}
+
+.sing-in {
+  display: flex;
+  justify-content: center;
+}
+
+.btns-log {
+  display: flex;
+  justify-content: center;
+}
+
+.count {
+  display: flex;
+  justify-content: center;
+}
+
+/* REGISTER */
+
+.btn-register {
+  background-color: #4589ff;
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffffff;
+  background: #3ebde0ff;
+  border-radius: 6px;
+  width: 250px;
+  margin-left: 12px;
+}
+
+.image-profile {
+  border-radius: 100%;
+  width: 40%;
+}
+
+.register-image {
+  background-repeat: no-repeat;
+}
+
+.check-box {
+  font-size: small;
+}
+
+/* FAIRY DETAILS */
+
+.data-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffffff;
+  border-radius: 10px;
+  min-width: 300px;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Calendar */
+
+:root {
+  --c-theme-primary: #008ffd;
+  --c-theme-primary-accent: #cbe8ff;
+  --c-bg-primary: #d6dae0;
+  --c-bg-secondary: #eaebec;
+  --c-bg-tertiary: #fdfdfd;
+  --c-text-primary: #1f1f25;
+  --c-text-secondary: #999fa6;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.datepicker {
+  width: 95%;
+  max-width: 350px;
+  background-color: var(--c-bg-tertiary);
+  border-radius: 10px;
+  box-shadow: 0 0 2px 0 rgba(#000, 0.2), 0 5px 10px 0 rgba(#000, 0.1);
+  padding: 1rem;
+}
+
+.datepicker-top {
+  margin-bottom: 1rem;
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  margin-top: -0.5rem;
+}
+
+.tag {
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  border: 0;
+  background-color: var(--c-bg-secondary);
+  border-radius: 10px;
+  padding: 0.5em 0.75em;
+  font-weight: 600;
+}
+
+.month-selector {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background-color: #fff;
+  border-radius: 12px;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.month-name {
+  font-weight: 600;
+}
+
+.datepicker-calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-row-gap: 1rem;
+}
+
+.day,
+.date {
+  justify-self: center;
+}
+
+.day {
+  color: var(--c-text-secondary);
+  font-size: 0.875em;
+  font-weight: 500;
+  justify-self: center;
+}
+
+.date {
+  border: 0;
+  padding: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-weight: 600;
+  border: 2px solid transparent;
+  background-color: transparent;
+  cursor: pointer;
+
+  &:focus {
+    outline: 0;
+    color: var(--c-theme-primary);
+    border: 2px solid var(--c-theme-primary-accent);
+  }
+}
+
+.faded {
+  color: var(--c-text-secondary);
+}
+
+.current-day {
+  color: #fff;
+  border-color: var(--c-theme-primary);
+  background-color: var(--c-theme-primary);
+
+  &:focus {
+    background-color: var(--c-theme-primary-accent);
+  }
+}
+
+/* Hover */
+.button:hover {
+  color: #ffffffff;
+  background: #1f9ec1ff;
+}
+
+/* Pressed */
+.button:hover:active {
+  color: #ffffffff;
+  background: #1b88a7ff;
+}
+
+/* Disabled */
+.button:disabled {
+  opacity: 0.4;
+}

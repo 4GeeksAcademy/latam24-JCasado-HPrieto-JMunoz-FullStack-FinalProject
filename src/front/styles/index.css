@@ -13,6 +13,7 @@ body {
 .navbar {
   background-color: #ebc5f6ff;
 }
+
 .navbar-img {
   height: 30px;
   width: 30px;
@@ -44,6 +45,7 @@ body {
 }
 
 /* HOME btn */
+
 .home-icon {
   font-size: larger;
 }
@@ -145,6 +147,7 @@ body {
 .check-box {
   font-size: small;
 }
+
 /* FAIRY DETAILS */
 
 .data-card {
@@ -280,6 +283,26 @@ button {
   }
 }
 
+/* CHOOSE FAIRY */
+.calendar-icon {
+  font-size: larger;
+}
+.data-container-fairy {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* FAIRY RATE  */
+
+.rate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(124, 218, 48);
+  border-radius: 20px;
+  max-height: 40px;
+}
+
 /* Hover */
 .button:hover {
   color: #ffffffff;
@@ -293,4 +316,10 @@ button {
 /* Disabled */
 .button:disabled {
   opacity: 0.4;
+}
+
+/* Rounded Picture */
+
+.profile-picture {
+  width: 120px;
 }

@@ -37,12 +37,12 @@ export const Navbar = () => {
             </button>
           ) : (
             <Link to="/login">
-              <button className="btn btn-log">Login</button>
+              <button className="btn btn-dark btn-log">Login</button>
             </Link>
           )}
           <Link to="/register">
-            <button className="btn btn-secondary mx-4 register-btn">
-              <i class="fa-solid fa-user"></i>
+            <button className="btn btn-dark mx-4 register-btn">
+              <i className="fa-solid fa-user"></i>
             </button>
           </Link>
         </div>

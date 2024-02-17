@@ -220,25 +220,68 @@ def update_product(productid):
 
  
 
-@api.route("/products", methods=['GET'])
-def get_products():
-    products = Product.query.all()
-    serialized_products = [product.serialize() for product in products]
+@api.route("/products/<int:service_id>", methods=['GET'])
+def get_service_id(service_id):
+    
+    try:
+        
+        service = Services.query.get(service_id)
 
-    return jsonify(serialized_products), 200
+        if service is None:
+
+            return jsonify({'error': 'Service not found'}), 404
+
+        serialized_service = service.serialize()
+
+        return jsonify(serialized_service), 200
+
+    except Exception as error:
+        
+        print(error)
+
+        return jsonify({'error': 'Internal server error'}), 500
 
 
 
-@api.route("/Service", methods=['GET'])
+@api.route("/services", methods=['GET'])
 def get_services():
-    brands = Service.query.filter_by(service_type="Service").all()
 
-    Services_list = []
-    for service in service:
-        service_data = service.serialize()
-        service_list.append(service_data)
+    services = Services.query.all()
 
-    return jsonify(service_list)
+    services_list = []
+
+    for service in services:
+
+        services_data = service.serialize()
+        services_list.append(services_data)
+
+    return jsonify(services_list)
+
+
+
+@api.route("/serviceCategories/<int:category_id>", methods=['GET'])
+def get_service_category(category_id):
+
+    serviceCategories = Services.query.filter_by(service_category=category_id).all()
+
+    serialized_services = [service.serialize() for service in serviceCategories]
+
+    print (serviceCategories)
+
+    return jsonify(serialized_services) 
+
+
+
+@api.route("/products/<int:service_id>", methods=['GET'])
+def get_service_id(service_id):
+    
+    product = Services.query.filter_by(service_id=service_id).all()
+
+    serlized_products = [product.serialize() for product in product]
+
+    print (product)
+
+    return jsonify(serialized_product)
 
 
 
@@ -249,12 +292,14 @@ def filter_by_product():
     products = Product.query.filter_by(product_type="Pedicure").all()
 
     serialized_products = [product.serialize() for product in products]
+
     return jsonify(serialized_products)
 
 
 
 @api.route("/Search_by_filter", methods=['GET'])
 def search_by_filter():
+
     service_id = request.args.get("service_id")
     product_type = request.args.get("product_type")
   
@@ -274,27 +319,48 @@ def search_by_filter():
     products = products.all()
 
     serialized_products = [product.serialize() for product in products]
+
     return jsonify(serialized_products)
+
+
+
+@api.route('/products/<state>', methods=['GET'])
+def get_all_products_by_status(state):
+
+    product_status = status.query.filter_by(status=state).all()
+
+    if product_status:
+
+        ListProducts = [status.product[0].serialize() for status in product_status if status.product]
+
+        return jsonify(ListProducts), 200
+    
+    return jsonify([]), 200
 
 
 
 @api.route('/configuration', methods=['GET'])
 @jwt_required()
 def configuration():
+
     current_user = get_jwt_identity()
     user=User.query.filter_by(id=current_user).first()
     response_body = {
         "data": user.serialize()
     }
+
     return jsonify(response_body), 200
 
 
 @api.route('/configuration', methods=['PUT'])
 @jwt_required()
 def update_configuration():
+
     current_user = get_jwt_identity()
     user = User.query.get(current_user)
+
     if user is None:
+
         return jsonify({"message": "User not found"}), 404
 
     data = request.get_json()
@@ -334,12 +400,16 @@ def update_configuration():
 @api.route('/configuration/menu', methods=['PUT'])
 @jwt_required()
 def update_menu_configuration():
+
     current_user = get_jwt_identity()
     garage = Menu.query.filter(Menu.user_id == current_user).first()
+
     if menu is None:
+
         return jsonify({"message": "Menu serch not found"}), 404
     
     data = request.get_json()
+
     menu.name = data.get('name')
     user.mail = data.get('mail')
     user.phone = data.get('phone')
@@ -366,14 +436,17 @@ def update_menu_configuration():
 @api.route("/configuration/menu", methods=['DELETE'])
 @jwt_required()
 def delete_product(menu_id):
+
     current_user = get_jwt_identity()
 
     menu = Menu.query.get(menu_id)
 
     if menu is None:
+
         return jsonify({"message" : "Menu not found"}), 404
     
     if garage.user_id != current_user:
+
         return jsonify({"message" : "Authorization required"})
     
     db.session.delete(product)
@@ -389,7 +462,9 @@ def update_password():
 
     current_user = get_jwt_identity()
     user = User.query.get(current_user)
+
     if user is None:
+
         return jsonify({"message": "User not found"}), 404
 
     data = request.get_json()
@@ -400,6 +475,7 @@ def update_password():
 
     try:
         db.session.commit()
+
         return jsonify({"message": "Password updated successfully"}), 200
     
     except Exception as e:
@@ -409,19 +485,10 @@ def update_password():
 
 
 
-@api.route('/products/<state>', methods=['GET'])
-def get_all_products_by_status(state):
-    product_status = status.query.filter_by(status=state).all()
-    if product_status:
-        ListProducts = [status.product[0].serialize() for status in product_status if status.product]
-        return jsonify(ListProducts), 200
-    return jsonify([]), 200
-
-
-
 @api.route("/profile/reviews", methods=['POST'])
 @jwt_required()
 def addReview():
+
     current_user = get_jwt_identity()
     data = request.get_json()
     product_id = data.get("product_id")
@@ -431,6 +498,7 @@ def addReview():
     product = Product.query.get(product_id)
 
     if not product:
+
         return jsonify({"message": "Producto not found"}), 404
 
     received_user = User.query.get(product.user_id)
@@ -446,15 +514,19 @@ def addReview():
 @api.route("/profile/reviews", methods=['GET'])
 @jwt_required()
 def getReviews():
+
     current_user = get_jwt_identity()
 
     reviews = Review.query.filter_by(recived_review_id=current_user).all()
     
     review_list = []
-    for review in reviews:   
+
+    for review in reviews:  
+
         product = Product.query.get(review.product_id)
 
         review_data = {
+            
             "product_id": review.product_id,
             "comment": review.comment,
             "given_review_id": review.given_review_id,
@@ -463,6 +535,7 @@ def getReviews():
             "received_user_id": review.received_review_id,
             "image": list(product.images)[0].image
         }
+
         review_list.append(review_data)
 
     return jsonify(review_list), 200

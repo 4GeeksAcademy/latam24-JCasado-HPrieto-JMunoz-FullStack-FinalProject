@@ -42,7 +42,7 @@ export const Navbar = () => {
           )}
           <Link to="/register">
             <button className="btn btn-secondary mx-4 register-btn">
-              <i class="fa-solid fa-user"></i>
+              <i className="fa-solid fa-user"></i>
             </button>
           </Link>
         </div>

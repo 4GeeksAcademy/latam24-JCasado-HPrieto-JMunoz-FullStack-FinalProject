@@ -294,3 +294,7 @@ button {
 .button:disabled {
   opacity: 0.4;
 }
+
+.promotion{
+padding-bottom: 20px;
+}

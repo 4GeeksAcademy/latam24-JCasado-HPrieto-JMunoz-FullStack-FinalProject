@@ -56,13 +56,13 @@ class User(db.Model):
 class Services (db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
-    price = db.Column(db.Float, nullable=False)
     description = db.Column(db.String(300), nullable=False)
     service_products = db.relationship("ServiceProducts", backref="services")
-
+    service_category = db.Column(db.Integer, db.ForeignKey("service_categories.id"))
+    
     def __repr__(self):
 
-        return f'<Services {self.id}>'
+        return f'<Services {self.name}>'
     
     def serialize(self):
 
@@ -70,28 +70,48 @@ class Services (db.Model):
             "id": self.id,
             "name": self.name,
             "description": self.description,
-            "image_id": self.image_id,
         }
     
 
     
 class ServiceProducts (db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), nullable=False)
+    price = db.Column(db.Float, nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey("product.id"))
     service_id = db.Column(db.Integer, db.ForeignKey("services.id")) #Many to many
 
     def __repr__(self):
 
-        return f'<Services {self.id}>'
+        return f'<ServiceProducts {self.name}>'
     
     def serialize(self):
 
         return {
             "id": self.id,
+            "name": self.name,
+            "price": self.price,
             "product_id": self.product_id,
-            "service_id": self.service_id,
+            "service_id": self.service_id
         }
 
+
+class ServiceCategories (db.Model):
+    __tablename__ = "service_categories"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), nullable=False)
+    services = db.relationship("Services", backref="service_categories")
+
+    def __repr__(self):
+
+        return f'<ServiceCategories {self.name}>'
+    
+    def serialize(self):
+
+        return {
+            "id": self.id,
+            "name": self.name
+        }
 
 
 class OrderedServices (db.Model):

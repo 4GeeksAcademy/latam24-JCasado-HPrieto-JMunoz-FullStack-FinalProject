@@ -22,11 +22,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 		productlist: [],
 		user: [],
-			users: [],
-     		token: localStorage.getItem("token") || "",
-			services: [],
-			products: [],
-			filterProducts: [],
+		users: [],
+		token: localStorage.getItem("token") || "",
+		services: [],
+		products: [],
+		filterProducts: [],
 
 		actions: {
 
@@ -52,7 +52,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await response.json()
 
 					setStore({ token: data.token })
-					
+
 					console.log(data)
 
 					return true
@@ -66,9 +66,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logOut: () => {
 
 				try {
-					
+
 					setStore({ token: null });
-			
+
 					console.log("You have been logged out");
 
 				} catch (error) {
@@ -147,21 +147,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-			getProducts: () => {
+			getServices: async () => {
 
-				const store = getStore();
-				fetch(process.env.BACKEND_URL + `api/profile/onsale`, {
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-						"Authorization": `Bearer ${localStorage.getItem("token")}`
-					}
-				})
-				.then (response => response.json())
-				.then ((response) => {
-					setStore({ products: response.data });
-					
-				})
+				const response = await fetch(process.env.BACKEND_URL + `/api/services`)
+
+				if (!response.ok) {
+
+					throw new Error('Failed to fetch service menu');
+				}
+
+				const data = await response.json();
+
+				console.log(data);
+
+				setStore({ services: data });
 			},
 
 
@@ -171,49 +170,49 @@ const getState = ({ getStore, getActions, setStore }) => {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
-						
+
 					}
 				})
-				.then (response => response.json())
-				.then ((response) => {
-					setStore({ products: response });
+					.then(response => response.json())
+					.then((response) => {
+						setStore({ products: response });
 
-					console.log(response)
-				})
+						console.log(response)
+					})
 			},
 
 
 			getUsers: () => {
 				fetch(process.env.BACKEND_URL + "api/users", {
-				  method: "GET",
-				  headers: {
-					"Content-Type": "application/json",
-					"Authorization": `Bearer ${localStorage.getItem("token")}`
-				  }
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": `Bearer ${localStorage.getItem("token")}`
+					}
 				})
-				.then(response => response.json())
-				.then(response => {
-				  setStore({ users: response.data })
+					.then(response => response.json())
+					.then(response => {
+						setStore({ users: response.data })
 
-				  console.log(response)
-				})
-				.catch(error => {
+						console.log(response)
+					})
+					.catch(error => {
 
-				  console.error("Error:", error);
-				});
-			  },
+						console.error("Error:", error);
+					});
+			},
 
-			  getToken: () => {
+			getToken: () => {
 				const store = getStore()
 
 				if (localStorage.getItem("token")) {
 
-				  return localStorage.getItem("token"); 
+					return localStorage.getItem("token");
 				}
-				return store.token; 
-			  
-			  },
-			  
+				return store.token;
+
+			},
+
 
 			getReviews: () => {
 				const store = getStore();
@@ -224,15 +223,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Authorization": `Bearer ${localStorage.getItem("token")}`
 					}
 				})
-				.then (response => response.json())
-				.then ((response) => {
-					setStore({ reviews: response});
+					.then(response => response.json())
+					.then((response) => {
+						setStore({ reviews: response });
 
-					console.log(response)
-				})
+						console.log(response)
+					})
 			},
 
-			
+
 			getFilters: () => {
 				const store = getStore();
 				fetch(process.env.BACKEND_URL + `api/search-by/<filter>`, {
@@ -241,13 +240,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json",
 					}
 				})
-				.then (response => response.json())
-				.then ((response) => {
+					.then(response => response.json())
+					.then((response) => {
 
-					setStore({ filters: response });
+						setStore({ filters: response });
 
-					console.log(response)
-				})
+						console.log(response)
+					})
 			},
 		}
 	}

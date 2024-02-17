@@ -1,25 +1,27 @@
 import React, { Component } from "react";
 
+
 export const Footer = () => (
+  
   <footer className="footer container-fluid mt-auto py-3 text-center">
     <div className="d-flex justify-content-center">
       <button className="btn btn-home">
-        <i class="fa-solid fa-house home-icon"></i>
+        <i className="fa-solid fa-house home-icon"></i>
         <p className="home-text">Home</p>
       </button>
 
       <button className="btn btn-calendar">
-        <i class="fa-regular fa-calendar calendar-icon"></i>
+        <i className="fa-regular fa-calendar calendar-icon"></i>
         <p className="calendar-text">Appointments</p>
       </button>
 
       <button className="btn btn-message">
-        <i class="fa-regular fa-message message-icon"></i>
+        <i className="fa-regular fa-message message-icon"></i>
         <p className="message-text">Inbox</p>
       </button>
 
       <button className="btn btn-gear">
-        <i class="fa-solid fa-gear gear-icon"></i>
+        <i className="fa-solid fa-gear gear-icon"></i>
         <p className="gear-text">Settings</p>
       </button>
     </div>

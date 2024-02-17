@@ -1,12 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
+/* Homepage */
+
 body {
   margin: 0;
   padding: 0;
   font-family: "Inter", sans-serif;
   line-height: 1.5;
   min-height: 100vh;
-  background-color: var(--c-bg-primary);
+  background-color: #faf2fdff;
   color: var(--c-text-primary);
 }
 
@@ -39,6 +41,7 @@ body {
   bottom: 0px;
   width: 100%;
 }
+
 .main-container {
   margin-bottom: 80px;
   padding-bottom: 110px;
@@ -49,35 +52,63 @@ body {
 .home-icon {
   font-size: larger;
 }
+
 .home-text {
   font-size: small;
   margin: 0%;
 }
+
+.facial_care {
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
+.facial_care-promo {
+  font-size: 2rem;
+  color: rgb(73, 73, 73);
+}
+
+.avatar-img {
+  border-radius: 50%;
+}
+
+.button_whatsapp {
+  background-color: rgb(241, 253, 244);
+  color: rgb(56, 121, 60);
+  border-radius: 30px;
+}
+
 /* calendly btn */
 .calendar-icon {
   font-size: larger;
 }
+
 .calendar-text {
   font-size: small;
   margin: 0%;
 }
+
 /* messages btn */
 .message-icon {
   font-size: large;
 }
+
 .message-text {
   font-size: small;
   margin: 0%;
 }
+
 /* config btn */
 
 .gear-icon {
   font-size: larger;
 }
+
 .gear-text {
   font-size: small;
   margin: 0%;
 }
+
 /* publicity-card homepage */
 .publicity-card {
   background: #ebc5f60d;
@@ -93,10 +124,12 @@ body {
   margin-left: 10px;
   margin-right: 10px;
 }
+
 .image-login {
   display: flex;
   justify-content: center;
 }
+
 .btn-login {
   background-color: #4589ff;
   position: absolute;
@@ -108,17 +141,21 @@ body {
   border-radius: 6px;
   width: 250px;
 }
+
 .checkbox {
   margin-right: 15px;
 }
+
 .sing-in {
   display: flex;
   justify-content: center;
 }
+
 .btns-log {
   display: flex;
   justify-content: center;
 }
+
 .count {
   display: flex;
   justify-content: center;
@@ -137,13 +174,16 @@ body {
   width: 250px;
   margin-left: 12px;
 }
+
 .image-profile {
   border-radius: 100%;
   width: 40%;
 }
+
 .register-image {
   background-repeat: no-repeat;
 }
+
 .check-box {
   font-size: small;
 }
@@ -176,6 +216,7 @@ body {
 button {
   font: inherit;
   cursor: pointer;
+
   &:focus {
     outline: 0;
   }
@@ -263,6 +304,7 @@ button {
   border: 2px solid transparent;
   background-color: transparent;
   cursor: pointer;
+
   &:focus {
     outline: 0;
     color: var(--c-theme-primary);
@@ -278,6 +320,7 @@ button {
   color: #fff;
   border-color: var(--c-theme-primary);
   background-color: var(--c-theme-primary);
+
   &:focus {
     background-color: var(--c-theme-primary-accent);
   }
@@ -308,11 +351,13 @@ button {
   color: #ffffffff;
   background: #1f9ec1ff;
 }
+
 /* Pressed */
 .button:hover:active {
   color: #ffffffff;
   background: #1b88a7ff;
 }
+
 /* Disabled */
 .button:disabled {
   opacity: 0.4;

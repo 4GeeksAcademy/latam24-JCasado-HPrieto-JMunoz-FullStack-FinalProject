@@ -1,14 +1,17 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 
 export const Footer = () => (
   
   <footer className="footer container-fluid mt-auto py-3 text-center">
     <div className="d-flex justify-content-center">
-      <button className="btn btn-home">
-        <i className="fa-solid fa-house home-icon"></i>
-        <p className="home-text">Home</p>
-      </button>
+      <Link to="/">
+        <button className="btn btn-home">
+          <i className="fa-solid fa-house home-icon"></i>
+          <p className="home-text">Home</p>
+        </button>
+      </Link>
 
       <button className="btn btn-calendar">
         <i className="fa-regular fa-calendar calendar-icon"></i>

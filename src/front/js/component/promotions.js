@@ -38,8 +38,4 @@ function Promotions() {
 }
 
 
-<<<<<<< HEAD
 export default Promotions;
-=======
-export default Promotions;
->>>>>>> 047e40a337279785a67b827fd76de28af60a7f0d

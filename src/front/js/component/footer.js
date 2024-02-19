@@ -28,10 +28,6 @@ export const Footer = () => (
         <p className="gear-text">Settings</p>
       </button>
     </div>
-
-    {/* <p>
-      Made with <i className="fa fa-heart text-danger" /> by the{" "}
-      <a>Tremy Team</a>
-    </p> */}
+    
   </footer>
 );

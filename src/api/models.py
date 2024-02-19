@@ -57,9 +57,10 @@ class Services (db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String(300), nullable=False)
-    service_products = db.relationship("ServiceProducts", backref="services")
     service_category = db.Column(db.Integer, db.ForeignKey("service_categories.id"))
     
+    service_products = db.relationship("Product", backref="services")
+
     def __repr__(self):
 
         return f'<Services {self.name}>'
@@ -74,26 +75,27 @@ class Services (db.Model):
     
 
     
-class ServiceProducts (db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), nullable=False)
-    price = db.Column(db.Float, nullable=False)
-    product_id = db.Column(db.Integer, db.ForeignKey("product.id"))
-    service_id = db.Column(db.Integer, db.ForeignKey("services.id")) #Many to many
+# class ServiceProducts (db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(80), nullable=False)
+#     price = db.Column(db.Float, nullable=False)
+#     product_id = db.Column(db.Integer, db.ForeignKey("product.id"))
+#     service_id = db.Column(db.Integer, db.ForeignKey("services.id")) #Many to many
 
-    def __repr__(self):
+#     def __repr__(self):
 
-        return f'<ServiceProducts {self.name}>'
+#         return f'<ServiceProducts {self.name}>'
     
-    def serialize(self):
+#     def serialize(self):
 
-        return {
-            "id": self.id,
-            "name": self.name,
-            "price": self.price,
-            "product_id": self.product_id,
-            "service_id": self.service_id
-        }
+#         return {
+#             "id": self.id,
+#             "name": self.name,
+#             "price": self.price,
+#             "product_id": self.product_id,
+#             "service_id": self.service_id
+#         }
+    
 
 
 class ServiceCategories (db.Model):
@@ -117,7 +119,7 @@ class ServiceCategories (db.Model):
 class OrderedServices (db.Model):
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer, db.ForeignKey("orders.id"))
-    services_id = db.Column(db.Integer, db.ForeignKey("services.id")) #Many to many
+    product_id = db.Column(db.Integer, db.ForeignKey("product.id")) #Many to many
 
     def __repr__(self):
 
@@ -128,7 +130,7 @@ class OrderedServices (db.Model):
         return {
             "id": self.id,
             "order_id": self.order_id,
-            "services_id": self.services_id,
+            
         }
     
 
@@ -138,8 +140,9 @@ class Product(db.Model):
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(256), nullable=False)
     price = db.Column(db.Float, nullable=False) 
+    service_id = db.Column(db.Integer, db.ForeignKey("services.id")) 
     
-    service_products = db.relationship("ServiceProducts", backref="products")
+    # service_products = db.relationship("ServiceProducts", backref="products")
 
     def __repr__(self):
 

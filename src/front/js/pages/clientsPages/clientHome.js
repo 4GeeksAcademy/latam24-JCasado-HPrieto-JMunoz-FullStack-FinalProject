@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar, Nav, Form, Button, Badge, Card, Container, Row, Col, ProgressBar } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import Promotions from "../../component/promotions";
@@ -10,7 +10,7 @@ import img4 from "../../../img/4.png"
 import img5 from "../../../img/5.png"
 import facialCare from "../../../img/facialCare.png"
 import avatar from "../../../img/avatar.png"
-
+import Services from "../../component/Services"
 
 
 const ClientHome = () => {
@@ -44,11 +44,10 @@ const ClientHome = () => {
 
         } catch (error) {
 
-            console.error('Error fetching service menu:', error.message);
+            console.error('Error fetching service menu', error.message);
         }
     };
 
-    const handleServiceSelection = (service) => {
 
     const services = [
         {
@@ -166,7 +165,7 @@ const ClientHome = () => {
         </>
 
     );
-}
 };
+
 
 export default ClientHome;

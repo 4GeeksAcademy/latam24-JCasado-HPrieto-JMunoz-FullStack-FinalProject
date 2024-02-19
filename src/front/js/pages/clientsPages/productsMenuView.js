@@ -15,7 +15,7 @@ const OfferCard = () => {
         <Card.Title>Special Offer</Card.Title>
 
         <Card.Text>
-          Get 20% off on your facial treatments
+          Get 20% off on your facial treatments today!
         </Card.Text>
 
       </Card.Body>
@@ -34,25 +34,25 @@ const ManicureTable = ({ setManicure }) => {
       <tbody>
         <tr className={""}>
           <td>Traditional</td>
-          <td><button className='' onClick={() => setManicure('Traditional')}><i className="fas fa-hand-pointer"></i></button></td>
+          <td><button className='' onClick={() => setManicure('Traditional')}><i className="fa-solid fa-hand"></i></button></td>
           <td>$20</td>
         </tr>
 
         <tr className={""} onClick={() => setManicure('SemiPermanent')}>
-          <td>Traditional</td>
-          <td><i className="fas fa-hand-pointer"></i></td>
+          <td>Semi permanent</td>
+          <td><button className='' onClick={() => setManicure('Semi permanent')}><i className="fa-solid fa-hand"></i></button></td>
           <td>$40</td>
         </tr>
 
         <tr className={""} onClick={() => setManicure('GelConstruction')}>
-          <td>Gel Construction</td>
-          <td><i className="fas fa-hand-pointer"></i></td>
+          <td>Construction Gel</td>
+          <td><button className='' onClick={() => setManicure('Construction Gel')}><i className="fa-solid fa-hand"></i></button></td>
           <td>$60</td>
         </tr>
 
         <tr className={""} onClick={() => setManicure('Acrylic')}>
           <td>Acrylic</td>
-          <td><i className="fas fa-hand-pointer"></i></td>
+          <td><button className='' onClick={() => setManicure('Acrylic')}><i className="fa-solid fa-hand"></i></button></td>
           <td>$80</td>
         </tr>
         
@@ -73,25 +73,25 @@ const PedicureTable = ({ setPedicure }) => {
 
         <tr className={""} onClick={() => setPedicure('TraditionalPedicure')}>
           <td>Traditional</td>
-          <td><i className="fa-solid fa-shoe-prints"></i></td>
+          <td><button className='' onClick={() => setManicure('Traditional')}><i className="fa-solid fa-paw"></i></button></td>
           <td>$30</td>
         </tr>
 
         <tr className={""} onClick={() => setPedicure('SemiPermanentPedicure')}>
-          <td>Semi permanent</td>
-          <td><i className="fa-solid fa-shoe-prints"></i></td>
+          <td>Semi-Permanent</td>
+          <td><button className='' onClick={() => setManicure('Semi-Permanent')}><i className="fa-solid fa-paw"></i></button></td>
           <td>$50</td>
         </tr>
 
         <tr className={""} onClick={() => setPedicure('GelConstructionPedicure')}>
-          <td>Gel Construction</td>
-          <td><i className="fa-solid fa-shoe-prints"></i></td>
+          <td>Construction Gel</td>
+          <td><button className='' onClick={() => setManicure('Construction Gel')}><i className="fa-solid fa-paw"></i></button></td>
           <td>$70</td>
         </tr>
 
         <tr className={""} onClick={() => setPedicure('AcrylicPedicure')}>
           <td>Acrylic</td>
-          <td><i className="fa-solid fa-shoe-prints"></i></td>
+          <td><button className='' onClick={() => setManicure('Acrylic')}><i className="fa-solid fa-paw"></i></button></td>
           <td>$90</td>
         </tr>
 

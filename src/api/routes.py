@@ -1,5 +1,5 @@
 
-from api.models import db, User, Product, Services, ServiceProducts, Rating, Review
+from api.models import db, User, Product, Services, Rating, Review
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.utils import generate_sitemap, APIException
 from sqlalchemy.exc import IntegrityError
@@ -225,13 +225,13 @@ def get_service_id(service_id):
     
     try:
         
-        service = Services.query.get(service_id)
+        product = Product.query.filter_by(service_id).all
 
-        if service is None:
+        if product is None:
 
             return jsonify({'error': 'Service not found'}), 404
 
-        serialized_service = service.serialize()
+        serialized_service = [product.serialize() for product in product]
 
         return jsonify(serialized_service), 200
 
@@ -272,16 +272,16 @@ def get_service_category(category_id):
 
 
 
-@api.route("/products/<int:service_id>", methods=['GET'])
-def get_service_id(service_id):
+# @api.route("/products/<int:service_id>", methods=['GET'])
+# def get_service_by_id(service_id):
     
-    product = Services.query.filter_by(service_id=service_id).all()
+#     product = Services.query.filter_by(service_id=service_id).all()
 
-    serlized_products = [product.serialize() for product in product]
+#     serialized_products = [product.serialize() for product in product]
 
-    print (product)
+#     print (product)
 
-    return jsonify(serialized_product)
+#     return jsonify(serialized_products)
 
 
 

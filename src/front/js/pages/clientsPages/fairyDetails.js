@@ -18,7 +18,7 @@ export const FairyDetails = () => {
 
           <div className="col-12 col-lg-9">
             <div className="d-flex justify-content-start">
-              <h3 className="card-title">Fairy Name</h3>
+              <h3 className="card-title">Ororo Munroe</h3>
             </div>
             {/* info */}
             <div>

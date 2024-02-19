@@ -11,8 +11,8 @@ from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_jwt_extended import JWTManager
+from flask_bcrypt import Bcrypt
 
-# from models import Person
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
 static_file_dir = os.path.join(os.path.dirname(
@@ -35,6 +35,8 @@ db.init_app(app)
 app.config["JWT_SECRET_KEY"] = os.environ.get("JWT_SECRET_KEY")
 
 jwt_extended = JWTManager(app)
+bcrypt = Bcrypt(app)
+app.bcrypt = bcrypt
 
 # add the admin
 setup_admin(app)

@@ -1,6 +1,5 @@
 
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
 from enum import Enum 
 import pytz
 
@@ -20,11 +19,11 @@ class User(db.Model):
     name = db.Column(db.String(50), nullable=False)
     surname = db.Column(db.String(40), nullable=False)
     email = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.String(80), unique=False, nullable=False)
+    password = db.Column(db.String(250), unique=False, nullable=False)
     address = db.Column(db.String(120), nullable=True) 
     role = db.Column(db.Enum(UserRole), nullable=False, default=UserRole.CLIENT)
     phone = db.Column(db.Integer, nullable=False)
-    # date_of_birth = db.Column(db.DateTime, nullable=True)
+    date_of_birth = db.Column(db.String(10), nullable=True)
 
     #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
     # products = db.relationship("Product", backref="user") #(1 to many)

@@ -1,4 +1,4 @@
-
+const API_URL = "https://curly-memory-4xwwq4xxjxqcjjrr-3001.app.github.dev/api";
 const getState = ({ getStore, getActions, setStore }) => {
 
 	return {
@@ -24,8 +24,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 
-					const API_URL = "https://super-waddle-9pjj6vpvvvwf9567-3001.app.github.dev/api/login";
-
 					const requestConfig = {
 
 						method: "POST",
@@ -36,7 +34,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						body: JSON.stringify(userData)
 					}
 					
-					const response = await fetch(API_URL, requestConfig);
+					const response = await fetch(API_URL+"/login", requestConfig);
 
 					if (response.status != 200) {
 
@@ -79,8 +77,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 
-					const API_URL = "https://curly-memory-4xwwq4xxjxqcjjrr-3001.app.github.dev/api/register";
-
 					const requestConfig = {
 
 						method: "POST",
@@ -91,7 +87,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						body: JSON.stringify(newContactData)
 					}
 
-					const response = await fetch(API_URL, requestConfig);
+					const response = await fetch(API_URL+"/register", requestConfig);
 
 					if (response.status != 201) {
 

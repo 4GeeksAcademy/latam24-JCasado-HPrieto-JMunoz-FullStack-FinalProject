@@ -1,6 +1,6 @@
 
 from api.models import db, User, Product, Services, Rating, Review
-from flask import Flask, request, jsonify, url_for, Blueprint
+from flask import Flask, request, jsonify, url_for, Blueprint, current_app
 from api.utils import generate_sitemap, APIException
 from sqlalchemy.exc import IntegrityError
 from flask_jwt_extended import create_access_token
@@ -12,7 +12,6 @@ from cloudinary.uploader import upload
 from dotenv import load_dotenv
 from datetime import datetime
 import cloudinary
-import bcrypt
 import os
 
 
@@ -48,25 +47,16 @@ def register_user():
         phone = body.get("phone", None),
         address = body.get("address", None),
         role = body.get("role", None)
-        # date_of_birth = datetime.strptime(body.get("date_of_birth", None), "%Y-%m-%d") if body.get("date_of_birth", None) else None
+        date_of_birth = body.get("date_of_birth", None)
 
         if name is None or email is None or password is None:
 
             return {"message": "This field is required"}, 400
     
-        bpassword = bytes(password, 'utf-8')
-        salt = bcrypt.gensalt()
-    
-        print("Salt:", salt)
-   
-        hashed_password = bcrypt.hashpw(bpassword, salt)
+        hashed_password = current_app.bcrypt.generate_password_hash(password).decode("utf-8")
 
-        print("Password:", bpassword)
-
-        user = User(name=name, surname=surname, email=email, password=hashed_password, address=address, role=role, phone=phone)
+        user = User(name=name, surname=surname, email=email, password=hashed_password, address=address, role=role, phone=phone, date_of_birth=date_of_birth)
         db.session.add(user)
-    
-
         db.session.commit()
 
         return {"message": f'user {user.email} was created'}, 201
@@ -90,19 +80,17 @@ def login():
 
         return {"message": "email address or password incorrect", "authorize": False}, 400    
     
-    if check(email) is not True:
+    # if check(email) is not True:
 
-        return {"message": "This email is invalid", "authorize": False}, 400
+    #     return {"message": "This email is invalid", "authorize": False}, 400
     
     user = User.query.filter_by(email=email).first()
 
     if user is None:
 
         return {"message": "User not found", "authorize": False}, 400
-    
-    password_byte = bytes(password, 'utf-8')
 
-    if bcrypt.checkpw(password_byte, user.password.encode('utf-8')):
+    if current_app.bcrypt.check_password_hash(user.password, password):
 
         token = create_access_token(identity=email)
 

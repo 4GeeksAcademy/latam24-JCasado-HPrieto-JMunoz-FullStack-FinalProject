@@ -1,45 +1,41 @@
 
 const getState = ({ getStore, getActions, setStore }) => {
-	return {
-		store: {
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			],
 
-			token: null
+	return {
+
+		store: {
+
+			message: null,
+			token: null,
+			productlist: [],
+			user: [],
+			users: [],
+			token: localStorage.getItem("token") || "",
+			services: [],
+			products: [],
+			filterProducts: [],
 
 		},
 
-		productlist: [],
-		user: [],
-		users: [],
-		token: localStorage.getItem("token") || "",
-		services: [],
-		products: [],
-		filterProducts: [],
 
 		actions: {
 
 			makeLogin: async (userData) => {
+
 				try {
+
 					const API_URL = "https://super-waddle-9pjj6vpvvvwf9567-3001.app.github.dev/api/login";
+
 					const requestConfig = {
+
 						method: "POST",
 						headers: {
 							"Content-type": "application/json"
 						},
+
 						body: JSON.stringify(userData)
 					}
+					
 					const response = await fetch(API_URL, requestConfig);
 
 					if (response.status != 200) {
@@ -78,15 +74,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			newUser: async (newContactData) => {
+
+				console.log(newContactData);
+
 				try {
-					const API_URL = "https://super-waddle-9pjj6vpvvvwf9567-3001.app.github.dev/api/register";
+
+					const API_URL = "https://curly-memory-4xwwq4xxjxqcjjrr-3001.app.github.dev/api/register";
+
 					const requestConfig = {
+
 						method: "POST",
 						headers: {
 							"Content-type": "application/json"
 						},
+
 						body: JSON.stringify(newContactData)
 					}
+
 					const response = await fetch(API_URL, requestConfig);
 
 					if (response.status != 201) {
@@ -95,9 +99,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 						return false
 					}
+					
 					const body = await response.json()
 
-					return true
+					return body 
 
 				} catch (error) {
 
@@ -105,7 +110,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 
 				getActions().changeColor(0, "green");
@@ -114,11 +118,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getMessage: async () => {
 
 				try {
-					// fetching data from the backend
+				
 					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
+
 					const data = await resp.json()
+
 					setStore({ message: data.message })
-					// don't forget to return something, that is how the async resolves
+					
 
 					return data;
 
@@ -130,11 +136,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			changeColor: (index, color) => {
 
-				//get the store
+	
 				const store = getStore();
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
+				
+		
 				const demo = store.demo.map((elm, i) => {
 
 					if (i === index) elm.background = color;
@@ -142,7 +148,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return elm;
 				});
 
-				//reset the global store
+			
 				setStore({ demo: demo });
 			},
 

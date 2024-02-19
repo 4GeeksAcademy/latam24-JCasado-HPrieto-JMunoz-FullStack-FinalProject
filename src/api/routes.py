@@ -10,7 +10,9 @@ from flask_jwt_extended import JWTManager
 from flask_cors import CORS, cross_origin
 from cloudinary.uploader import upload
 from dotenv import load_dotenv
+from datetime import datetime
 import cloudinary
+import bcrypt
 import os
 
 
@@ -37,38 +39,44 @@ api = Blueprint('api', __name__)
 @api.route('/register', methods=['POST'])
 def register_user():
 
-    body = request.get_json()
-    name = body.get("name", None)
-    email = body.get("email", None)
-    password = body.get("password", None)
-
-    if name is None or email is None or password is None:
-
-        return {"message": "This field is required"}, 400
-    
-    bpassword = bytes(password, 'utf-8')
-    salt = bcrypt.gensalt()
-    
-    print("Salt:", salt)
-   
-    hashed_password = bcrypt.hashpw(bpassword, salt)
-
-    print("Password:", bpassword)
-    
-    user = User(name, email, hashed_password.decode('utf-8'))
-    db.session.add(user)
-    
     try: 
+        body = request.get_json()
+        name = body.get("name", None)
+        surname = body.get("surname", None),
+        email = body.get("email", None)
+        password = body.get("password", None)
+        phone = body.get("phone", None),
+        address = body.get("address", None),
+        role = body.get("role", None)
+        # date_of_birth = datetime.strptime(body.get("date_of_birth", None), "%Y-%m-%d") if body.get("date_of_birth", None) else None
+
+        if name is None or email is None or password is None:
+
+            return {"message": "This field is required"}, 400
+    
+        bpassword = bytes(password, 'utf-8')
+        salt = bcrypt.gensalt()
+    
+        print("Salt:", salt)
+   
+        hashed_password = bcrypt.hashpw(bpassword, salt)
+
+        print("Password:", bpassword)
+
+        user = User(name=name, surname=surname, email=email, password=hashed_password, address=address, role=role, phone=phone)
+        db.session.add(user)
+    
 
         db.session.commit()
 
         return {"message": f'user {user.email} was created'}, 201
     
     except Exception as error:
-        print(error)
-    
-        return {"error": "Internal server error", "authorize": False}, 500
 
+        print(f"Error during user registration: {error}")
+        db.session.rollback()  
+
+        return {"error": "Internal server error", "authorize": False}, 500
 
 
 @api.route('/login', methods=['POST'])
@@ -402,7 +410,7 @@ def update_configuration():
 def update_menu_configuration():
 
     current_user = get_jwt_identity()
-    garage = Menu.query.filter(Menu.user_id == current_user).first()
+    Services = Menu.query.filter(Menu.user_id == current_user).first()
 
     if menu is None:
 

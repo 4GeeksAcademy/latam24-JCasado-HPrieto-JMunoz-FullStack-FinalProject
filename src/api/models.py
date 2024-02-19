@@ -24,6 +24,7 @@ class User(db.Model):
     address = db.Column(db.String(120), nullable=True) 
     role = db.Column(db.Enum(UserRole), nullable=False, default=UserRole.CLIENT)
     phone = db.Column(db.Integer, nullable=False)
+    # date_of_birth = db.Column(db.DateTime, nullable=True)
 
     #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
     # products = db.relationship("Product", backref="user") #(1 to many)
@@ -43,7 +44,7 @@ class User(db.Model):
             "name": self.name,
             "surname": self.surname,
             "email": self.email,
-                   
+            "date_of_birth": self.date_of_birth,       
             "address": self.address, 
             "role": self.role,
             "phone": self.phone

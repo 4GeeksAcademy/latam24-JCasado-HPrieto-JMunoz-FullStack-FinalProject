@@ -1,12 +1,18 @@
 import React from "react";
 import { Card, Button, Container } from "react-bootstrap";
+import { useNavigate, Link } from "react-router-dom";
 
 
 const UserCard = ({ user, onSelect }) => {
 
+    const navigate = useNavigate();
+
     const handleSelect = () => {
 
-        onSelect(user); 
+        onSelect(user);
+        
+        navigate("/payment")
+
     };
 
     return (
@@ -41,7 +47,7 @@ const FairySelection = () => {
 
     return (
 
-        <div>
+        <div className="main-container">
             <Container fluid>
                 <div>
                     <div md={4}>

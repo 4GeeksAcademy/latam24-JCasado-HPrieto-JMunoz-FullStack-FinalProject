@@ -44,7 +44,7 @@ const ClientHome = () => {
 
         } catch (error) {
 
-            console.error('Error fetching service menu', error.message);
+            // console.error('Error fetching service menu', error.message);
         }
     };
 

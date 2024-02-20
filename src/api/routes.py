@@ -1,5 +1,5 @@
 
-from api.models import db, User, Product, Services, Rating, Review
+from api.models import db, User, Product, Services, Rating, Review, FairyProducts
 from flask import Flask, request, jsonify, url_for, Blueprint, current_app
 from api.utils import generate_sitemap, APIException
 from sqlalchemy.exc import IntegrityError
@@ -80,10 +80,6 @@ def login():
 
         return {"message": "email address or password incorrect", "authorize": False}, 400    
     
-    # if check(email) is not True:
-
-    #     return {"message": "This email is invalid", "authorize": False}, 400
-    
     user = User.query.filter_by(email=email).first()
 
     if user is None:
@@ -114,7 +110,6 @@ def validate_user():
     return user.serialize(), 200    
     
 
-# Allow CORS requests to this API
 CORS(api)
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -128,28 +123,42 @@ def handle_hello():
 
 
 
-# def upload_certificate():
-#     current_user = get_jwt_identity()
-#     cloudinary.config(cloud_name = os.getenv('CLOUD_NAME'), api_key=os.getenv('API_KEY'), 
-#     api_secret=os.getenv('API_SECRET'))
-    
-#     data = request.get_json()
-#     print(data)
-#     user = User.query.get(current_user)
+@api.route('/add_product_to_user', methods=['POST'])
+def add_product():
 
-#     name = data.get('name')
-#     description = data.get('description')
+    data = request.json
+    user_id = data.get("user_id")
+    product_id = data.get("product_id")
 
-#     product_type = data.get('product_type')
-#     user_id = user.id
+    if not user_id or not product_id:
 
-#     if name is None:
-#         return jsonify({"message": "Certificate name required"}), 400
+        return jsonify({"message": "User ID and Product ID are required"}), 400
 
-#     db.session.add(Status)
-#     db.session.commit()
- 
-#     return jsonify({"message": "Your new certification has been successfully uploaded"}), 200
+    new_fairy_product = FairyProducts(user_id=user_id, product_id=product_id)
+    db.session.add(new_fairy_product)
+    db.session.commit()
+
+    return jsonify({"message": "Product added to user successfully"}), 200
+
+
+
+@api.route('/users_by_product/<int:product_id>', methods=['GET'])
+def get_users_by_product(product_id):
+
+    users = User.query.join(FairyProducts).filter(FairyProducts.product_id == product_id).all()
+
+    if not users:
+
+        return jsonify({'message': "No users found for the specified product"}), 404
+
+    user_list = [{"id": user.id, "name": user.name} for user in users]
+
+    return jsonify({"users": user_list}), 200
+
+
+
+# crear endpoint para agregar productos a un user(fairyProducts = user_id, product_id)
+# crear un endpoin que traiga todos los users que ofrezcan uno de los productos 
 
 
 
@@ -265,7 +274,6 @@ def get_service_category(category_id):
     print (serviceCategories)
 
     return jsonify(serialized_services) 
-
 
 
 # @api.route("/products/<int:service_id>", methods=['GET'])

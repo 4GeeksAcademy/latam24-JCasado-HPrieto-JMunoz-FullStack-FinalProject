@@ -25,11 +25,7 @@ class User(db.Model):
     phone = db.Column(db.Integer, nullable=False)
     date_of_birth = db.Column(db.String(10), nullable=True)
 
-    #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
-    # products = db.relationship("Product", backref="user") #(1 to many)
-    #fairy_reviews = db.relationship("Review", backref="fairy") 
-    #client_reviews = db.relationship("Review", backref="client") 
-
+    FairyProducts = db.relationship("FairyProducts", backref="user-products") #(1 to many)
     orders_purchased = db.relationship("Orders", backref="user") 
 
     def __repr__(self):
@@ -52,13 +48,11 @@ class User(db.Model):
         }
     
 
-
 class Services (db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String(300), nullable=False)
     service_category = db.Column(db.Integer, db.ForeignKey("service_categories.id"))
-    
     service_products = db.relationship("Product", backref="services")
 
     def __repr__(self):
@@ -73,30 +67,6 @@ class Services (db.Model):
             "description": self.description,
         }
     
-
-    
-# class ServiceProducts (db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(80), nullable=False)
-#     price = db.Column(db.Float, nullable=False)
-#     product_id = db.Column(db.Integer, db.ForeignKey("product.id"))
-#     service_id = db.Column(db.Integer, db.ForeignKey("services.id")) #Many to many
-
-#     def __repr__(self):
-
-#         return f'<ServiceProducts {self.name}>'
-    
-#     def serialize(self):
-
-#         return {
-#             "id": self.id,
-#             "name": self.name,
-#             "price": self.price,
-#             "product_id": self.product_id,
-#             "service_id": self.service_id
-#         }
-    
-
 
 class ServiceCategories (db.Model):
     __tablename__ = "service_categories"
@@ -113,7 +83,40 @@ class ServiceCategories (db.Model):
         return {
             "id": self.id,
             "name": self.name
+        }    
+
+
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(256), nullable=False)
+    price = db.Column(db.Float, nullable=False) 
+    service_id = db.Column(db.Integer, db.ForeignKey("services.id")) 
+    FairyProducts = db.relationship("FairyProducts", backref="Product")
+
+    def __repr__(self):
+
+        return f'<Products {self.id}>'
+    
+    def serialize(self):
+
+        return {
+
+            "id": self.id,
+            "name": self.name,
+            "price": self.price,
+            "description": self.description,
+            "user_id": self.user_id,
+            "service_id": self.service_id
         }
+
+
+
+class FairyProducts (db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    product_id = db.Column(db.Integer, db.ForeignKey("product.id"))
+    
 
 
 class OrderedServices (db.Model):
@@ -133,34 +136,6 @@ class OrderedServices (db.Model):
             
         }
     
-
-
-class Product(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.String(256), nullable=False)
-    price = db.Column(db.Float, nullable=False) 
-    service_id = db.Column(db.Integer, db.ForeignKey("services.id")) 
-    
-    # service_products = db.relationship("ServiceProducts", backref="products")
-
-    def __repr__(self):
-
-        return f'<Products {self.id}>'
-    
-    def serialize(self):
-
-        return {
-
-            "id": self.id,
-            "name": self.name,
-            "price": self.price,
-            "description": self.description,
-            "user_id": self.user_id,
-            "service_id": self.service_id
-        }
-
-
 
 class Orders(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -188,7 +163,6 @@ class Orders(db.Model):
             "service_id": self.service_id
         }
     
-
 
 class RatingEnum(Enum):
 

@@ -14,7 +14,6 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
-import { Private } from "./pages/private";
 import { FairyDetails } from "./pages/clientsPages/fairyDetails";
 import { AvailableFairies } from "./pages/clientsPages/availableFairies";
 
@@ -43,7 +42,6 @@ const Layout = () => {
             <Route element={<FairySelection />} path="/select-fairy" />
             <Route element={<AvailableFairies />} path="/fairy/select/available" />
             <Route element={<FairyDetails />} path="/fairy/details" />
-            <Route element={<Private />} path="/private" />
             <Route element={<Single />} path="/single/:theid" />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
@@ -53,5 +51,6 @@ const Layout = () => {
     </div>
   );
 };
+
 
 export default injectContext(Layout);

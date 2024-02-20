@@ -30,6 +30,7 @@ const ManicureTable = ({ setManicure }) => {
 
   return (
 
+
     <Table striped bordered hover>
       <tbody>
         <tr className={""}>
@@ -73,25 +74,25 @@ const PedicureTable = ({ setPedicure }) => {
 
         <tr className={""} onClick={() => setPedicure('TraditionalPedicure')}>
           <td>Traditional</td>
-          <td><button className='' onClick={() => setManicure('Traditional')}><i className="fa-solid fa-paw"></i></button></td>
+          <td><button className='' onClick={() => setPedicure('Traditional')}><i className="fa-solid fa-paw"></i></button></td>
           <td>$30</td>
         </tr>
 
         <tr className={""} onClick={() => setPedicure('SemiPermanentPedicure')}>
-          <td>Semi-Permanent</td>
-          <td><button className='' onClick={() => setManicure('Semi-Permanent')}><i className="fa-solid fa-paw"></i></button></td>
+          <td>Semi Permanent</td>
+          <td><button className='' onClick={() => setPedicure('Semi Permanent')}><i className="fa-solid fa-paw"></i></button></td>
           <td>$50</td>
         </tr>
 
         <tr className={""} onClick={() => setPedicure('GelConstructionPedicure')}>
           <td>Construction Gel</td>
-          <td><button className='' onClick={() => setManicure('Construction Gel')}><i className="fa-solid fa-paw"></i></button></td>
+          <td><button className='' onClick={() => setPedicure('Construction Gel')}><i className="fa-solid fa-paw"></i></button></td>
           <td>$70</td>
         </tr>
 
         <tr className={""} onClick={() => setPedicure('AcrylicPedicure')}>
           <td>Acrylic</td>
-          <td><button className='' onClick={() => setManicure('Acrylic')}><i className="fa-solid fa-paw"></i></button></td>
+          <td><button className='' onClick={() => setPedicure('Acrylic')}><i className="fa-solid fa-paw"></i></button></td>
           <td>$90</td>
         </tr>
 
@@ -124,7 +125,7 @@ const ProductsMenu = () => {
 
   return (
 
-    <div>
+    <div className='main-container'>
     
       <Container fluid>
 

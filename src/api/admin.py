@@ -2,7 +2,7 @@
 import os
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
-from .models import db, User, Product, Orders, Services, OrderedServices, Rating, Review, ServiceCategories, FairyProducts
+from .models import db, User, Product, Orders, Services, OrderedServices, Review, ServiceCategories, FairyProducts
 from flask_admin.contrib.sqla import ModelView
 
 
@@ -20,5 +20,4 @@ def setup_admin(app):
     admin.add_view(ModelView(FairyProducts, db.session))
     admin.add_view(ModelView(Orders, db.session))
     admin.add_view(ModelView(OrderedServices, db.session))
-    admin.add_view(ModelView(Rating, db.session))
     admin.add_view(ModelView(Review, db.session))

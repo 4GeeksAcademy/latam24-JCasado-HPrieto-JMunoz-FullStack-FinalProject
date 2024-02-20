@@ -27,9 +27,11 @@ class User(db.Model):
     role = db.Column(db.Enum(UserRole), nullable=False, default=UserRole.CLIENT)
     phone = db.Column(db.Integer, nullable=False)
     date_of_birth = db.Column(db.String(10), nullable=True)
+    avatar = db.Column(db.String(250), unique=False, nullable=True)
 
-    FairyProducts = db.relationship("FairyProducts", backref="user-products") #(1 to many)
-    orders_purchased = db.relationship("Orders", backref="user") 
+    FairyProducts = db.relationship("FairyProducts", backref="user-products")
+    # orders_purchased = db.relationship("Orders", backref="user") 
+    
 
     def __repr__(self):
 
@@ -48,6 +50,16 @@ class User(db.Model):
             "phone": self.phone
         }
 
+    def serialize_fairies(self):
+
+        return {
+            "id": self.id,
+            "name": self.name,
+            "surname": self.surname,
+            "email": self.email,
+            "phone": self.phone,
+            "avatar": self.avatar
+        }
 
 
 class Services (db.Model):
@@ -121,6 +133,14 @@ class FairyProducts (db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     product_id = db.Column(db.Integer, db.ForeignKey("product.id"))
     
+    def serialize(self):
+        user = User.query.get(self.user_id) 
+
+        return {
+            "id": self.id,
+            "product_id": self.product_id,
+            "user": user.serialize_fairies()
+        }
 
 
 class OrderedServices (db.Model):
@@ -141,12 +161,26 @@ class OrderedServices (db.Model):
     
 
 
+class RatingEnum(Enum):
+
+    ONE_STAR = 1
+    TWO_STARS = 2
+    THREE_STARS = 3
+    FOUR_STARS = 4
+    FIVE_STARS = 5
+
+
 class Orders(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float, nullable=False) 
     description = db.Column(db.String(256), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    client_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    fairy_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    rating = db.Column(db.Enum(RatingEnum), nullable=False)
+    fairy = db.relationship("User", foreign_keys=[fairy_id])
+    client = db.relationship("User", foreign_keys=[client_id]) 
+
 
     def __repr__(self):
 
@@ -163,27 +197,6 @@ class Orders(db.Model):
             "user_id": self.user_id,
             "service_id": self.service_id
         }
-    
-
-
-class RatingEnum(Enum):
-
-    ONE_STAR = 1
-    TWO_STARS = 2
-    THREE_STARS = 3
-    FOUR_STARS = 4
-    FIVE_STARS = 5
-
-
-class Rating(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    value = db.Column(db.Enum(RatingEnum), nullable=False)
-
-    def set_rating_value(self, rating_enum):
-        self.value = rating_enum.name
-
-    def get_rating_value(self):
-        return RatingEnum[self.value]
 
 
 

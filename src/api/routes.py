@@ -9,21 +9,19 @@ import re
 import os
 
 
+
 app = Flask(__name__)
 
 CORS(app)
+
+api = Blueprint('api', __name__)
+
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------------------------------------------------
 # Register / Login:
 
-
-load_dotenv()
-
-app = Flask(__name__)
-
-api = Blueprint('api', __name__)
 
 
 def check(email):
@@ -35,8 +33,12 @@ def check(email):
     else:
         return False
     
+load_dotenv()
+
+app = Flask(__name__)
 
 api = Blueprint('api', __name__)
+
 
 
 
@@ -155,7 +157,24 @@ def get_users_by_product(product_id):
 
     return jsonify({"users": user_list}), 200
 
+
+
+
+# @api.route("/users_by_product/<int:product_id>", methods=['GET'])
+# def get_users_with_all_products():
+
+#     users = User.query.join(FairyProducts).filter(FairyProducts.product_id == product_id).all()
+
+#     if not users:
+
+#         return jsonify({'message': "No users found for the specified product"}), 404
+
+#     user_list = [{"id": user.id, "name": user.name} for user in users]
+
+#     return jsonify({"users": user_list}), 200
+
  
+
 
 @api.route("/products/<int:service_id>", methods=['GET'])
 def get_service_id(service_id):

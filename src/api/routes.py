@@ -4,9 +4,14 @@ from api.utils import APIException
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
 from dotenv import load_dotenv
 from sqlalchemy.exc import IntegrityError
+from flask_cors import CORS
 import re
 import os
 
+
+app = Flask(__name__)
+
+CORS(app)
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -201,101 +206,3 @@ def get_service_category(category_id):
     print (serviceCategories)
 
     return jsonify(serialized_services)
-
-
-
-
-# -------------------------------------------------------------------------------------------------------------------------------------------------------
-# -------------------------------------------------------------------------------------------------------------------------------------------------------
-# Update Password:
-
-
-
-@api.route("/configuration/password", methods=['PUT'])
-@jwt_required()
-def update_password():
-
-    current_user = get_jwt_identity()
-    user = User.query.get(current_user)
-
-    if user is None:
-
-        return jsonify({"message": "User not found"}), 404
-
-    data = request.get_json()
-    password = data.get("password")
-
-    if password:
-        user.password = password
-
-    try:
-        db.session.commit()
-
-        return jsonify({"message": "Password updated successfully"}), 200
-    
-    except Exception as e:
-        db.session.rollback()
-
-        return jsonify({"message": "Error updating password"}), 500
-
-
-
-# -------------------------------------------------------------------------------------------------------------------------------------------------------
-# -------------------------------------------------------------------------------------------------------------------------------------------------------
-# Reviews:
-    
-
-@api.route("/profile/reviews", methods=['POST'])
-@jwt_required()
-def addReview():
-
-    current_user = get_jwt_identity()
-    data = request.get_json()
-    product_id = data.get("product_id")
-    comment = data.get("comment")
-
-    user = User.query.get(current_user)
-    product = Product.query.get(product_id)
-
-    if not product:
-
-        return jsonify({"message": "Producto not found"}), 404
-
-    received_user = User.query.get(product.user_id)
-
-    review = Review(given_review_id=user.id, recived_review_id=received_user.id, product_id=product.id, comment=comment)
-    db.session.add(review)
-    db.session.commit()
-
-    return jsonify({"message": "Your review has been submited"}), 200
-
-
-
-@api.route("/profile/reviews", methods=['GET'])
-@jwt_required()
-def getReviews():
-
-    current_user = get_jwt_identity()
-
-    reviews = Review.query.filter_by(recived_review_id=current_user).all()
-    
-    review_list = []
-
-    for review in reviews:  
-
-        product = Product.query.get(review.product_id)
-
-        review_data = {
-            
-            "product_id": review.product_id,
-            "comment": review.comment,
-            "given_review_id": review.given_review_id,
-            "fairy_name": fairy.name,
-            "received_review_id": review.received_review_id,
-            "received_user_id": review.received_review_id,
-            "image": list(product.images)[0].image
-        }
-
-        review_list.append(review_data)
-
-    return jsonify(review_list), 200

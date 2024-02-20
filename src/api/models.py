@@ -47,7 +47,7 @@ class User(db.Model):
             "role": self.role,
             "phone": self.phone
         }
-    
+
 
 
 class Services (db.Model):

@@ -4,7 +4,9 @@ from enum import Enum
 import pytz
 
 
+
 db = SQLAlchemy()
+
 
 
 class UserRole(Enum):
@@ -12,6 +14,7 @@ class UserRole(Enum):
     CLIENT = "client"
     FAIRY = "fairy"
     ADMIN = "admin" 
+
 
 
 class User(db.Model):
@@ -43,10 +46,9 @@ class User(db.Model):
             "address": self.address, 
             "role": self.role,
             "phone": self.phone
-            
-            # do not serialize the password, its a security breach
         }
     
+
 
 class Services (db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -68,6 +70,7 @@ class Services (db.Model):
         }
     
 
+
 class ServiceCategories (db.Model):
     __tablename__ = "service_categories"
     id = db.Column(db.Integer, primary_key=True)
@@ -84,6 +87,7 @@ class ServiceCategories (db.Model):
             "id": self.id,
             "name": self.name
         }    
+
 
 
 class Product(db.Model):
@@ -133,9 +137,9 @@ class OrderedServices (db.Model):
         return {
             "id": self.id,
             "order_id": self.order_id,
-            
         }
     
+
 
 class Orders(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -143,9 +147,6 @@ class Orders(db.Model):
     price = db.Column(db.Float, nullable=False) 
     description = db.Column(db.String(256), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-
-    #ordered_services_id = db.Column(db.Integer, db.ForeignKey('ordered_services.id'), nullable=False)
-    #services_requested = db.relationship("OrderedServices", backref="orders")
 
     def __repr__(self):
 
@@ -163,6 +164,7 @@ class Orders(db.Model):
             "service_id": self.service_id
         }
     
+
 
 class RatingEnum(Enum):
 
@@ -184,6 +186,7 @@ class Rating(db.Model):
         return RatingEnum[self.value]
 
 
+
 class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     client_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
@@ -191,9 +194,6 @@ class Review(db.Model):
     order_id = db.Column(db.Integer, db.ForeignKey("orders.id"), nullable=False)
     stars = db.Column(db.Enum(RatingEnum), nullable=False) 
     comment = db.Column(db.String(250), nullable=True)
-
-    # client = db.relationship('User', foreign_keys="client_id")
-    # fairy = db.relationship('User', foreign_keys="fairy_id")
 
     def __repr__(self):
 

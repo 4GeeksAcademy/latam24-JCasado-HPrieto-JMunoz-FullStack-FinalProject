@@ -44,12 +44,9 @@ const Layout = () => {
             <Route element={<FairySelection />} path="/select-fairy" />
             <Route element={<AvailableFairies />} path="/fairy/select/available" />
             <Route element={<FairyDetails />} path="/fairy/details" />
-<<<<<<< HEAD
-=======
             <Route element={<ClientsAvailable />} path={"/client/select/available"} />
             <Route element={<ClientDetails />} path="/client/details" />
             <Route element={<Private />} path="/private" />
->>>>>>> client-views
             <Route element={<Single />} path="/single/:theid" />
             <Route element={<h1>Not found!</h1>} />
 

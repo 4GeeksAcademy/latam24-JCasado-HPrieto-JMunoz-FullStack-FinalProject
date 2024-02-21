@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
-import profile_picture from "../../img/profile_picture.jpg";
+import profile_picture from "../../img/profilephoto.jpg";
 import "../../styles/home.css";
 
 export const Register = () => {

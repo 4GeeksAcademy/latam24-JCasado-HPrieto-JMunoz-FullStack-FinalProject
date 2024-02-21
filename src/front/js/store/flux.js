@@ -22,6 +22,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 		actions: {
 
+			
+// -----------------------------------------------------------------------------------------------------------------------------------------------	
+// Register / Login:
+
+
 			makeLogin: async (userData) => {
 
 				try {
@@ -35,8 +40,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 						body: JSON.stringify(userData)
 					}
-					
-					const response = await fetch(API_URL+"/login", requestConfig);
+
+					const response = await fetch(API_URL + "/login", requestConfig);
 
 					if (response.status != 200) {
 
@@ -89,7 +94,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						body: JSON.stringify(newContactData)
 					}
 
-					const response = await fetch(API_URL+"/register", requestConfig);
+					const response = await fetch(API_URL + "/register", requestConfig);
 
 					if (response.status != 201) {
 
@@ -97,94 +102,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 						return false
 					}
-					
+
 					const body = await response.json()
 
-					return body 
+					return body
 
 				} catch (error) {
 
 					console.log(error)
 				}
 			},
-
-			exampleFunction: () => {
-
-				getActions().changeColor(0, "green");
-			},
-
-			getMessage: async () => {
-
-				try {
-				
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-
-					const data = await resp.json()
-
-					setStore({ message: data.message })
-					
-
-					return data;
-
-				} catch (error) {
-
-					console.log("Error loading message from backend", error)
-				}
-			},
-
-			changeColor: (index, color) => {
-
-	
-				const store = getStore();
-
-				
-		
-				const demo = store.demo.map((elm, i) => {
-
-					if (i === index) elm.background = color;
-
-					return elm;
-				});
-
-			
-				setStore({ demo: demo });
-			},
-
-
-			getServices: async () => {
-
-				const response = await fetch(process.env.BACKEND_URL + `/api/services`)
-
-				if (!response.ok) {
-
-					throw new Error('Failed to fetch service menu');
-				}
-
-				const data = await response.json();
-
-				console.log(data);
-
-				setStore({ services: data });
-			},
-
-
-			getAllProducts: () => {
-				const store = getStore();
-				fetch(process.env.BACKEND_URL + `api/products/ONSALE`, {
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-
-					}
-				})
-					.then(response => response.json())
-					.then((response) => {
-						setStore({ products: response });
-
-						console.log(response)
-					})
-			},
-
 
 			getUsers: () => {
 				fetch(process.env.BACKEND_URL + "api/users", {
@@ -206,6 +133,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
+
 			getToken: () => {
 				const store = getStore()
 
@@ -216,6 +144,74 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return store.token;
 
 			},
+
+// ---------------------------------------------------------------------------------------------------------------------------------------
+// Services / Products:
+
+			fetchServiceMenu: async () => {
+
+				try {
+
+					const response = await fetch(process.env.BACKEND_URL + '/api/services');
+
+					if (!response.ok) {
+
+						throw new Error('Failed to fetch service menu');
+					}
+
+					const data = await response.json();
+
+					setStore({services: data});
+
+					console.log(data);
+
+				} catch (error) {
+
+					console.log(error);
+
+				}
+			},
+
+
+
+			getServices: async () => {
+
+				const response = await fetch(process.env.BACKEND_URL + `/api/services`)
+
+				if (!response.ok) {
+
+					throw new Error('Failed to fetch service menu');
+				}
+
+				const data = await response.json();
+
+				console.log(data);
+
+				setStore({ services: data });
+			},
+
+
+
+			getAllProducts: () => {
+				const store = getStore();
+				fetch(process.env.BACKEND_URL + `api/products/ONSALE`, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+
+					}
+				})
+					.then(response => response.json())
+					.then((response) => {
+						setStore({ products: response });
+
+						console.log(response)
+					})
+			},
+
+
+// ---------------------------------------------------------------------------------------------------------------------------------------
+// Reviews (currently not being used):
 
 
 			getReviews: () => {
@@ -252,9 +248,53 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(response)
 					})
 			},
+
+
+			exampleFunction: () => {
+
+				getActions().changeColor(0, "green");
+			},
+
+			getMessage: async () => {
+
+				try {
+
+					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
+
+					const data = await resp.json()
+
+					setStore({ message: data.message })
+
+
+					return data;
+
+				} catch (error) {
+
+					console.log("Error loading message from backend", error)
+				}
+			},
+
+			changeColor: (index, color) => {
+
+
+				const store = getStore();
+
+
+
+				const demo = store.demo.map((elm, i) => {
+
+					if (i === index) elm.background = color;
+
+					return elm;
+				});
+
+
+				setStore({ demo: demo });
+			}
 		}
 	}
 };
+
 
 
 export default getState;

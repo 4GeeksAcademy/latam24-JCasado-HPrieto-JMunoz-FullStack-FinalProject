@@ -30,8 +30,7 @@ class User(db.Model):
     avatar = db.Column(db.String(250), unique=False, nullable=True)
 
     FairyProducts = db.relationship("FairyProducts", backref="user-products")
-    # orders_purchased = db.relationship("Orders", backref="user") 
-    
+ 
 
     def __repr__(self):
 

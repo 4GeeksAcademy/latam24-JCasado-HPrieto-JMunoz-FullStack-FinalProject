@@ -1,6 +1,6 @@
-
-import React, { useState, useEffect } from "react";
-import { Navbar, Nav, Form, Button, Badge, Card, Container, Row, Col, ProgressBar } from 'react-bootstrap';
+import React, { useState, useContext, useEffect } from "react";
+import { Context } from "../../store/appContext";
+import { Button, Container, Row, Col, ProgressBar } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import Promotions from "../../component/promotions";
 import img1 from "../../../img/1.png"
@@ -15,37 +15,17 @@ import Services from "../../component/Services"
 
 const ClientHome = () => {
 
-    const [selectedService, setSelectedService] = useState(null);
+    const { store, actions } = useContext(Context);
 
-    const [serviceMenu, setServiceMenu] = useState([]);
+    const [selectedService, setSelectedService] = useState(null);
 
     const navigate = useNavigate();
 
     useEffect(() => {
+    
+        actions.fetchServiceMenu();
 
-        fetchServiceMenu();
-
-    }, []);
-
-    const fetchServiceMenu = async () => {
-
-        try {
-
-            const response = await fetch("/api/services");
-
-            if (!response.ok) {
-
-                throw new Error('Failed to fetch service menu');
-            }
-
-            const data = await response.json();
-
-            setServiceMenu(data);
-
-        } catch (error) {
-
-        }
-    };
+    }, [])
 
 
     const services = [
@@ -121,7 +101,7 @@ const ClientHome = () => {
                                 <Row className="d-flex justify-content-center align-items-center">
                                     <Col md={3}>
                                         <Row className="justify-content-center align-items-center">
-                                            
+
                                             <Col md={4}>
                                                 <img src={avatar} alt="User Avatar" className="avatar-img" />
                                             </Col>
@@ -134,7 +114,7 @@ const ClientHome = () => {
                                             <strong>Location:</strong> 9725 NW 104 st #410 Miami FL 33178
                                         </p>
                                     </Col>
-                                    
+
                                     <Col md={9}>
 
                                         <div className="d-flex justify-content-center gap-2">

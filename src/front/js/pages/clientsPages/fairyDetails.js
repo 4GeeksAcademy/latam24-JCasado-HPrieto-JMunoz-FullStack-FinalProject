@@ -78,6 +78,8 @@ export const FairyDetails = () => {
         </div>
       </div>
       <div className="data-card container mt-3">
+        <h5 className="mt-3 mx-3">Choose date</h5>
+        {/* calendar */}
         <div className="d-flex justify-content-center">
           <div className="datepicker">
             <div className="datepicker-top">
@@ -141,7 +143,24 @@ export const FairyDetails = () => {
               <button className="date faded">3</button>
             </div>
           </div>
-
+          {/* select time */}
+          {/* <h5 className="mt-3 mx-3">
+            Choose time
+          </h5>
+          <div className="container d-flex overflow-auto mb-5">
+            <span className="card btn">
+              8:00
+            </span>
+            <span className="card btn">
+              10:00
+            </span>
+            <span className="card btn">
+              13:00
+            </span>
+            <span className="card btn">
+              16:00
+            </span>
+          </div> */}
         </div>
       </div>
     </div>

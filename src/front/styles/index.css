@@ -177,7 +177,7 @@ body {
 
 .image-profile {
   border-radius: 100%;
-  width: 40%;
+  width: 100px;
 }
 
 .register-image {
@@ -341,9 +341,14 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(124, 218, 48);
+  background-color: rgb(174, 214, 74);
   border-radius: 20px;
   max-height: 40px;
+}
+
+/* CLIENT DETAILS */
+.client-distance {
+  background-color: green;
 }
 
 /* Hover */

@@ -16,6 +16,8 @@ import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 import { FairyDetails } from "./pages/clientsPages/fairyDetails";
 import { AvailableFairies } from "./pages/clientsPages/availableFairies";
+import { ClientDetails } from "./pages/clientDetails";
+import { ClientsAvailable } from "./pages/clientsAvailable";
 
 //create your first component
 const Layout = () => {
@@ -42,6 +44,12 @@ const Layout = () => {
             <Route element={<FairySelection />} path="/select-fairy" />
             <Route element={<AvailableFairies />} path="/fairy/select/available" />
             <Route element={<FairyDetails />} path="/fairy/details" />
+<<<<<<< HEAD
+=======
+            <Route element={<ClientsAvailable />} path={"/client/select/available"} />
+            <Route element={<ClientDetails />} path="/client/details" />
+            <Route element={<Private />} path="/private" />
+>>>>>>> client-views
             <Route element={<Single />} path="/single/:theid" />
             <Route element={<h1>Not found!</h1>} />
 
@@ -51,7 +59,7 @@ const Layout = () => {
           <Footer />
         </ScrollToTop>
       </BrowserRouter>
-    </div>
+    </div >
   );
 };
 

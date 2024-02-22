@@ -168,7 +168,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getProducts: async (categoryId) => {
 
-				const response = await fetch(process.env.BACKEND_URL + `/api/serviceCategories/${categoryId}`)
+				const response = await fetch(process.env.BACKEND_URL + `/api/serviceCategories/${categoryId}`);
 
 				const data = await response.json();
 

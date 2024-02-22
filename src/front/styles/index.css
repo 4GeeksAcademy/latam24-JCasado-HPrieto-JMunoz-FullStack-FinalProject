@@ -91,8 +91,8 @@ body {
 
 .avatar-img {
   border-radius: 100%;
-  width: 10%;
-  height: 10%;
+  width: 30%;
+  height: 30%;
   margin-left: 50px;
 }
 
@@ -491,6 +491,7 @@ tbody {
 
 .progress-bar {
   background: #0DCAF0;
+  width: 100%;
 }
 
 .promotion-manicure-img {

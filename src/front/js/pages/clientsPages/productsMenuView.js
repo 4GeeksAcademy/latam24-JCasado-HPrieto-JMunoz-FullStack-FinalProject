@@ -157,9 +157,9 @@ const ProductsMenu = () => {
         </div>
         <h1 className='mt-2'>Services</h1>
         <p>Sit ullamco eiusmod enim ullamco ipsum</p>
-        <div >
+        <div>
           {services.map((service) => (
-            <div>
+            <div key={service.id + "serviceId"}>
               <h2>{service.name}</h2>
               <div>
                 {service.service_products.map((product) => (

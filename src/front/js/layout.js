@@ -16,6 +16,7 @@ import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 import { Private } from "./pages/private";
 import { FairyDetails } from "./pages/fairyDetails";
+import PaymentConfirmation from "./pages/clientsPages/payment"
 
 //create your first component
 const Layout = () => {
@@ -39,6 +40,7 @@ const Layout = () => {
             <Route element={<Register />} path="/register" />
             <Route element={<FairySelection />} path="/select-fairy" />
             <Route element={<FairyDetails />} path="/fairy/details" />
+            <Route element={<PaymentConfirmation />} path="/payment" />
             <Route element={<Private />} path="/private" />
             <Route element={<Single />} path="/single/:theid" />
             <Route element={<h1>Not found!</h1>} />

@@ -2,25 +2,26 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Table, Card, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import manicurepromo from "../../../img/manicurepromo.png"
 
 
 const OfferCard = () => {
 
   return (
+    <Row className='manicure_promo'>
+      <Col md={12} className="mt-4  container">
 
-    <Card className="mt-4">
-      <img src="url_to_your_image" alt="Offer" className="card-img-top" />
-      
-      <Card.Body>
-        <Card.Title>Special Offer</Card.Title>
+        <div className=" d-flex container align-items-center ">
+          <div className="card-body">
+            <h4 className=" manicure_promo-text card-title text-uppercase ">Express Traditional manicure </h4>
 
-        <Card.Text>
-          Get 20% off on your facial treatments
-        </Card.Text>
+            <Button variant="info" className="text-white">Buy Now</Button>
+          </div>
+          <img className="rounded" src={manicurepromo} height={330} />
+        </div>
 
-      </Card.Body>
-
-    </Card>
+      </Col>
+    </Row>
 
   );
 };
@@ -55,7 +56,7 @@ const ManicureTable = ({ setManicure }) => {
           <td><i className="fas fa-hand-pointer"></i></td>
           <td>$80</td>
         </tr>
-        
+
       </tbody>
     </Table>
 
@@ -104,15 +105,15 @@ const PedicureTable = ({ setPedicure }) => {
 
 const ProductsMenu = () => {
 
-  const [ manicure, setManicure ] = useState("");
+  const [manicure, setManicure] = useState("");
 
-  const [ pedicure, setPedicure] = useState("");  
+  const [pedicure, setPedicure] = useState("");
 
 
   const navigate = useNavigate()
 
   const handleConfirmSelection = () => {
-    
+
     navigate("/select-fairy")
 
     console.log('Manicure:', manicure);
@@ -125,30 +126,35 @@ const ProductsMenu = () => {
   return (
 
     <div>
-    
-      <Container fluid>
 
-        <div>
-          <Col md={6}>
-            <h2>Manicure</h2>
-            <ManicureTable setManicure={setManicure} />
-          </Col>
 
-          <Col md={6}>
-            <h2>Pedicure</h2>
-            <PedicureTable setPedicure={setPedicure} />
-          </Col>
-        </div>
+
+      <Container fluid className='main-container'>
 
         <div>
           <Col md={12}>
             <OfferCard />
           </Col>
         </div>
+        <h1 className='mt-2'>Services</h1>
+        <p>Sit ullamco eiusmod enim ullamco ipsum</p>
+        <div >
+          <Col md={12}>
+            <h2 className='text-center manicure_heading'>Manicure Base Price</h2>
+            <ManicureTable setManicure={setManicure} />
+          </Col>
+
+          <Col md={12}>
+            <h2 className='text-center pedicure_heading'>Pedicure Base Price</h2>
+            <PedicureTable setPedicure={setPedicure} />
+          </Col>
+        </div>
+
+
 
         <div>
-          <Col md={12} className="text-center">
-            <Button variant="primary" onClick={handleConfirmSelection}>Confirm Selection</Button>
+          <Col md={12} className="text-center mt-3">
+            <Button variant="info" className='text-white' onClick={handleConfirmSelection}>Confirm Selection</Button>
           </Col>
         </div>
 

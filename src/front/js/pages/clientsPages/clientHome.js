@@ -1,6 +1,6 @@
-
-import React, { useState } from "react";
-import { Navbar, Nav, Form, Button, Badge, Card, Container, Row, Col, ProgressBar } from 'react-bootstrap';
+import React, { useState, useContext, useEffect } from "react";
+import { Context } from "../../store/appContext";
+import { Button, Container, Row, Col, ProgressBar } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import Promotions from "../../component/promotions";
 import img1 from "../../../img/1.png"
@@ -10,15 +10,17 @@ import img4 from "../../../img/4.png"
 import img5 from "../../../img/5.png"
 import facialCare from "../../../img/facialCare.png"
 import avatar from "../../../img/avatar.png"
-
+import Services from "../../component/Services"
 
 
 
 const ClientHome = () => {
 
-    const [notifications, setNotifications] = useState(4);
+    const { store, actions } = useContext(Context);
+
     const [selectedService, setSelectedService] = useState(null);
-    const navigate = useNavigate()
+
+    const navigate = useNavigate();
 
     const services = [
         {
@@ -44,10 +46,10 @@ const ClientHome = () => {
     ];
 
     const handleServiceSelection = (service) => {
+
         setSelectedService(service);
 
         navigate("/productsMenuView")
-
     };
 
     return (
@@ -57,40 +59,38 @@ const ClientHome = () => {
                 <Row>
                     <Col md={12} className="mt-4  container">
 
-                        <div className=" d-flex container align-items-center ">
+                        <div className=" d-flex container align-items-center">
                             <div className="card-body">
                                 <h4 className=" facial_care card-title text-uppercase text-info">Facial Care</h4>
-                                <p className="facial_care-promo">30% Off</p>
+                                <p className="facial_care-promo">15% Off</p>
                                 <Button variant="info" className="text-white">Buy Now</Button>
                             </div>
                             <img className="rounded" src={facialCare} height={300} />
                         </div>
-
                     </Col>
+
                 </Row>
 
+                <Services />
+
                 <Row className="mt-4">
-                    <h2>Services</h2>
+                    <h4 className="mx-2">Services</h4>
                     {services.map((service, index) => (
-
-                        <Col md={0} key={index}>
-
-                            <div className={`card mb-4 ${selectedService === service ? 'selected' : ''}`} onClick={() => handleServiceSelection(service)}>
+                        <Col md={3} key={index} className="mb-4">
+                            <div className={`card h-100 ${selectedService === service ? 'selected' : ''}`} onClick={() => handleServiceSelection(service)}>
                                 <div className="card-body d-flex gap-3 align-items-center">
                                     <img src={service.image} />
                                     <h5 className="card-title">{service.title}</h5>
                                 </div>
                             </div>
-
                         </Col>
                     ))}
-
                 </Row>
 
-                <Row className="mt-4 ">
+                <Row className="mt-4">
                     <Col md={12}>
-                        <h3>Next Appointment</h3>
-                        <div className="card d-flex text-center ">
+                        <h4 className="mx-2">Next Appointment</h4>
+                        <div className="card d-flex">
                             <div className="card-body">
                                 <Row className="d-flex justify-content-center">
 
@@ -139,7 +139,6 @@ const ClientHome = () => {
                                 </Row>
                             </div>
                         </div>
-
                     </Col>
                 </Row>
                 <Promotions />
@@ -147,7 +146,7 @@ const ClientHome = () => {
         </>
 
     );
-}
+};
 
 
 export default ClientHome;

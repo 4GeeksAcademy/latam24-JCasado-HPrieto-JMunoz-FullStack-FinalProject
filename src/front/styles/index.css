@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
-
 /* Homepage */
 
 body {
@@ -9,10 +8,9 @@ body {
   font-family: "Inter", sans-serif;
   line-height: 1.5;
   min-height: 100vh;
-  background-color: #FAF2FDFF;
+  background-color: #faf2fdff;
   color: var(--c-text-primary);
 }
-
 
 .navbar {
   background-color: #ebc5f6ff;
@@ -71,6 +69,7 @@ body {
 }
 
 /* HOME btn */
+
 .home-icon {
   font-size: larger;
 }
@@ -91,8 +90,10 @@ body {
 }
 
 .avatar-img {
-  border-radius: 50%;
-
+  border-radius: 100%;
+  width: 10%;
+  height: 10%;
+  margin-left: 50px;
 }
 
 .button_whatsapp {
@@ -101,9 +102,28 @@ body {
   border-radius: 30px;
 }
 
+.icons {
+
+  background: #EBC5F663;
+  padding: 2px;
+  margin-top: -2.5px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.icon_sparkle {
+  width: 35px;
+  color: #BD3EE0FF;
+}
+
+.icon_crown {
+  width: 35px;
+  color: #BD3EE0FF;
+}
+
 /* calendly btn */
 .calendar-icon {
-  font-size: larger
+  font-size: larger;
 }
 
 .calendar-text {
@@ -200,7 +220,7 @@ body {
 
 .image-profile {
   border-radius: 100%;
-  width: 40%;
+  width: 100px;
 }
 
 .register-image {
@@ -349,6 +369,32 @@ button {
   }
 }
 
+/* CHOOSE FAIRY */
+.calendar-icon {
+  font-size: larger;
+}
+
+.data-container-fairy {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* FAIRY RATE  */
+
+.rate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(174, 214, 74);
+  border-radius: 20px;
+  max-height: 40px;
+}
+
+/* CLIENT DETAILS */
+.client-distance {
+  background-color: green;
+}
+
 /* Hover */
 .button:hover {
   color: #ffffffff;
@@ -431,4 +477,22 @@ tbody {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+
+.promotion {
+  padding-bottom: 20px;
+}
+
+/* Rounded Picture */
+
+.profile-picture {
+  width: 120px;
+}
+
+.progress-bar {
+  background: #0DCAF0;
+}
+
+.promotion-manicure-img {
+  min-width: 100px;
 }

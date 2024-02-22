@@ -74,7 +74,7 @@ export const Login = () => {
                 className="btn btn-login mb-3"
                 onClick={async () => {
                   if (await actions.makeLogin(data)) {
-                    navigate("/private");
+                    navigate("/");
                   }
                 }}
               >

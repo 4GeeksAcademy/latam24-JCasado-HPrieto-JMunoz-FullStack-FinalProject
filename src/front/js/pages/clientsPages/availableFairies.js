@@ -1,0 +1,56 @@
+import React from "react";
+import fairyPhoto from "../../../img/profile_picture.jpg"
+import { Link } from "react-router-dom";
+
+export const AvailableFairies = () => {
+    return (
+        <div className="main-container">
+            <h2 className="d-flex justify-content-center fw-bold mt-2 mb-3">
+                Choose your Fairy
+            </h2>
+            {/*FAIRY CARD */}
+            <div className="data-card container">
+
+                <div className="row my-3">
+                    <div className="col-12 col-lg-3 d-flex justify-content-center mb-3">
+                        <img src={fairyPhoto} className="rounded-circle profile-picture" />
+                    </div>
+
+                    <div className="col-10 col-lg-7">
+                        <div className="d-flex justify-content-start">
+                            <h3 className="card-title">Fairy Name</h3>
+                        </div>
+                        {/* info */}
+                        <div>
+                            <div>
+                                <p>Details...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-2 col-lg-1 rate">
+                        <div className="d-flex align-items-center w-100 btn">
+                            <span>Rate</span>
+                            <i className="fa-regular fa-star mx-2 mb-1"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="data-container-fairy mx-3 mb-3 text-primary">
+                    <div className="d-flex">
+                        <i className="fa-regular fa-calendar calendar-icon mx-3"></i>
+                        <p className="fw-bold mx-0">Available Now</p>
+                    </div>
+                    <p className="fairy-distance">
+                        ETA 20min
+                    </p>
+                    <Link to={"/fairy/details"}>
+                        <p className="text-black">
+                            About
+                        </p>
+                    </Link>
+                </div>
+            </div>
+        </div>
+
+    )
+}

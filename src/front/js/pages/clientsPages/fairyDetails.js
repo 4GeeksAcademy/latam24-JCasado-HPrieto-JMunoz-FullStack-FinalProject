@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
-import { Context } from "../store/appContext";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import fairyPhoto from "../../../img/profile_picture.jpg"
 
 export const FairyDetails = () => {
   return (
@@ -9,64 +8,82 @@ export const FairyDetails = () => {
         Fairy Profile
       </h2>
       {/* CARD */}
-      <div>
-        <div className="data-card container ">
-          <img src="..." className="rounded-circle" />
-          <div className="data-container mx-3 mb-3">
+
+      <div className="data-card container">
+
+        <div className="row my-3">
+          <div className="col-12 col-lg-3 d-flex justify-content-center mb-3">
+            <img src={fairyPhoto} className="rounded-circle profile-picture" />
+          </div>
+
+          <div className="col-12 col-lg-9">
             <div className="d-flex justify-content-start">
-              <h3 className="card-title">Fairy Name</h3>
+              <h3 className="card-title">Ororo Munroe</h3>
             </div>
             {/* info */}
-            <div className="d-flex justify-content-start">
-              <p>Details...</p>
-            </div>
-            <h5>About</h5>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Asperiores laudantium labore recusandae suscipit dolorem soluta
-              distinctio eligendi eaque maxime ratione repellat, tempore,
-              perspiciatis dicta cumque! Quas necessitatibus debitis tempore
-              perspiciatis.
-            </p>
-          </div>
-          {/* reviews card */}
-          <div className="mx-3 mb-4">
-            <div className="d-flex justify-content-between">
-              <h5>Reviews</h5>
-              <p className="text-primary" role="button">
-                See all
-              </p>
-            </div>
-
-            <div className="overflow-auto">
-              <div className="data-card card">
-                <img src="..." className="rounded-circle" />
-                <div className="data-container mx-3 mb-3">
-                  <div className="d-flex justify-content-start">
-                    <h3 className="card-title mb-0">Client Name</h3>
-                  </div>
-                  <p className="fw-bold my-1 text-secondary">a day ago</p>
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Asperiores laudantium labore recusandae suscipit dolorem.
-                  </p>
-                </div>
+            <div>
+              <div>
+                <p>Details...</p>
+              </div>
+              <div>
+                <p>Rate</p>
               </div>
             </div>
           </div>
-          {/* location */}
-          <div className="mx-3">
-            <h5>Location</h5>
-            <div className="d-flex mx-4 my-3 location">
-              <i className="fa-solid fa-location-dot"></i>
-              <p className="text-secondary mx-3">Doral, Miami, Fl</p>
+        </div>
+
+        <div className="data-container mx-3 mb-3">
+
+          <h5>About</h5>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Asperiores laudantium labore recusandae suscipit dolorem soluta
+            distinctio eligendi eaque maxime ratione repellat, tempore,
+            perspiciatis dicta cumque! Quas necessitatibus debitis tempore
+            perspiciatis.
+          </p>
+        </div>
+        {/* reviews card */}
+        <div className="mx-3 mb-4">
+          <div className="d-flex justify-content-between">
+            <h5>Reviews</h5>
+            <p className="text-primary" role="button">
+              See all
+            </p>
+          </div>
+
+          <div className="overflow-auto">
+            <div className="data-card card">
+              <img src="..." className="rounded-circle" />
+              <div className="data-container mx-3 mb-3">
+                <div className="d-flex justify-content-start">
+                  <h3 className="card-title mb-0">Client Name</h3>
+                </div>
+                <p className="fw-bold my-1 text-secondary">a day ago</p>
+                <p>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Asperiores laudantium labore recusandae suscipit dolorem.
+                </p>
+              </div>
             </div>
           </div>
         </div>
-        <div className="data-card container mt-3">
+        {/* location */}
+        <div className="mx-3">
+          <h5>Location</h5>
+          <div className="d-flex mx-4 my-3 location">
+            <i className="fa-solid fa-location-dot"></i>
+            <p className="text-secondary mx-3">Doral, Miami, Fl</p>
+          </div>
+        </div>
+      </div>
+      <div className="data-card container mt-3">
+        <h5 className="mt-3 mx-3">Choose date</h5>
+        {/* calendar */}
+        <div className="d-flex justify-content-center">
           <div className="datepicker">
             <div className="datepicker-top">
-              <div className="btn-group">
+              <div className="btn-group d-flex justify-content-center">
                 <button className="tag">Today</button>
                 <button className="tag">Tomorrow</button>
                 <button className="tag">In 2 days</button>
@@ -126,8 +143,27 @@ export const FairyDetails = () => {
               <button className="date faded">3</button>
             </div>
           </div>
+          {/* select time */}
+          {/* <h5 className="mt-3 mx-3">
+            Choose time
+          </h5>
+          <div className="container d-flex overflow-auto mb-5">
+            <span className="card btn">
+              8:00
+            </span>
+            <span className="card btn">
+              10:00
+            </span>
+            <span className="card btn">
+              13:00
+            </span>
+            <span className="card btn">
+              16:00
+            </span>
+          </div> */}
         </div>
       </div>
     </div>
+
   );
 };

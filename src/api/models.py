@@ -79,7 +79,15 @@ class Services (db.Model):
             "name": self.name,
             "description": self.description,
         }
-    
+
+    def full_serialize(self):
+
+        return {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+            "service_products": [product.serialize() for product in self.service_products]
+        }    
 
 
 class ServiceCategories (db.Model):
@@ -97,8 +105,16 @@ class ServiceCategories (db.Model):
         return {
             "id": self.id,
             "name": self.name
-        }    
 
+        }   
+     
+    def full_serialize(self):
+
+        return {
+            "id": self.id,
+            "name": self.name,
+            "services": [service.serialize() for service in self.services]
+        }
 
 
 class Product(db.Model):
@@ -121,7 +137,6 @@ class Product(db.Model):
             "name": self.name,
             "price": self.price,
             "description": self.description,
-            "user_id": self.user_id,
             "service_id": self.service_id
         }
 

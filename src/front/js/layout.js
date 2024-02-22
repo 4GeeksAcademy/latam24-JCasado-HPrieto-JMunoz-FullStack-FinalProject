@@ -14,7 +14,6 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
-import { Private } from "./pages/private";
 import PaymentConfirmation from "./pages/clientsPages/payment"
 import { FairyDetails } from "./pages/clientsPages/fairyDetails";
 import { AvailableFairies } from "./pages/clientsPages/availableFairies";
@@ -39,7 +38,7 @@ const Layout = () => {
           <Navbar />
           <Routes>
             <Route element={<ClientHome />} path="/" />
-            <Route element={<ProductsMenuView />} path="/productsMenuView" />
+            <Route element={<ProductsMenuView />} path="/products/:categoryId" />
             <Route element={<Demo />} path="/demo" />
             <Route element={<Login />} path="/login" />
             <Route element={<Register />} path="/register" />
@@ -47,7 +46,6 @@ const Layout = () => {
             <Route element={<AvailableFairies />} path="/fairy/select/available" />
             <Route element={<FairyDetails />} path="/fairy/details" />
             <Route element={<PaymentConfirmation />} path="/payment" />
-            <Route element={<Private />} path="/private" />
             <Route element={<ClientsAvailable />} path={"/client/select/available"} />
             <Route element={<ClientDetails />} path="/client/details" />
             <Route element={<Single />} path="/single/:theid" />

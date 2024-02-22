@@ -1,9 +1,9 @@
 
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Container, Row, Col, Table, Card, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import manicurepromo from "../../../img/manicurepromo.png"
-
+import { Context } from '../../store/appContext';
 
 const OfferCard = () => {
 
@@ -106,6 +106,8 @@ const PedicureTable = ({ setPedicure }) => {
 
 const ProductsMenu = () => {
 
+  const { store, actions } = useContext(Context)
+
   const [manicure, setManicure] = useState("");
 
   const [pedicure, setPedicure] = useState("");
@@ -123,12 +125,28 @@ const ProductsMenu = () => {
 
   };
 
+  const params = useParams()
+
+  const [services, setServices] = useState([]);
+
+  const getProducts = async () => {
+
+    const response = await actions.getProducts(params.categoryId)
+
+    setServices(response)
+
+    console.log(response);
+  }
+
+  useEffect(() => {
+
+    getProducts()
+
+  }, [])
 
   return (
 
     <div>
-
-
 
       <Container fluid className='main-container'>
 
@@ -140,15 +158,18 @@ const ProductsMenu = () => {
         <h1 className='mt-2'>Services</h1>
         <p>Sit ullamco eiusmod enim ullamco ipsum</p>
         <div >
-          <Col md={12}>
-            <h2 className='text-center manicure_heading'>Manicure Base Price</h2>
-            <ManicureTable setManicure={setManicure} />
-          </Col>
-
-          <Col md={12}>
-            <h2 className='text-center pedicure_heading'>Pedicure Base Price</h2>
-            <PedicureTable setPedicure={setPedicure} />
-          </Col>
+          {services.map((service) => (
+            <div>
+              <h2>{service.name}</h2>
+              <div>
+                {service.service_products.map((product) => (
+                  <div>
+                    {product.name}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
 
 

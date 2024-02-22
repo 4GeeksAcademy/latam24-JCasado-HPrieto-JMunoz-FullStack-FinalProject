@@ -1,4 +1,4 @@
-from api.models import db, User, Product, Services, Review, FairyProducts
+from api.models import db, User, Product, Services, Review, FairyProducts, ServiceCategories
 from flask import Flask, request, jsonify, Blueprint, current_app
 from api.utils import APIException
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
@@ -144,23 +144,6 @@ def get_users_by_product(product_id):
     user_list = [{"id": user.id, "name": user.name} for user in users]
 
     return jsonify({"users": user_list}), 200
-
-
-
-
-# @api.route("/users_by_product/<int:product_id>", methods=['GET'])
-# def get_users_with_all_products():
-
-#     users = User.query.join(FairyProducts).filter(FairyProducts.product_id == product_id).all()
-
-#     if not users:
-
-#         return jsonify({'message': "No users found for the specified product"}), 404
-
-#     user_list = [{"id": user.id, "name": user.name} for user in users]
-
-#     return jsonify({"users": user_list}), 200
-
  
 
 
@@ -169,7 +152,7 @@ def get_service_id(service_id):
     
     try:
         
-        product = Product.query.filter_by(service_id).all
+        product = Product.query.filter_by(service_id=service_id).all()
 
         if product is None:
 
@@ -203,12 +186,21 @@ def get_services():
 
 
 
+@api.route("/categories", methods=['GET'])
+def get_categories():
+
+    categories = ServiceCategories.query.all()
+
+    return jsonify({"categories":[category.full_serialize() for category in categories]})
+
+
+
 @api.route("/serviceCategories/<int:category_id>", methods=['GET'])
 def get_service_category(category_id):
 
     serviceCategories = Services.query.filter_by(service_category=category_id).all()
 
-    serialized_services = [service.serialize() for service in serviceCategories]
+    serialized_services = [service.full_serialize() for service in serviceCategories]
 
     print (serviceCategories)
 

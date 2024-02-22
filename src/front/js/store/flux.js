@@ -154,13 +154,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getServices: async () => {
 
-				const response = await fetch(process.env.BACKEND_URL + "/api/services")
+				const response = await fetch(process.env.BACKEND_URL + "/api/categories")
 
 				const data = await response.json();
 
-				console.log(data);
+				setStore({
+
+					services:data.categories
+				})
+
 			},
 
+
+			getProducts: async (categoryId) => {
+
+				const response = await fetch(process.env.BACKEND_URL + `/api/serviceCategories/${categoryId}`)
+
+				const data = await response.json();
+
+				return data;
+
+			},
 
 
 			// ---------------------------------------------------------------------------------------------------------------------------------------

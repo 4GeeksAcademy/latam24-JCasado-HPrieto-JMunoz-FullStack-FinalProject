@@ -52,17 +52,17 @@ const FairySelection = () => {
 
             try {
 
-				const requestConfig = {
+				// const requestConfig = {
 
-					method: "POST",
-					headers: {
-						"Content-type": "application/json"
-					},
+				// 	method: "POST",
+				// 	headers: {
+				// 		"Content-type": "application/json"
+				// 	},
 
-					body: JSON.stringify(userData)
-				}
+				// 	body: JSON.stringify(userData)
+				// }
 
-                const response = await axios.get(API_URL+"/users", requestConfig); 
+                const response = await axios.get(API_URL+"/users_by_product", requestConfig); 
                 
                 setUsers(response.data);
 

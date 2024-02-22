@@ -9,7 +9,6 @@ import re
 import os
 
 
-
 api = Blueprint('api', __name__)
 
 CORS(api)
@@ -30,14 +29,6 @@ def check(email):
     else:
         return False
     
-load_dotenv()
-
-app = Flask(__name__)
-
-api = Blueprint('api', __name__)
-
-
-
 
 @api.route("/register", methods=['POST'])
 def register_user():

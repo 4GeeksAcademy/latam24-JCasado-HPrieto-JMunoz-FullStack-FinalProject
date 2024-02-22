@@ -4,37 +4,37 @@ import { Context } from "../store/appContext";
 
 export const Demo = () => {
 
-	const { store, actions } = useContext(Context);
+    const { store, actions } = useContext(Context);
 
-	return (
-		<div className="container">
-			<ul className="list-group">
-				{store.demo.map((item, index) => {
-					return (
-						<li
-							key={index}
-							className="list-group-item d-flex justify-content-between"
-							style={{ background: item.background }}>
-							<Link to={"/single/" + index}>
-								<span>Link to: {item.title}</span>
-							</Link>
-						
-							item.background === "black" ? (
-								<p style={{ color: item.initial }}>
-									Check store/flux.js scroll to the actions to see the code
-								</p>
-							) : null}
-							<button className="btn btn-success" onClick={() => actions.changeColor(index, "black")}>
-								Change Color
-							</button>
-						</li>
-					);
-				})}
-			</ul>
-			<br />
-			<Link to="/">
-				<button className="btn btn-primary">Back home</button>
-			</Link>
-		</div>
-	);
+    return (
+        <div className="container">
+            <ul className="list-group">
+                {store.demo.map((item, index) => {
+                    return (
+                        <li
+                            key={index}
+                            className="list-group-item d-flex justify-content-between"
+                            style={{ background: item.background }}>
+                            <Link to={"/single/" + index}>
+                                <span>Link to: {item.title}</span>
+                            </Link>
+                            {/* Use parentheses for ternary operator */}
+                            {item.background === "black" ? (
+                                <p style={{ color: item.initial }}>
+                                    Check store/flux.js scroll to the actions to see the code
+                                </p>
+                            ) : null}
+                            <button className="btn btn-success" onClick={() => actions.changeColor(index, "black")}>
+                                Change Color
+                            </button>
+                        </li>
+                    );
+                })}
+            </ul>
+            <br />
+            <Link to="/">
+                <button className="btn btn-primary">Back home</button>
+            </Link>
+        </div>
+    );
 };

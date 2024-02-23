@@ -79,9 +79,9 @@ const ProductsMenu = () => {
               {service.service_products.map((product) => (
                 <Col key={product.id + "product"} md={12} className="mb-3">
                   <Card className="h-100 border-0">
-                    <button className="productButton" onClick={() => selectProduct(product)}>
+                    <button className="productButton btn" onClick={() => selectProduct(product)}>
                       <Card.Body className="d-flex align-items-center justify-content-center border-0">
-                        {product.name}
+                        {product.name} ${product.price}
                       </Card.Body>
                     </button>
                   </Card>

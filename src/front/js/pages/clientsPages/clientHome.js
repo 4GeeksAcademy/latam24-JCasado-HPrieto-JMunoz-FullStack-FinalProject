@@ -21,28 +21,7 @@ const ClientHome = () => {
 
     const navigate = useNavigate();
 
-    const services = [
-        {
-            title: "Manicure & Pedicure",
-            image: img5
-        },
-        {
-            title: "Eyelashes & Eyebrows",
-            image: img4
-        },
-        {
-            title: "Makeup",
-            image: img3
-        },
-        {
-            title: "Facials",
-            image: img1
-        },
-        {
-            title: "Haircuts",
-            image: img2
-        },
-    ];
+    const servicesImages = { img5, img4, img3, img1, img2 };
 
     const handleServiceSelection = (service) => {
 
@@ -70,22 +49,22 @@ const ClientHome = () => {
 
                 </Row>
 
-                
+
 
                 <Row className="mt-4">
-                    
+
                     <h4 className="mx-2">Services</h4>
                     {store.services.map((service, index) => (
                         <Col md={3} onClick={() => navigate(`/products/${service.id}`)} key={index} className="mb-4">
                             <div className={`card h-100 ${selectedService === service ? 'selected' : ''}`} role="button" >
                                 <div className="card-body d-flex gap-3 align-items-center">
-                                    <img src={service.image} />
-                                    <h5 className="card-title">{service.name}</h5>
+                                    <img src={servicesImages} />
+                                    <h5>{service.name}</h5>
                                 </div>
                             </div>
                         </Col>
                     ))}
-                    
+
                 </Row>
 
                 <div className="mt-4">
@@ -94,18 +73,16 @@ const ClientHome = () => {
                         <div className="card d-flex">
                             <div className="card-body">
                                 <Row className="d-flex justify-content-start">
-                                    
+
                                     <Col className="avatar-img">
                                         <img src={avatar} alt="User Avatar" className="avatar-img" />
                                     </Col>
-                                    
                                     <Col md={8}>
                                         <h5 className="card-title">Miss Ororo Munroe</h5>
                                         <p>Cosmetologist / Nail Tech</p>
                                         <p className="card-text">
                                             Time: 10:02 AM
                                             <br />
-                                            
                                         </p>
 
                                         <div className="button gap-2">

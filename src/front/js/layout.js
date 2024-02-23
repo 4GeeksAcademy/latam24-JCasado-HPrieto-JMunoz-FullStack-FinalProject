@@ -10,7 +10,7 @@ import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
-import { Navbar } from "./component/navbar";
+import { ClientNavbar } from "./component/clientNavbar";
 import { Footer } from "./component/footer";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
@@ -35,7 +35,7 @@ const Layout = () => {
     <div>
       <BrowserRouter basename={basename}>
         <ScrollToTop>
-          <Navbar />
+          <ClientNavbar />
           <Routes>
             <Route element={<ClientHome />} path="/" />
             <Route element={<ProductsMenuView />} path="/products/:categoryId" />

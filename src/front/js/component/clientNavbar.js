@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import tremyIsotipo from "../../img/tremy-isotipo.png";
 
-export const Navbar = () => {
+export const ClientNavbar = () => {
   const { store, actions } = useContext(Context);
 
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="navbar">
+    <nav className="client-navbar">
       <div className="container-fluid d-flex">
         <img
           className="navbar-img mx-3"
@@ -32,9 +32,12 @@ export const Navbar = () => {
 
         <div className="ml-auto">
           {store.token ? (
+            <>
             <button className="btn btn-log" onClick={handleClick}>
-              Logout
+            <i className="fa-solid fa-bell"></i>
             </button>
+          </>
+
           ) : (
             <Link to="/login">
               <button className="btn btn-dark btn-log">Login</button>

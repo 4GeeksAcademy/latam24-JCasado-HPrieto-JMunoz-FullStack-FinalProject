@@ -1,5 +1,82 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
+
+
+/* Login */
+
+.login {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.image-login {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-login {
+  background-color: #4589ff;
+  position: absolute;
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffffff;
+  background: #3ebde0ff;
+  border-radius: 6px;
+  width: 250px;
+}
+
+.checkbox {
+  margin-right: 15px;
+}
+
+.sing-in {
+  display: flex;
+  justify-content: center;
+}
+
+.btns-log {
+  display: flex;
+  justify-content: center;
+}
+
+.count {
+  display: flex;
+  justify-content: center;
+}
+
+
+/* Register */
+
+.btn-register {
+  background-color: #4589ff;
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffffff;
+  background: #3ebde0ff;
+  border-radius: 6px;
+  width: 250px;
+  margin-left: 12px;
+}
+
+.image-profile {
+  border-radius: 100%;
+  width: 100px;
+}
+
+.register-image {
+  background-repeat: no-repeat;
+}
+
+.check-box {
+  font-size: small;
+}
+
+
 /* Homepage */
 
 body {
@@ -41,6 +118,21 @@ body {
 }
 
 
+/* Next Appointment card: */
+
+.profile-picture {
+  width: 120px;
+}
+
+.progress-bar {
+  background: #0DCAF0;
+  width: 100%;
+}
+
+.promotion-manicure-img {
+  min-width: 100px;
+}
+
 .icon_sparkle {
   width: 35px;
   color: #BD3EE0FF;
@@ -51,7 +143,8 @@ body {
   color: #BD3EE0FF;
 }
 
-/* FOOTER STYLES */
+
+/* Footer NavBar */
 
 .footer {
   background: #ebc5f6ff;
@@ -68,7 +161,8 @@ body {
   padding-bottom: 110px;
 }
 
-/* HOME btn */
+
+/* ClientHome Service Buttons */
 
 .home-icon {
   font-size: larger;
@@ -121,7 +215,10 @@ body {
   color: #BD3EE0FF;
 }
 
-/* calendly btn */
+
+/* Feiry AboutView */
+/* Calendly Buttons */
+
 .calendar-icon {
   font-size: larger;
 }
@@ -131,7 +228,8 @@ body {
   margin: 0%;
 }
 
-/* messages btn */
+/* Notofications Button */
+
 .message-icon {
   font-size: large;
 }
@@ -141,7 +239,7 @@ body {
   margin: 0%;
 }
 
-/* config btn */
+/* Configuration Button */
 
 .gear-icon {
   font-size: larger;
@@ -152,86 +250,16 @@ body {
   margin: 0%;
 }
 
-/* publicity-card homepage */
+
+/* ClientHome Facial Promotion-card */
+
 .publicity-card {
   background: #ebc5f60d;
   border-radius: 6px 6px 0px 0px;
 }
 
-/* LOGIN */
 
-.login {
-  display: flex;
-  justify-content: center;
-  margin-top: 25px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-.image-login {
-  display: flex;
-  justify-content: center;
-}
-
-.btn-login {
-  background-color: #4589ff;
-  position: absolute;
-  font-family: Mulish;
-  font-size: 16px;
-  font-weight: 400;
-  color: #ffffffff;
-  background: #3ebde0ff;
-  border-radius: 6px;
-  width: 250px;
-}
-
-.checkbox {
-  margin-right: 15px;
-}
-
-.sing-in {
-  display: flex;
-  justify-content: center;
-}
-
-.btns-log {
-  display: flex;
-  justify-content: center;
-}
-
-.count {
-  display: flex;
-  justify-content: center;
-}
-
-/* REGISTER */
-
-.btn-register {
-  background-color: #4589ff;
-  font-family: Mulish;
-  font-size: 16px;
-  font-weight: 400;
-  color: #ffffffff;
-  background: #3ebde0ff;
-  border-radius: 6px;
-  width: 250px;
-  margin-left: 12px;
-}
-
-.image-profile {
-  border-radius: 100%;
-  width: 100px;
-}
-
-.register-image {
-  background-repeat: no-repeat;
-}
-
-.check-box {
-  font-size: small;
-}
-
-/* FAIRY DETAILS */
+/* Fairy Details */
 
 .data-card {
   display: flex;
@@ -244,6 +272,7 @@ body {
   justify-content: center;
 }
 
+
 /* Calendar */
 
 :root {
@@ -255,6 +284,7 @@ body {
   --c-text-primary: #1f1f25;
   --c-text-secondary: #999fa6;
 }
+
 
 button {
   font: inherit;
@@ -369,7 +399,18 @@ button {
   }
 }
 
-/* CHOOSE FAIRY */
+
+/* ProductsMenuView */
+
+.productButton {
+  background: #EBC5F654;
+  border-radius: 6px;
+  border-color: #1f9ec1ff;
+  }
+
+
+/* SelectFairyView */
+
 .calendar-icon {
   font-size: larger;
 }
@@ -379,7 +420,8 @@ button {
   justify-content: space-between;
 }
 
-/* FAIRY RATE  */
+
+/* Fairy Rating  */
 
 .rate {
   display: flex;
@@ -390,7 +432,9 @@ button {
   max-height: 40px;
 }
 
-/* CLIENT DETAILS */
+
+/* Client Details */
+
 .client-distance {
   background-color: green;
 }
@@ -402,12 +446,14 @@ button {
 }
 
 /* Pressed */
+
 .button:hover:active {
   color: #ffffffff;
   background: #1b88a7ff;
 }
 
 /* Disabled */
+
 .button:disabled {
   opacity: 0.4;
 }
@@ -449,7 +495,8 @@ tbody {
   font-size: 2rem;
 }
 
-/*payment*/
+
+/*PaymentView*/
 
 .visa {
   background-color: #EBC5F663;
@@ -459,7 +506,6 @@ tbody {
   align-items: center;
   justify-content: space-between;
 }
-
 
 .mastercard {
   background-color: #EBC5F663;
@@ -481,19 +527,4 @@ tbody {
 
 .promotion {
   padding-bottom: 20px;
-}
-
-/* Rounded Picture */
-
-.profile-picture {
-  width: 120px;
-}
-
-.progress-bar {
-  background: #0DCAF0;
-  width: 100%;
-}
-
-.promotion-manicure-img {
-  min-width: 100px;
 }

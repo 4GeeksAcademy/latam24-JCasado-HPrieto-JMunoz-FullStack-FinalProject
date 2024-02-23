@@ -177,6 +177,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
+			getFairies: async (products) => {
+
+				console.log(products);
+			},
+
+
 			// ---------------------------------------------------------------------------------------------------------------------------------------
 			// Reviews (currently not being used):
 

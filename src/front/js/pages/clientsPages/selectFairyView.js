@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from '../../store/appContext';
 import { Card, Button, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
-const API_URL = "https://curly-memory-4xwwq4xxjxqcjjrr-3001.app.github.dev/api";
+
 
 const UserCard = ({ user, onSelect }) => {
 
@@ -12,6 +12,7 @@ const UserCard = ({ user, onSelect }) => {
     const handleSelect = () => {
 
         onSelect(user);
+
         navigate("/payment");
     };
 
@@ -20,7 +21,6 @@ const UserCard = ({ user, onSelect }) => {
         <Card style={{ width: "18rem" }}>
             <Card.Img variant="top" src={user.avatar} />
             <Card.Body>
-
                 <Card.Title>{user.name}</Card.Title>
                 <Card.Text>
                     <strong>Title:</strong> {user.professionalTitle}<br />
@@ -28,57 +28,76 @@ const UserCard = ({ user, onSelect }) => {
                     <strong>Availability:</strong> {user.available ? "Available" : "Not Available"}<br />
                     <strong>ETA:</strong> {user.ETA} mins<br />
                 </Card.Text>
-                
+
                 <div className="d-flex justify-content-between">
                     <Button variant="primary" onClick={handleSelect} className="mr-auto">Select</Button>
                     <Button variant="secondary" className="ml-auto">About</Button>
                 </div>
-
             </Card.Body>
         </Card>
     );
 };
 
 
-const FairySelection = () => {
+const GetFairies = () => {
 
-    const [users, setUsers] = useState([]);
+    const { store, actions } = useContext(Context);
 
     const navigate = useNavigate();
 
+    const [users, setUsers] = useState([]);
+
     useEffect(() => {
 
-        const fetchUsers = async () => {
+        const products = localStorage.getItem("products");
+
+        if (!products) navigate("/");
+
+        actions.getFairies(JSON.parse(products));
+
+    }, []);
+
+
+    useEffect(() => {
+
+        const fetchData = async () => {
 
             try {
 
-				// const requestConfig = {
+                if (store.fairies && store.fairies.length > 0) {
 
-				// 	method: "POST",
-				// 	headers: {
-				// 		"Content-type": "application/json"
-				// 	},
+                    const response = await fetch("/api/users_with_all_products", {
 
-				// 	body: JSON.stringify(userData)
-				// }
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
 
-                const response = await axios.get(API_URL+"/users_by_product", requestConfig); 
-                
-                setUsers(response.data);
+                        body: JSON.stringify({ ids: store.fairies.map(user => user.id) })
+
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+
+                        setUsers(data.users);
+
+                    } else {
+
+                        console.error('Failed to fetch users:', data.message);
+                    }
+                }
 
             } catch (error) {
 
-                console.error("Error fetching users:", error);
+                console.error('Error:', error);
             }
         };
 
-        fetchUsers();
-    }, []);
+        fetchData();
 
-    const handleSelectFairy = (selectedUser) => {
-
-        console.log("Selected fairy:", selectedUser);
-    };
+    }, [store.fairies]);
 
     return (
 
@@ -93,7 +112,6 @@ const FairySelection = () => {
                 </div>
 
                 <div className="mt-4">
-
                     <Card>
                         <Card.Img variant="top" src="url" />
                         <Card.Body>
@@ -104,7 +122,6 @@ const FairySelection = () => {
                             <Button variant="primary">Learn More</Button>
                         </Card.Body>
                     </Card>
-
                 </div>
             </Container>
         </div>
@@ -112,4 +129,6 @@ const FairySelection = () => {
 };
 
 
-export default FairySelection;
+export default GetFairies;
+
+

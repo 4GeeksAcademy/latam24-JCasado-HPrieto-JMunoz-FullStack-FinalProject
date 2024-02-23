@@ -132,6 +132,42 @@ def add_product():
 
 
 
+def verify_records(ids):
+
+    users = []
+
+    for user in User.query.all():
+
+        user_records = FairyProducts.query.filter_by(user_id=user.id).all()
+
+        if user_records:
+            user_record_ids = [fairy_product.id for fairy_product in user_records]
+
+            print(user_record_ids)
+
+            if set(ids).issubset(set(user_record_ids)):
+
+                print(user)
+
+                users.append(user.serialize_fairies())
+
+    return users
+
+
+
+@api.route("/users_with_all_products", methods=['POST'])
+def get_users_with_all_products():
+
+    body = request.get_json()
+    ids = body.get("ids", None)
+
+    users = verify_records(ids)
+
+    return jsonify({"users": users}), 200
+
+
+
+
 @api.route("/users_by_product/<int:product_id>", methods=['GET'])
 def get_users_by_product(product_id):
 

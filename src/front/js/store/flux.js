@@ -8,11 +8,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 
 			message: null,
-			token: null,
+			token: JSON.parse(localStorage.getItem("token")) || null,
 			productlist: [],
 			user: [],
 			users: [],
-			token: localStorage.getItem("token") || "",
 			services: [],
 			products: [],
 			filterProducts: [],
@@ -22,9 +21,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 		actions: {
 
-			
-// -----------------------------------------------------------------------------------------------------------------------------------------------	
-// Register / Login:
+
+			// -----------------------------------------------------------------------------------------------------------------------------------------------	
+			// Register / Login:
 
 
 			makeLogin: async (userData) => {
@@ -54,7 +53,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					setStore({ token: data.token })
 
-					console.log(data)
+					localStorage.setItem("token", JSON.stringify(data.token));
 
 					return true
 				}
@@ -114,7 +113,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getUsers: () => {
-				fetch(process.env.BACKEND_URL + "api/users", {
+
+				fetch(process.env.BACKEND_URL + "/api/users", {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
@@ -135,6 +135,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			getToken: () => {
+
 				const store = getStore()
 
 				if (localStorage.getItem("token")) {
@@ -142,159 +143,76 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return localStorage.getItem("token");
 				}
 				return store.token;
-
 			},
 
-// ---------------------------------------------------------------------------------------------------------------------------------------
-// Services / Products:
 
-			fetchServiceMenu: async () => {
 
-				try {
-
-					const response = await fetch(process.env.BACKEND_URL + '/api/services');
-
-					if (!response.ok) {
-
-						throw new Error('Failed to fetch service menu');
-					}
-
-					const data = await response.json();
-
-					setStore({services: data});
-
-					console.log(data);
-
-				} catch (error) {
-
-					console.log(error);
-
-				}
-			},
+			// ---------------------------------------------------------------------------------------------------------------------------------------
+			// Services / Products:
 
 
 
 			getServices: async () => {
 
-				const response = await fetch(process.env.BACKEND_URL + `/api/services`)
-
-				if (!response.ok) {
-
-					throw new Error('Failed to fetch service menu');
-				}
+				const response = await fetch(process.env.BACKEND_URL + "/api/categories")
 
 				const data = await response.json();
 
-				console.log(data);
+				setStore({
 
-				setStore({ services: data });
-			},
-
-
-
-			getAllProducts: () => {
-				const store = getStore();
-				fetch(process.env.BACKEND_URL + `api/products/ONSALE`, {
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-
-					}
+					services: data.categories
 				})
-					.then(response => response.json())
-					.then((response) => {
-						setStore({ products: response });
 
-						console.log(response)
-					})
 			},
 
 
-// ---------------------------------------------------------------------------------------------------------------------------------------
-// Reviews (currently not being used):
+			getProducts: async (categoryId) => {
+
+				const response = await fetch(process.env.BACKEND_URL + `/api/serviceCategories/${categoryId}`);
+
+				const data = await response.json();
+
+				return data;
+
+			},
 
 
-			getReviews: () => {
-				const store = getStore();
-				fetch(process.env.BACKEND_URL + `api/profile/reviews`, {
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-						"Authorization": `Bearer ${localStorage.getItem("token")}`
-					}
+			getFairies: async (products) => {
+
+				const productsId = products.map((product) => {
+
+					return product.id
+
 				})
-					.then(response => response.json())
-					.then((response) => {
-						setStore({ reviews: response });
 
-						console.log(response)
-					})
-			},
+				const response = await fetch(process.env.BACKEND_URL + "/api/users_with_all_products/", {
 
-
-			getFilters: () => {
-				const store = getStore();
-				fetch(process.env.BACKEND_URL + `api/search-by/<filter>`, {
-					method: "GET",
+					method: "POST",
 					headers: {
-						"Content-Type": "application/json",
-					}
-				})
-					.then(response => response.json())
-					.then((response) => {
-
-						setStore({ filters: response });
-
-						console.log(response)
+						"Content-type": "application/json"
+					},
+					body: JSON.stringify({
+						ids: productsId
 					})
-			},
-
-
-			exampleFunction: () => {
-
-				getActions().changeColor(0, "green");
-			},
-
-			getMessage: async () => {
-
-				try {
-
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-
-					const data = await resp.json()
-
-					setStore({ message: data.message })
-
-
-					return data;
-
-				} catch (error) {
-
-					console.log("Error loading message from backend", error)
-				}
-			},
-
-			changeColor: (index, color) => {
-
-
-				const store = getStore();
-
-
-
-				const demo = store.demo.map((elm, i) => {
-
-					if (i === index) elm.background = color;
-
-					return elm;
 				});
 
+				const data = await response.json()
 
-				setStore({ demo: demo });
+				return data.users
+			},
+
+
+			getUsers: async (fairyId) => {
+
+				const response = await fetch(process.env.BACKEND_URL + "/api/get_users/" + fairyId)
+
+				const data = await response.json()
+
+				return data
 			}
 		}
 	}
 };
-
 
 
 export default getState;

@@ -1,4 +1,4 @@
-from api.models import db, User, Product, Services, Review, FairyProducts
+from api.models import db, User, Product, Services, Review, FairyProducts, ServiceCategories
 from flask import Flask, request, jsonify, Blueprint, current_app
 from api.utils import APIException
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
@@ -7,7 +7,6 @@ from sqlalchemy.exc import IntegrityError
 from flask_cors import CORS
 import re
 import os
-
 
 
 api = Blueprint('api', __name__)
@@ -30,14 +29,6 @@ def check(email):
     else:
         return False
     
-load_dotenv()
-
-app = Flask(__name__)
-
-api = Blueprint('api', __name__)
-
-
-
 
 @api.route("/register", methods=['POST'])
 def register_user():
@@ -141,6 +132,68 @@ def add_product():
 
 
 
+def verify_records(ids):
+
+    users = []
+
+    for user in User.query.all():
+
+        user_records = FairyProducts.query.filter_by(user_id=user.id).all()
+
+        if user_records:
+
+            user_record_ids = [fairy_product.id for fairy_product in user_records]
+
+            # if set(ids).issubset(set(user_record_ids)):
+
+            print(user)
+
+            users.append(user.serialize_fairies())
+
+    print(users)
+
+    return users
+
+
+
+# Using the same endpoint for both fairies and clients:
+
+@api.route("/users_with_all_products", methods=['POST'])
+def get_users_with_all_products():
+
+    body = request.get_json()
+    ids = body.get("ids", None)
+
+    users = verify_records(ids)
+
+    return jsonify({"users": users}), 200
+
+
+
+# To be used at paymentView:
+
+@api.route("/get_user/<int:user_id>", methods=['GET'])
+def get_user(user_id):
+
+    try:
+        
+        user = User.query.get(user_id)
+
+        if user:
+
+            return jsonify(user.serialize_fairies()), 200
+        
+        else:
+
+            return jsonify({"error": "User not found"}), 404
+
+    except Exception as e:
+
+        return jsonify({"error": str(e)}), 500
+
+
+
+
 @api.route("/users_by_product/<int:product_id>", methods=['GET'])
 def get_users_by_product(product_id):
 
@@ -153,24 +206,8 @@ def get_users_by_product(product_id):
     user_list = [{"id": user.id, "name": user.name} for user in users]
 
     return jsonify({"users": user_list}), 200
-
-
-
-
-# @api.route("/users_by_product/<int:product_id>", methods=['GET'])
-# def get_users_with_all_products():
-
-#     users = User.query.join(FairyProducts).filter(FairyProducts.product_id == product_id).all()
-
-#     if not users:
-
-#         return jsonify({'message': "No users found for the specified product"}), 404
-
-#     user_list = [{"id": user.id, "name": user.name} for user in users]
-
-#     return jsonify({"users": user_list}), 200
-
  
+
 
 
 @api.route("/products/<int:service_id>", methods=['GET'])
@@ -178,7 +215,7 @@ def get_service_id(service_id):
     
     try:
         
-        product = Product.query.filter_by(service_id).all
+        product = Product.query.filter_by(service_id=service_id).all()
 
         if product is None:
 
@@ -212,12 +249,21 @@ def get_services():
 
 
 
+@api.route("/categories", methods=['GET'])
+def get_categories():
+
+    categories = ServiceCategories.query.all()
+
+    return jsonify({"categories":[category.full_serialize() for category in categories]})
+
+
+
 @api.route("/serviceCategories/<int:category_id>", methods=['GET'])
 def get_service_category(category_id):
 
     serviceCategories = Services.query.filter_by(service_category=category_id).all()
 
-    serialized_services = [service.serialize() for service in serviceCategories]
+    serialized_services = [service.full_serialize() for service in serviceCategories]
 
     print (serviceCategories)
 

@@ -1,30 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
-import manicurepromo from "../../../img/manicurepromo.png"
 import { Context } from '../../store/appContext';
 
 
-const OfferCard = () => {
 
-  return (
-
-    <Row className='manicure_promo'>
-      <Col md={12} className="mt-4 container">
-        <div className="d-flex container align-items-center">
-          <div className="card-body">
-            <h4 className="manicure_promo-text card-title text-uppercase">Express Traditional manicure </h4>
-            <Button variant="info" className="text-white">Buy Now</Button>
-          </div>
-          <img className="rounded" src={manicurepromo} height={330} />
-        </div>
-      </Col>
-    </Row>
-  );
-};
-
-
-const ProductsMenu = () => {
+const FairyProductsMenu = () => {
 
   const { store, actions } = useContext(Context)
 
@@ -41,7 +22,7 @@ const ProductsMenu = () => {
 
     localStorage.setItem("products", JSON.stringify(selectedProducts))
 
-    navigate("/select-fairy")
+    navigate("/fairyHome")
   }
 
   const params = useParams()
@@ -102,7 +83,7 @@ const ProductsMenu = () => {
 };
 
 
-export default ProductsMenu;
+export default FairyProductsMenu;
 
 
 

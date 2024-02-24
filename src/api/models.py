@@ -58,6 +58,7 @@ class User(db.Model):
             "email": self.email,
             "phone": self.phone,
             "avatar": self.avatar
+            # "professionalTitle": self.professionalTitle
         }
 
 
@@ -79,7 +80,15 @@ class Services (db.Model):
             "name": self.name,
             "description": self.description,
         }
-    
+
+    def full_serialize(self):
+
+        return {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+            "service_products": [product.serialize() for product in self.service_products]
+        }    
 
 
 class ServiceCategories (db.Model):
@@ -97,8 +106,16 @@ class ServiceCategories (db.Model):
         return {
             "id": self.id,
             "name": self.name
-        }    
 
+        }   
+     
+    def full_serialize(self):
+
+        return {
+            "id": self.id,
+            "name": self.name,
+            "services": [service.serialize() for service in self.services]
+        }
 
 
 class Product(db.Model):
@@ -121,7 +138,6 @@ class Product(db.Model):
             "name": self.name,
             "price": self.price,
             "description": self.description,
-            "user_id": self.user_id,
             "service_id": self.service_id
         }
 
@@ -136,6 +152,23 @@ class FairyProducts (db.Model):
         user = User.query.get(self.user_id) 
 
         return {
+
+            "id": self.id,
+            "product_id": self.product_id,
+            "user": user.serialize_fairies()
+        }
+
+
+class FairySelectedProducts (db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    product_id = db.Column(db.Integer, db.ForeignKey("product.id"))
+
+    def serialize(self):
+        user = User.query.get(self.user_id) 
+
+        return {
+
             "id": self.id,
             "product_id": self.product_id,
             "user": user.serialize_fairies()

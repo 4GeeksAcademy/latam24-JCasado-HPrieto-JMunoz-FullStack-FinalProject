@@ -77,7 +77,7 @@
 }
 
 
-/* Homepage */
+/* ClientHome page */
 
 body {
   margin: 0;
@@ -122,11 +122,6 @@ body {
 
 .profile-picture {
   width: 120px;
-}
-
-.progress-bar {
-  background: #0DCAF0;
-  width: 100%;
 }
 
 .promotion-manicure-img {
@@ -185,9 +180,8 @@ body {
 
 .avatar-img {
   border-radius: 100%;
-  width: 30%;
-  height: 30%;
-  margin-left: 50px;
+  height: 80px;
+  width: 80px;
 }
 
 .button_whatsapp {
@@ -400,15 +394,6 @@ button {
 }
 
 
-/* ProductsMenuView */
-
-.productButton {
-  background: #EBC5F654;
-  border-radius: 6px;
-  border-color: #1f9ec1ff;
-  }
-
-
 /* SelectFairyView */
 
 .calendar-icon {
@@ -439,26 +424,14 @@ button {
   background-color: green;
 }
 
-/* Hover */
-.button:hover {
-  color: #ffffffff;
-  background: #1f9ec1ff;
-}
 
-/* Pressed */
+/*ProductsMenuView*/
 
-.button:hover:active {
-  color: #ffffffff;
-  background: #1b88a7ff;
-}
-
-/* Disabled */
-
-.button:disabled {
-  opacity: 0.4;
-}
-
-/*product menu overview*/
+.productButton {
+  background: #EBC5F654;
+  border-radius: 6px;
+  border-color: #1f9ec1ff;
+  }
 
 .manicure_heading {
   background-color: rgb(204, 234, 245);

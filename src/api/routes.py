@@ -141,19 +141,22 @@ def verify_records(ids):
         user_records = FairyProducts.query.filter_by(user_id=user.id).all()
 
         if user_records:
+
             user_record_ids = [fairy_product.id for fairy_product in user_records]
 
-            print(user_record_ids)
+            # if set(ids).issubset(set(user_record_ids)):
 
-            if set(ids).issubset(set(user_record_ids)):
+            print(user)
 
-                print(user)
+            users.append(user.serialize_fairies())
 
-                users.append(user.serialize_fairies())
+    print(users)
 
     return users
 
 
+
+# Using the same endpoint for both fairies and clients:
 
 @api.route("/users_with_all_products", methods=['POST'])
 def get_users_with_all_products():
@@ -164,6 +167,29 @@ def get_users_with_all_products():
     users = verify_records(ids)
 
     return jsonify({"users": users}), 200
+
+
+
+# To be used at paymentView:
+
+@api.route("/get_user/<int:user_id>", methods=['GET'])
+def get_user(user_id):
+
+    try:
+        
+        user = User.query.get(user_id)
+
+        if user:
+
+            return jsonify(user.serialize_fairies()), 200
+        
+        else:
+
+            return jsonify({"error": "User not found"}), 404
+
+    except Exception as e:
+
+        return jsonify({"error": str(e)}), 500
 
 
 
@@ -181,6 +207,7 @@ def get_users_by_product(product_id):
 
     return jsonify({"users": user_list}), 200
  
+
 
 
 @api.route("/products/<int:service_id>", methods=['GET'])

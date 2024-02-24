@@ -16,7 +16,6 @@ import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 import PaymentConfirmation from "./pages/clientsPages/payment"
 import { FairyDetails } from "./pages/clientsPages/fairyDetails";
-import { AvailableFairies } from "./pages/clientsPages/availableFairies";
 import { ClientDetails } from "./pages/clientDetails";
 import { ClientsAvailable } from "./pages/clientsAvailable";
 
@@ -43,9 +42,8 @@ const Layout = () => {
             <Route element={<Login />} path="/login" />
             <Route element={<Register />} path="/register" />
             <Route element={<FairySelection />} path="/select-fairy" />
-            <Route element={<AvailableFairies />} path="/fairy/select/available" />
             <Route element={<FairyDetails />} path="/fairy/details" />
-            <Route element={<PaymentConfirmation />} path="/payment" />
+            <Route element={<PaymentConfirmation />} path="/payment/:id" />
             <Route element={<ClientsAvailable />} path={"/client/select/available"} />
             <Route element={<ClientDetails />} path="/client/details" />
             <Route element={<Single />} path="/single/:theid" />

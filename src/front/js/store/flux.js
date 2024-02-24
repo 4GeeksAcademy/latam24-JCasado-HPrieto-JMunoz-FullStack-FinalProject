@@ -8,11 +8,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 
 			message: null,
-			token: null,
+			token: JSON.parse(localStorage.getItem("token")) || null,
 			productlist: [],
 			user: [],
 			users: [],
-			token: localStorage.getItem("token") || "",
 			services: [],
 			products: [],
 			filterProducts: [],
@@ -54,7 +53,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					setStore({ token: data.token })
 
-					console.log(data)
+					localStorage.setItem("token", JSON.stringify(data.token));
 
 					return true
 				}
@@ -152,6 +151,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// Services / Products:
 
 
+
 			getServices: async () => {
 
 				const response = await fetch(process.env.BACKEND_URL + "/api/categories")
@@ -160,7 +160,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				setStore({
 
-					services:data.categories
+					services: data.categories
 				})
 
 			},
@@ -179,36 +179,40 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getFairies: async (products) => {
 
-				console.log(products);
-			},
+				const productsId = products.map((product) => {
 
+					return product.id
 
-			// ---------------------------------------------------------------------------------------------------------------------------------------
-			// Reviews (currently not being used):
-
-
-
-			getReviews: () => {
-				const store = getStore();
-				fetch(process.env.BACKEND_URL + "api/profile/reviews", {
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-						"Authorization": `Bearer ${localStorage.getItem("token")}`
-					}
 				})
-					.then(response => response.json())
-					.then((response) => {
-						setStore({ reviews: response });
 
-						console.log(response)
+				const response = await fetch(process.env.BACKEND_URL + "/api/users_with_all_products/", {
+
+					method: "POST",
+					headers: {
+						"Content-type": "application/json"
+					},
+					body: JSON.stringify({
+						ids: productsId
 					})
+				});
+
+				const data = await response.json()
+
+				return data.users
 			},
 
+
+			getUsers: async (fairyId) => {
+
+				const response = await fetch(process.env.BACKEND_URL + "/api/get_users/" + fairyId)
+
+				const data = await response.json()
+
+				return data
+			}
 		}
 	}
 };
-
 
 
 export default getState;

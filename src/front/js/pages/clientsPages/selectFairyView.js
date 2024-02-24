@@ -5,15 +5,13 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const UserCard = ({ user, onSelect }) => {
+const UserCard = ({ user }) => {
 
     const navigate = useNavigate();
 
     const handleSelect = () => {
 
-        onSelect(user);
-
-        navigate("/payment");
+        navigate(`/payment/${user.id}`);
     };
 
     return (
@@ -47,57 +45,25 @@ const GetFairies = () => {
 
     const [users, setUsers] = useState([]);
 
-    useEffect(() => {
+    const selectedFairies = async () => {
 
         const products = localStorage.getItem("products");
 
         if (!products) navigate("/");
 
-        actions.getFairies(JSON.parse(products));
+        const fairies = await actions.getFairies(JSON.parse(products));
+
+        setUsers(fairies);
+
+    }
+
+    useEffect(() => {
+
+        selectedFairies();
 
     }, []);
 
 
-    useEffect(() => {
-
-        const fetchData = async () => {
-
-            try {
-
-                if (store.fairies && store.fairies.length > 0) {
-
-                    const response = await fetch("/api/users_with_all_products", {
-
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-
-                        body: JSON.stringify({ ids: store.fairies.map(user => user.id) })
-
-                    });
-
-                    const data = await response.json();
-
-                    if (response.ok) {
-
-                        setUsers(data.users);
-
-                    } else {
-
-                        console.error('Failed to fetch users:', data.message);
-                    }
-                }
-
-            } catch (error) {
-
-                console.error('Error:', error);
-            }
-        };
-
-        fetchData();
-
-    }, [store.fairies]);
 
     return (
 
@@ -106,7 +72,7 @@ const GetFairies = () => {
                 <div className="d-flex flex-wrap">
                     {users.map((user, index) => (
                         <div key={index} className="mb-4 mr-3">
-                            <UserCard user={user} onSelect={handleSelectFairy} />
+                            <UserCard user={user} />
                         </div>
                     ))}
                 </div>

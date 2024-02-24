@@ -29,7 +29,7 @@ export const Login = () => {
           />
         </div>
         <div className="">
-          <p className="mt-3 mb-2">Create a count</p>
+          <p className="mt-3 mb-2">Create Account</p>
           <label htmlFor="inputEmail" className="form-label my-0">
             Email
           </label>

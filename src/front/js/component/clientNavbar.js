@@ -2,10 +2,10 @@ import React, { useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import tremyIsotipo from "../../img/tremy-isotipo.png";
+import selinaAvatar from "../../../front/img/Selina.jpg"
 
 export const ClientNavbar = () => {
   const { store, actions } = useContext(Context);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,36 +21,39 @@ export const ClientNavbar = () => {
   };
 
   return (
+    
     <nav className="client-navbar">
-      <div className="container-fluid d-flex">
-        <img
-          className="navbar-img mx-3"
-          role="button"
-          src={tremyIsotipo}
-          onClick={() => navigate("/")}
-        ></img>
-
-        <div className="ml-auto">
-          {store.token ? (
+      <div className="container-fluid d-flex align-items-center justify-content-between">
+        <div className="d-flex align-items-center">
+          <img
+            className="navbar-img mx-3"
+            role="button"
+            src={tremyIsotipo}
+            onClick={() => navigate("/")}
+            alt="Tremy Isotipo"
+          />
+          <h5 className="mb-0 mt-2"><strong>Hello Selina!</strong></h5>
+        </div>
+        <div className="d-flex align-items-center">
+          {store.token && (
             <>
-              <button className="btn">
-                <i class="fa-solid fa-bell"></i>
-              </button>
-              <i class="fa-solid fa-bell"></i>
-              <button className="btn btn-log" onClick={handleClick}>
-                <i class="fa-solid fa-right-to-bracket"></i>
+              <button className="btn mr-3">
+                <i className="fa-regular fa-bell"></i>
               </button>
             </>
-          ) : (
-            <Link to="/login" role="button" className="btn btn-dark btn-log">
-              <i class="fa-solid fa-user"></i>
+          )}
+
+          {!store.token && (
+            <Link to="/login" role="button" className="btn btn-light btn-log mr-3">
             </Link>
           )}
-          <Link to="/register" role="button" className="btn btn-dark mx-4 register-btn">
-            <i className="fa-solid fa-user"></i>
+          <Link to="/register" role="button" className="btn btn-light register-btn">
+            <i className="fa-regular fa-user"></i>
           </Link>
         </div>
       </div>
     </nav>
   );
 };
+
+{/* <img src={selinaAvatar}/> */}

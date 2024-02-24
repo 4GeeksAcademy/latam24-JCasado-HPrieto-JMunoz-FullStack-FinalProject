@@ -11,7 +11,7 @@ function Promotions() {
             <Row className='d-flex justify-content-center'>
 
 
-                <Col md={3} className="mt-4">
+                <Col md={4} className="mt-4">
                     <div className="card text-center" role="button">
                         <img src={manicure} className="card-img-top promotion-manicure-img" alt="Promotion 1" />
                         <div className="card-body">
@@ -21,7 +21,7 @@ function Promotions() {
                     </div>
                 </Col>
 
-                <Col md={3} className="mt-4">
+                <Col md={4} className="mt-4">
                     <div className="card text-center" role="button">
                         <img src={pedicure} className="card-img-top promotion-manicure-img" alt="Promotion 2" />
                         <div className="card-body">

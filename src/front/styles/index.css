@@ -93,9 +93,13 @@ body {
   background-color: #ebc5f6ff;
 }
 
+.mb-0 {
+  margin: 0;
+}
+
 .navbar-img {
-  height: 30px;
-  width: 30px;
+  height: 30%;
+  width: 30%;
 }
 
 .btn-log {
@@ -120,6 +124,8 @@ body {
 
 /* Next Appointment card: */
 
+
+
 .profile-picture {
   width: 120px;
 }
@@ -138,6 +144,22 @@ body {
   color: #BD3EE0FF;
 }
 
+.card-title {
+  margin: 0px;
+}
+
+.title{
+margin: 0px;
+}
+
+.clock {
+  width: 18px;
+  height: 18px;
+}
+
+.time-text {
+  margin: 0px;
+}
 
 /* Footer NavBar */
 
@@ -157,7 +179,9 @@ body {
 }
 
 
+
 /* ClientHome Service Buttons */
+
 
 .home-icon {
   font-size: larger;
@@ -210,6 +234,33 @@ body {
 }
 
 
+
+/* ClientNavbar */
+
+.client-navbar {
+  background-color: #ebc5f6ff;
+  padding: 10px 0;
+}
+
+.client-navbar .navbar-img {
+  width: 50px; 
+  height: auto;
+}
+
+.client-navbar .btn {
+  padding: 0.5rem 1rem; 
+}
+
+.client-navbar .btn-log {
+  margin-right: 10px; 
+}
+
+.register-btn {
+  margin-right: 0;
+}
+
+
+
 /* Feiry AboutView */
 /* Calendly Buttons */
 
@@ -222,6 +273,7 @@ body {
   margin: 0%;
 }
 
+
 /* Notofications Button */
 
 .message-icon {
@@ -232,6 +284,7 @@ body {
   font-size: small;
   margin: 0%;
 }
+
 
 /* Configuration Button */
 

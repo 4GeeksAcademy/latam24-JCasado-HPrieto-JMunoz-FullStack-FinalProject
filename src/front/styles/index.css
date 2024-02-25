@@ -49,6 +49,8 @@
 }
 
 
+
+/* -------------------------------------------------------------------------------------------------*/
 /* Register */
 
 .btn-register {
@@ -74,6 +76,44 @@
 
 .check-box {
   font-size: small;
+}
+
+
+
+/* -------------------------------------------------------------------------------------------------*/
+/*ClientView*/
+
+
+/* ClientNavbar */
+
+.client-navbar {
+  background-color: #ebc5f6ff;
+  padding: 10px 0;
+}
+
+.client-navbar .navbar-img {
+  width: 50px; 
+  height: auto;
+}
+
+.client-navbar .btn {
+  padding: 0.5rem 1rem; 
+}
+
+.client-navbar .btn-log {
+  margin-right: 10px; 
+}
+
+.register-btn {
+  margin-right: 0;
+}
+
+
+/* ClientHome Facial Promotion-card */
+
+.publicity-card {
+  background: #ebc5f60d;
+  border-radius: 6px 6px 0px 0px;
 }
 
 
@@ -125,7 +165,6 @@ body {
 /* Next Appointment card: */
 
 
-
 .profile-picture {
   width: 120px;
 }
@@ -161,27 +200,8 @@ margin: 0px;
   margin: 0px;
 }
 
-/* Footer NavBar */
-
-.footer {
-  background: #ebc5f6ff;
-  border-radius: 0px;
-  padding: 0%;
-  position: absolute;
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
-}
-
-.main-container {
-  margin-bottom: 80px;
-  padding-bottom: 110px;
-}
-
-
 
 /* ClientHome Service Buttons */
-
 
 .home-icon {
   font-size: larger;
@@ -234,46 +254,6 @@ margin: 0px;
 }
 
 
-
-/* ClientNavbar */
-
-.client-navbar {
-  background-color: #ebc5f6ff;
-  padding: 10px 0;
-}
-
-.client-navbar .navbar-img {
-  width: 50px; 
-  height: auto;
-}
-
-.client-navbar .btn {
-  padding: 0.5rem 1rem; 
-}
-
-.client-navbar .btn-log {
-  margin-right: 10px; 
-}
-
-.register-btn {
-  margin-right: 0;
-}
-
-
-
-/* Feiry AboutView */
-/* Calendly Buttons */
-
-.calendar-icon {
-  font-size: larger;
-}
-
-.calendar-text {
-  font-size: small;
-  margin: 0%;
-}
-
-
 /* Notofications Button */
 
 .message-icon {
@@ -298,11 +278,134 @@ margin: 0px;
 }
 
 
-/* ClientHome Facial Promotion-card */
+/* Footer NavBar */
 
-.publicity-card {
-  background: #ebc5f60d;
-  border-radius: 6px 6px 0px 0px;
+.footer {
+  background: #ebc5f6ff;
+  border-radius: 0px;
+  padding: 0%;
+  position: absolute;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+}
+
+.main-container {
+  margin-bottom: 80px;
+  padding-bottom: 110px;
+}
+
+
+
+/* -------------------------------------------------------------------------------------------------*/
+/*ProductsMenuView*/
+
+
+/* Promotion Card */
+
+.manicure_promo{
+  background-color: #ebc5f6ff;
+  border-radius: 1%;
+}
+
+.productButton {
+  background: #ebc5f6ff;
+  border-radius: 6px;
+  border-color: white;
+  }
+  
+
+tbody {
+  background-color: #EBC5F663;
+
+}
+
+.manicure_promo {
+  background-color: #EBC5F663;
+  padding: 1rem;
+}
+
+.manicure_promo-text {
+  color: rgb(73, 73, 73);
+  font-size: 2rem;
+}
+
+
+
+/* -------------------------------------------------------------------------------------------------*/
+/* SelectFairyView */
+
+.calendar-icon {
+  font-size: larger;
+}
+
+.data-container-fairy {
+  display: flex;
+  justify-content: space-between;
+}
+/* SelectFairyView */
+
+.selectFairybtn {
+  background-color: #3ebde0ff;
+  border-color: white;
+}
+
+.aboutFairybtn {
+  background-color: rgb(190, 190, 190);
+  border-color: white;
+}
+
+
+
+/* -------------------------------------------------------------------------------------------------*/
+/*PaymentView*/
+
+.visa {
+  background-color: #EBC5F663;
+  padding: 1rem;
+  border-radius: 5px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mastercard {
+  background-color: #EBC5F663;
+  padding: 1rem;
+  border-radius: 5px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.paypal {
+  background-color: #EBC5F663;
+  padding: 1rem;
+  border-radius: 5px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.promotion {
+  padding-bottom: 20px;
+}
+
+
+
+/* -------------------------------------------------------------------------------------------------*/
+/* Feiry AboutView */
+
+
+/* Fairy Rating  */
+
+.rate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(174, 214, 74);
+  border-radius: 20px;
+  max-height: 40px;
 }
 
 
@@ -447,110 +550,22 @@ button {
 }
 
 
-/* SelectFairyView */
+/* Calendly Buttons */
 
 .calendar-icon {
   font-size: larger;
 }
 
-.data-container-fairy {
-  display: flex;
-  justify-content: space-between;
+.calendar-text {
+  font-size: small;
+  margin: 0%;
 }
 
 
-/* Fairy Rating  */
 
-.rate {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(174, 214, 74);
-  border-radius: 20px;
-  max-height: 40px;
-}
-
-
+/* -------------------------------------------------------------------------------------------------*/
 /* Client Details */
 
 .client-distance {
   background-color: green;
-}
-
-
-/*ProductsMenuView*/
-
-.productButton {
-  background: #EBC5F654;
-  border-radius: 6px;
-  border-color: #1f9ec1ff;
-  }
-
-.manicure_heading {
-  background-color: rgb(204, 234, 245);
-  margin-top: 1rem;
-  padding: 1rem;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  margin-bottom: -1px;
-  color: #BD3EE0FF;
-}
-
-.pedicure_heading {
-  background-color: rgb(204, 234, 245);
-  margin-top: 1rem;
-  padding: 1rem;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  margin-bottom: -1px;
-  color: #BD3EE0FF;
-}
-
-tbody {
-  background-color: #EBC5F663;
-
-}
-
-.manicure_promo {
-  background-color: #EBC5F663;
-  padding: 1rem;
-}
-
-.manicure_promo-text {
-  color: rgb(73, 73, 73);
-  font-size: 2rem;
-}
-
-
-/*PaymentView*/
-
-.visa {
-  background-color: #EBC5F663;
-  padding: 1rem;
-  border-radius: 5px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.mastercard {
-  background-color: #EBC5F663;
-  padding: 1rem;
-  border-radius: 5px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.paypal {
-  background-color: #EBC5F663;
-  padding: 1rem;
-  border-radius: 5px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.promotion {
-  padding-bottom: 20px;
 }

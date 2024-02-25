@@ -8,18 +8,15 @@ import { Context } from '../../store/appContext';
 const OfferCard = () => {
 
   return (
-
-    <Row className='manicure_promo'>
-      <Col md={12} className="mt-4 container">
-        <div className="d-flex container align-items-center">
+    <card>
+        <div className="manicure_promo d-flex container align-items-center mt-3">
           <div className="card-body">
-            <h4 className="manicure_promo-text card-title text-uppercase">Express Traditional manicure </h4>
+            <h4 className="manicure_promo-text card-title text-uppercase">Express Traditional Manicure</h4><br />
             <Button variant="info" className="text-white">Buy Now</Button>
           </div>
           <img className="rounded" src={manicurepromo} height={330} />
         </div>
-      </Col>
-    </Row>
+    </card>
   );
 };
 

@@ -22,14 +22,14 @@ const UserCard = ({ user }) => {
                 <Card.Title>{user.name}</Card.Title>
                 <Card.Text>
                     <strong>Title:</strong> {user.professionalTitle}<br />
-                    <strong>Rating:</strong> {user.rating}/5 Stars<br />
+                    <strong>Rating:</strong> {user.rating}5 Stars<br />
                     <strong>Availability:</strong> {user.available ? "Available" : "Not Available"}<br />
                     <strong>ETA:</strong> {user.ETA} mins<br />
                 </Card.Text>
 
                 <div className="d-flex justify-content-between">
-                    <Button variant="primary" onClick={handleSelect} className="mr-auto">Select</Button>
-                    <Button variant="secondary" className="ml-auto">About</Button>
+                    <Button variant="primary" onClick={handleSelect} className="selectFairybtn mr-auto">Select</Button>
+                    <Button variant="secondary" className="aboutFairybtn ml-auto">About</Button>
                 </div>
             </Card.Body>
         </Card>

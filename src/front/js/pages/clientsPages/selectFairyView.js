@@ -16,20 +16,23 @@ const UserCard = ({ user }) => {
 
     return (
 
-        <Card style={{ width: "18rem" }}>
+        <Card className="mt-4" style={{ width: "18rem" }}>
             <Card.Img variant="top" src={user.avatar} />
             <Card.Body>
                 <Card.Title>{user.name}</Card.Title>
                 <Card.Text>
-                    <strong>Title:</strong> {user.professionalTitle}<br />
-                    <strong>Rating:</strong> {user.rating}5 Stars<br />
+                    <strong>Title:</strong> {user.professional_title}<br />
+
+                    <strong>Rating:</strong> {user.rating}<br />
+
                     <strong>Availability:</strong> {user.available ? "Available" : "Not Available"}<br />
+
                     <strong>ETA:</strong> {user.ETA} mins<br />
                 </Card.Text>
 
                 <div className="d-flex justify-content-between">
                     <Button variant="primary" onClick={handleSelect} className="selectFairybtn mr-auto">Select</Button>
-                    <Button variant="secondary" className="aboutFairybtn ml-auto">About</Button>
+                    <p variant="secondary" className="aboutFairybtn ml-auto mt-3" role="button">About</p>
                 </div>
             </Card.Body>
         </Card>
@@ -77,17 +80,14 @@ const GetFairies = () => {
                     ))}
                 </div>
 
-                <div className="mt-4">
-                    <Card>
-                        <Card.Img variant="top" src="url" />
-                        <Card.Body>
-                            <Card.Title>Special Promotion</Card.Title>
-                            <Card.Text>
-                                Get 15% off on facial care
-                            </Card.Text>
-                            <Button variant="primary">Learn More</Button>
-                        </Card.Body>
-                    </Card>
+                <div className="card mt-4">
+                    <Card.Img variant="top" src="url" />
+                    <Card.Body>
+                        <Card.Title>Special Promotion</Card.Title>
+                        <Card.Text>
+                            Get 15% off on facial care
+                        </Card.Text>
+                    </Card.Body>
                 </div>
             </Container>
         </div>

@@ -26,7 +26,9 @@ class User(db.Model):
     address = db.Column(db.String(120), nullable=True) 
     role = db.Column(db.Enum(UserRole), nullable=False, default=UserRole.CLIENT)
     phone = db.Column(db.Integer, nullable=False)
+    rating = db.Column(db.Integer, nullable=True)
     date_of_birth = db.Column(db.String(10), nullable=True)
+    professional_title = db.Column(db.String(10), nullable=True)
     avatar = db.Column(db.String(250), unique=False, nullable=True)
 
     FairyProducts = db.relationship("FairyProducts", backref="user-products")
@@ -41,7 +43,7 @@ class User(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "surname": self.surname,
+            "surname": self.surename,
             "email": self.email,
             "date_of_birth": self.date_of_birth,       
             "address": self.address, 
@@ -54,11 +56,12 @@ class User(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "surname": self.surname,
+            "surname": self.surename,
             "email": self.email,
             "phone": self.phone,
+            "rating": self.rating,
+            "professional_title": self.professional_title,
             "avatar": self.avatar
-            # "professionalTitle": self.professionalTitle
         }
 
 

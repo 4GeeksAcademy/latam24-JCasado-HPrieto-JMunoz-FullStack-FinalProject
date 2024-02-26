@@ -183,7 +183,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					return product.id
 
-				})
+				});
 
 				const response = await fetch(process.env.BACKEND_URL + "/api/users_with_all_products/", {
 

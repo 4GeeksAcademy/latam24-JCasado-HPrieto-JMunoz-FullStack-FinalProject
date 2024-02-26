@@ -8,15 +8,15 @@ import { Context } from '../../store/appContext';
 const OfferCard = () => {
 
   return (
-    <card>
-        <div className="manicure_promo d-flex container align-items-center mt-3">
-          <div className="card-body">
-            <h4 className="manicure_promo-text card-title text-uppercase">Express Traditional Manicure</h4><br />
-            <Button variant="info" className="text-white">Buy Now</Button>
-          </div>
-          <img className="rounded" src={manicurepromo} height={330} />
-        </div>
-    </card>
+
+    <div className="manicure_promo d-flex container align-items-center mt-5">
+      <div className="card-body">
+        <h3 className="manicure_promo-text card-title">Express traditional manicure</h3>
+        <h5 className="manicure_promo-text card-text" >Done in 20 minutes!</h5><br />
+        <Button variant="info" className="text-white">Buy Now</Button>
+      </div>
+      <img className="rounded mt-2 mb-2" src={manicurepromo} height={250} width={150} />
+    </div>
   );
 };
 
@@ -65,19 +65,19 @@ const ProductsMenu = () => {
 
   return (
 
-    <Container fluid className='main-container'>
+    <Container fluid className="main-container">
       <OfferCard />
 
-      <Row className="justify-content-center mt-4">
+      <Row className="justify-content-center mt-5">
         {services.map((service) => (
-          <Col key={service.id + "serviceId"} md={4} className="text-center">
-            <h2>{service.name}</h2>
+          <Col key={service.id + "serviceId"} md={5} className="text-center">
+            <h3 className="serviceName card mb-3">{service.name}</h3>
             <Row>
               {service.service_products.map((product) => (
                 <Col key={product.id + "product"} md={12} className="mb-3">
                   <Card className="h-100 border-0">
                     <button className="productButton btn" onClick={() => selectProduct(product)}>
-                      <Card.Body className="d-flex align-items-center justify-content-center border-0">
+                      <Card.Body className="d-flex align-items-center justify-content-center">
                         {product.name} ${product.price}
                       </Card.Body>
                     </button>

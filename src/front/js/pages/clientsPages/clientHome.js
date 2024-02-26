@@ -35,19 +35,17 @@ const ClientHome = () => {
         <>
             <div className="clientHome">
                 <Container fluid className="main-container">
-
                     <div className="mt-4 d-flex justify-content-center">
-
                         <div className="row container">
                             <div className="d-flex justify-content-end col-6">
                                 <div className="mt-5 mx-4" >
-                                    <h1 className=" facial_care card-title text-info">Facial Care</h1>
-                                    <h5 className="facial_care-promo mt-2">15% Off</h5><br />
+                                    <h1 className=" facial_care card-title text-info">Facial Care Treatment</h1>
+                                    <h4 className="facial_care-promo mt-2">15% Off</h4><br />
                                     <Button variant="info" className="text-white">Buy Now</Button>
                                 </div>
                             </div>
                             <div className="promo-image-clinetView d-flex justify-content-start col-6">
-                                <img className="rounded mt-2 mb-2" src={facialCare} height={260} />
+                                <img className="rounded mt-2 mb-2" src={facialCare} height={290} width={260} />
                             </div>
                         </div>
                     </div>
@@ -59,7 +57,7 @@ const ClientHome = () => {
                                 <div className="serviceBtn">
                                     <div className={`card ${selectedService === service ? 'selected' : ''}`} role="button" >
                                         <div className="card-body d-flex gap-3 align-items-center">
-                                            <img src={servicesImages} />
+                                            <img src={servicesImages[service.id]} />
                                             <h5>{service.name}</h5>
                                         </div>
                                     </div>
@@ -69,7 +67,7 @@ const ClientHome = () => {
 
                     </Row>
 
-                    <h4 className="mx-3"><strong>Next Appointment</strong></h4>
+                    <h4 className="mx-3 mt-4"><strong>Next Appointment</strong></h4>
                     <div className="card">
                         <Col md={12}>
                             <div className="nextAppointment card-body">
@@ -87,6 +85,7 @@ const ClientHome = () => {
                                             <br />
                                         </p>
                                     </Col>
+                                    
                                     <div className="button gap-2 d-flex justify-content-end">
                                         <Button variant="success" className="button_whatsapp" >
                                             <span> Chat </span>
@@ -104,32 +103,28 @@ const ClientHome = () => {
                                     </div>
                                 </div>
 
-
-                                <div className="d-flex justify-content-center">
-                                    <Col md={9}>
-                                        <ProgressBar striped variant="info" now={35} className="mt-4" />
-                                        <div className="icons d-flex justify-content-between">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="icon_sparkle">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
-                                            </svg>
-
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="icon_crown">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                                            </svg>
-                                        </div>
+                                <div className="d-flex justify-content-center align-items-center mt-4">
+                                    <div className="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="icon_sparkle">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
+                                        </svg>
+                                    </div>
+                                    <Col md={7}>
+                                        <ProgressBar striped variant="info" now={35} className="mt-4 mb-3"/>
                                     </Col>
+                                    <div className="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="icon_crown">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                                        </svg>
+                                    </div>
                                 </div>
-
-
                             </div>
-
                         </Col>
                     </div>
                     <Promotions />
                 </Container>
             </div>
         </>
-
     );
 };
 

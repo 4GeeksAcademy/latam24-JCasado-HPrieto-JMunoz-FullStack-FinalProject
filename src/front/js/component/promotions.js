@@ -7,7 +7,7 @@ function Promotions() {
 
     return (
 
-        <Container fluid className="promotion " >
+        <Container fluid className="promotion mt-4" >
             <Row className='d-flex justify-content-center'>
 
 

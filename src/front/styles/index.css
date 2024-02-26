@@ -164,11 +164,15 @@ margin: 0px;
 .icon_sparkle {
   width: 35px;
   color: #BD3EE0FF;
+  flex: 0 0 auto;
+  margin: 0 10px;
 }
 
 .icon_crown {
   width: 35px;
   color: #BD3EE0FF;
+  flex: 0 0 auto;
+  margin: 0 10px;
 }
 
 .avatar-img {
@@ -234,7 +238,8 @@ margin: 0px;
 /* Promotion Card */
 
 .manicure_promo{
-  background-color: rgb(246, 222, 253);
+  background-color: white;
+  border-color: white;
   border-radius: 1%;
 }
 

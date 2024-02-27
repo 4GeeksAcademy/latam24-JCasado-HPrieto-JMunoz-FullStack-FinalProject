@@ -3,31 +3,34 @@ import { Context } from "../../store/appContext";
 import { Button, Container, Row, Col, ProgressBar } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import Promotions from "../../component/promotions";
-import img1 from "../../../img/1.png"
-import img2 from "../../../img/2.png"
-import img3 from "../../../img/3.png"
-import img4 from "../../../img/4.png"
-import img5 from "../../../img/5.png"
-import facialCare from "../../../img/facialCare.png"
-import avatar from "../../../img/avatar.png"
-
-
+import img1 from "../../../img/1.png";
+import img2 from "../../../img/2.png";
+import img3 from "../../../img/3.png";
+import img4 from "../../../img/4.png";
+import img5 from "../../../img/5.png";
+import img6 from "../../../img/6.png";
+import facialCare from "../../../img/facialCare.png";
+import avatar from "../../../img/avatar.png";
 
 const ClientHome = () => {
-
     const { store } = useContext(Context);
-
     const [selectedService, setSelectedService] = useState(null);
-
     const navigate = useNavigate();
 
-    const servicesImages = { img5, img4, img3, img1, img2 };
+    const serviceImages = {
+        1: img1,
+        2: img2,
+        3: img3,
+        4: img4,
+        5: img5,
+        6: img6
+    };
 
     const handleServiceSelection = (service) => {
 
         setSelectedService(service);
 
-        navigate("/productsMenuView")
+        navigate("/productsMenuView");
     };
 
     return (
@@ -38,36 +41,36 @@ const ClientHome = () => {
                     <div className="mt-4 d-flex justify-content-center">
                         <div className="row container">
                             <div className="d-flex justify-content-end col-6">
-                                <div className="mt-5 mx-4" >
-                                    <h1 className=" facial_care card-title text-info">Facial Care Treatment</h1>
+                                <div className="mt-5 mx-4">
+                                    <h1 className="facial_care card-title text-info">Facial Care Treatment</h1>
                                     <h4 className="facial_care-promo mt-2">15% Off</h4><br />
                                     <Button variant="info" className="text-white">Buy Now</Button>
                                 </div>
                             </div>
+
                             <div className="promo-image-clinetView d-flex justify-content-start col-6">
-                                <img className="rounded mt-2 mb-2" src={facialCare} height={290} width={260} />
+                                <img className="rounded mt-2 mb-2" src={facialCare} height={290} width={260} alt="Facial Care" />
                             </div>
                         </div>
                     </div>
 
                     <Row className="mt-4">
-                        <h4 className="mx-3"><strong>Services</strong></h4>
+                        <h4 className="mx-3 mb-3"><strong>Services</strong></h4>
                         {store.services.map((service, index) => (
                             <Col md={4} onClick={() => navigate(`/products/${service.id}`)} key={index} className="mb-4">
                                 <div className="serviceBtn">
                                     <div className={`card ${selectedService === service ? 'selected' : ''}`} role="button" >
                                         <div className="card-body d-flex gap-3 align-items-center">
-                                            <img src={servicesImages[service.id]} />
+                                            <img src={serviceImages[service.id]} alt={`Service ${service.id}`} />
                                             <h5>{service.name}</h5>
                                         </div>
                                     </div>
                                 </div>
                             </Col>
                         ))}
-
                     </Row>
 
-                    <h4 className="mx-3 mt-4"><strong>Next Appointment</strong></h4>
+                    <h4 className="mx-3 mt-4 mb-3"><strong>Next Appointment</strong></h4>
                     <div className="card">
                         <Col md={12}>
                             <div className="nextAppointment card-body">
@@ -85,7 +88,7 @@ const ClientHome = () => {
                                             <br />
                                         </p>
                                     </Col>
-                                    
+
                                     <div className="button gap-2 d-flex justify-content-end">
                                         <Button variant="success" className="button_whatsapp" >
                                             <span> Chat </span>
@@ -110,7 +113,7 @@ const ClientHome = () => {
                                         </svg>
                                     </div>
                                     <Col md={7}>
-                                        <ProgressBar striped variant="info" now={35} className="mt-4 mb-3"/>
+                                        <ProgressBar striped variant="info" now={35} className="mt-4 mb-3" />
                                     </Col>
                                     <div className="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="icon_crown">
@@ -127,6 +130,5 @@ const ClientHome = () => {
         </>
     );
 };
-
 
 export default ClientHome;

@@ -43,7 +43,7 @@ class User(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "surname": self.surename,
+            "surname": self.surname,
             "email": self.email,
             "date_of_birth": self.date_of_birth,       
             "address": self.address, 
@@ -56,7 +56,7 @@ class User(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "surname": self.surename,
+            "surname": self.surname,
             "email": self.email,
             "phone": self.phone,
             "rating": self.rating,
@@ -127,7 +127,10 @@ class Product(db.Model):
     description = db.Column(db.String(256), nullable=False)
     price = db.Column(db.Float, nullable=False) 
     service_id = db.Column(db.Integer, db.ForeignKey("services.id")) 
-    FairyProducts = db.relationship("FairyProducts", backref="Product")
+
+    FairyProducts = db.relationship("FairyProducts", backref="product")
+    order_products = db.relationship("OrderProducts", backref="product")
+
 
     def __repr__(self):
 
@@ -162,36 +165,19 @@ class FairyProducts (db.Model):
         }
 
 
-class FairySelectedProducts (db.Model):
+
+class OrderProducts (db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     product_id = db.Column(db.Integer, db.ForeignKey("product.id"))
+    order_id = db.Column(db.Integer, db.ForeignKey("orders.id"))
 
     def serialize(self):
-        user = User.query.get(self.user_id) 
-
+        
         return {
 
             "id": self.id,
             "product_id": self.product_id,
-            "user": user.serialize_fairies()
-        }
-
-
-class OrderedServices (db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    order_id = db.Column(db.Integer, db.ForeignKey("orders.id"))
-    product_id = db.Column(db.Integer, db.ForeignKey("product.id")) #Many to many
-
-    def __repr__(self):
-
-        return f'<Services {self.id}>'
-    
-    def serialize(self):
-
-        return {
-            "id": self.id,
-            "order_id": self.order_id,
+            "order_id": self.order_id
         }
     
 
@@ -208,14 +194,15 @@ class RatingEnum(Enum):
 class Orders(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    price = db.Column(db.Float, nullable=False) 
     description = db.Column(db.String(256), nullable=False)
     client_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     fairy_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey('FairySelectedProducts.id'), nullable=False)
     rating = db.Column(db.Enum(RatingEnum), nullable=False)
+    
     fairy = db.relationship("User", foreign_keys=[fairy_id])
     client = db.relationship("User", foreign_keys=[client_id]) 
-
+    order_products = db.relationship("OrderProducts", backref="orders")
 
     def __repr__(self):
 
@@ -227,9 +214,9 @@ class Orders(db.Model):
 
             "id": self.id,
             "name": self.name,
-            "price": self.price,
             "description": self.description,
             "user_id": self.user_id,
+            "product": self.product,
             "service_id": self.service_id
         }
 

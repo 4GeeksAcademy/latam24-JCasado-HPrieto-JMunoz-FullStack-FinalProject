@@ -189,8 +189,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					method: "POST",
 					headers: {
+
 						"Content-type": "application/json"
 					},
+
 					body: JSON.stringify({
 						ids: productsId
 					})
@@ -209,6 +211,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json()
 
 				return data
+			},
+
+			
+			createOrder: async (data, products) => {
+
+				const response = await fetch(process.env.BACKEND_URL + "/api/users_with_all_products/", {
+
+					method: "POST",
+					headers: {
+						
+						"Content-type": "application/json"
+					},
+
+					body: JSON.stringify({
+
+						data: data, 
+						products: products
+					})
+				});
+
+				const res = await response.json()
+
+				console.log(res);
 			}
 		}
 	}

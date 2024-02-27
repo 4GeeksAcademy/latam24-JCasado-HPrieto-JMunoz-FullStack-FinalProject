@@ -19,7 +19,7 @@ const UserCard = ({ user }) => {
         <Card className="mt-4" style={{ width: "18rem" }}>
             <Card.Img variant="top" src={user.avatar} />
             <Card.Body>
-                <Card.Title>{user.name}</Card.Title>
+                <Card.Title>{user.name} {user.surname}</Card.Title>
                 <Card.Text>
                     <strong>Title:</strong> {user.professional_title}<br />
 
@@ -59,6 +59,8 @@ const GetFairies = () => {
         setUsers(fairies);
 
     }
+
+    console.log(store.user);
 
     useEffect(() => {
 

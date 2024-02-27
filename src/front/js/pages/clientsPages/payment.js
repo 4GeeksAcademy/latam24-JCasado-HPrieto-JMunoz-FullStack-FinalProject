@@ -1,32 +1,70 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Card, Container, Form, Button } from "react-bootstrap";
 import visa from "../../../img/visa.png"
 import mastercard from "../../../img/mastercard.png"
 import paypal from "../../../img/paypal.png"
+import { useParams } from "react-router-dom";
+import { Context } from "../../store/appContext";
 
+const PaymentConfirmation = ({ }) => {
 
-const PaymentConfirmation = ({ selectedFairy, service, date, time, onSubmit }) => {
+    const { store, actions } = useContext(Context)
 
     const [voucher, setVoucher] = useState("");
+
+    const [products, setProducts] = useState();
+
+    const [total, setTotal] = useState(0);
+
+    const [fairy, setFairy] = useState()
 
     const [paymentMethod, setPaymentMethod] = useState("credit_card");
 
     const handlePayment = () => {
 
-        const paymentDetails = {
-
-            selectedFairy,
-            service,
-            date,
-            time,
-            voucher,
-            paymentMethod
-        };
-
-        onSubmit(paymentDetails);
-
     };
+
+    const params = useParams()
+
+    const getFairyById = async () => {
+
+        const fairyData = await actions.getUsers(params.id)
+
+        if (fairyData) {
+
+            console.log(fairyData)
+
+            setFairy(fairyData)
+
+        }
+    }
+
+    useEffect(() => {
+
+        getFairyById()
+
+        const localProducts = localStorage.getItem("products")
+
+        if (localProducts) {
+
+            const parsedProducts = JSON.parse(localProducts)
+
+            setProducts(parsedProducts)
+
+            let counter = 0;
+
+            parsedProducts.forEach(item => {
+
+                counter += item.price
+
+            });
+
+            setTotal(counter);
+
+            console.log(JSON.parse(localProducts));
+        }
+    }, [])
 
     return (
 
@@ -35,10 +73,14 @@ const PaymentConfirmation = ({ selectedFairy, service, date, time, onSubmit }) =
             <Card className="d-flex">
                 <Card.Body>
                     <Card.Title>Service Details</Card.Title>
-                    <p><strong>Service:</strong> {service}</p>
-                    <p><strong>Fairy:</strong> {selectedFairy}</p>
-                    <p><strong>Date:</strong> {date}</p>
-                    <p><strong>Time:</strong> {time}</p>
+                    <div><strong>Service:</strong> {
+                        products && products.map((product) => {
+                            return (
+                                <div key={product.id + product.name}>{product.name}</div>
+                            )
+                        })
+                    }</div>
+                    <p><strong>Fairy:</strong> {fairy && `${fairy.name} ${fairy.surname}`}</p>
                 </Card.Body>
             </Card>
 
@@ -75,7 +117,7 @@ const PaymentConfirmation = ({ selectedFairy, service, date, time, onSubmit }) =
                         </Form.Control>
 
                         <h4 className="text-center">Total</h4>
-                        <h2 className="text-center">$103</h2>
+                        <h2 className="text-center">{total}</h2>
 
                         <div className="visa d-flex gap-2 mb-3 ">
                             <img src={visa} height={30} width={80} alt="visa" />

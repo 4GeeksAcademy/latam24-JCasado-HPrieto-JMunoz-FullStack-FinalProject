@@ -206,7 +206,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getUsers: async (fairyId) => {
 
-				const response = await fetch(process.env.BACKEND_URL + "/api/get_users/" + fairyId)
+				const response = await fetch(process.env.BACKEND_URL + "/api/get_user/" + fairyId)
 
 				const data = await response.json()
 

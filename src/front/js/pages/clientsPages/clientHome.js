@@ -57,13 +57,11 @@ const ClientHome = () => {
                     <Row className="mt-4">
                         <h4 className="mx-3 mb-3"><strong>Services</strong></h4>
                         {store.services.map((service, index) => (
-                            <Col md={4} onClick={() => navigate(`/products/${service.id}`)} key={index} className="mb-4">
-                                <div className="serviceBtn">
-                                    <div className={`card ${selectedService === service ? 'selected' : ''}`} role="button" >
-                                        <div className="card-body d-flex gap-3 align-items-center">
-                                            <img src={serviceImages[service.id]} alt={`Service ${service.id}`} />
-                                            <h5>{service.name}</h5>
-                                        </div>
+                            <Col md={4} onClick={() => navigate(`/products/${service.id}`)} key={index} className="mb-4  d-flex justify-content-center ">
+                                <div className={`card w-75 ${selectedService === service ? 'selected' : ''}`} role="button" >
+                                    <div className="card-body d-flex gap-3 align-items-center">
+                                        <img src={serviceImages[service.id]} alt={`Service ${service.id}`} />
+                                        <h5>{service.name}</h5>
                                     </div>
                                 </div>
                             </Col>
@@ -112,7 +110,7 @@ const ClientHome = () => {
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
                                         </svg>
                                     </div>
-                                    <Col md={7}>
+                                    <Col xs={6} md={4} lg={8} className="text-center">
                                         <ProgressBar striped variant="info" now={35} className="mt-4 mb-3" />
                                     </Col>
                                     <div className="icon">

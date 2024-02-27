@@ -16,7 +16,7 @@ const UserCard = ({ user }) => {
 
     return (
 
-        <Card className="mt-4" style={{ width: "18rem" }}>
+        <Card className="d-flex justify-content-center mt-4 mx-4" style={{ width: "18rem" }}>
             <Card.Img variant="top" src={user.avatar} />
             <Card.Body>
                 <Card.Title>{user.name} {user.surname}</Card.Title>
@@ -27,12 +27,12 @@ const UserCard = ({ user }) => {
 
                     <strong>Availability:</strong> {user.available ? "Available" : "Not Available"}<br />
 
-                    <strong>ETA:</strong> {user.ETA} mins<br />
+                    <strong>ETA:</strong> {user.ETA}20 mins<br />
                 </Card.Text>
 
                 <div className="d-flex justify-content-between">
-                    <Button variant="primary" onClick={handleSelect} className="selectFairybtn mr-auto">Select</Button>
-                    <p variant="secondary" className="aboutFairybtn ml-auto mt-3" role="button">About</p>
+                    <Button onClick={handleSelect} className="selectFairybtn mr-auto">Select</Button>
+                    <p className="aboutFairybtn ml-auto mt-3" role="button">About</p>
                 </div>
             </Card.Body>
         </Card>

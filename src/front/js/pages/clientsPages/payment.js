@@ -1,15 +1,15 @@
-
 import React, { useState, useEffect, useContext } from "react";
 import { Card, Container, Form, Button } from "react-bootstrap";
-import visa from "../../../img/visa.png"
-import mastercard from "../../../img/mastercard.png"
-import paypal from "../../../img/paypal.png"
+import visa from "../../../img/visa.png";
+import mastercard from "../../../img/mastercard.png";
+import paypal from "../../../img/paypal.png";
 import { useParams } from "react-router-dom";
 import { Context } from "../../store/appContext";
 
-const PaymentConfirmation = ({ }) => {
 
-    const { store, actions } = useContext(Context)
+const PaymentConfirmation = () => {
+
+    const { store, actions } = useContext(Context);
 
     const [voucher, setVoucher] = useState("");
 
@@ -17,70 +17,117 @@ const PaymentConfirmation = ({ }) => {
 
     const [total, setTotal] = useState(0);
 
-    const [fairy, setFairy] = useState()
+    const [fairy, setFairy] = useState();
 
     const [paymentMethod, setPaymentMethod] = useState("credit_card");
 
     const handlePayment = () => {
-
+       
     };
 
-    const params = useParams()
+    const params = useParams();
 
     const getFairyById = async () => {
 
-        const fairyData = await actions.getUsers(params.id)
+        const fairyData = await actions.getUsers(params.id);
 
         if (fairyData) {
 
-            console.log(fairyData)
-
-            setFairy(fairyData)
-
+            console.log(fairyData);
+            setFairy(fairyData);
         }
-    }
+    };
 
     useEffect(() => {
 
-        getFairyById()
+        getFairyById();
 
-        const localProducts = localStorage.getItem("products")
+        const localProducts = localStorage.getItem("products");
 
         if (localProducts) {
 
-            const parsedProducts = JSON.parse(localProducts)
+            const parsedProducts = JSON.parse(localProducts);
 
-            setProducts(parsedProducts)
+            setProducts(parsedProducts);
 
             let counter = 0;
 
-            parsedProducts.forEach(item => {
+            parsedProducts.forEach((item) => {
 
-                counter += item.price
-
+                counter += item.price;
             });
-
             setTotal(counter);
 
             console.log(JSON.parse(localProducts));
         }
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        
+        const script = document.createElement("script");
+
+        script.src = "https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID";
+
+        script.addEventListener("load", () => {
+            
+            window.paypal
+            
+                .Buttons({
+
+                    createOrder: (data, actions) => {
+
+                        return actions.order.create({
+
+                            purchase_units: [
+                                {
+                                    amount: {
+                                        value: total, 
+                                        currency_code: "USD", 
+                                    },
+                                },
+                            ],
+                        });
+                    },
+
+                    onApprove: async (data, actions) => {
+                       
+                        const order = await actions.order.capture();
+                        
+                        handlePayment();
+                    },
+                    onError: (err) => {
+                        console.error(err);
+                       
+                    },
+                })
+                .render("#paypal-button-container"); 
+        });
+        document.body.appendChild(script);
+
+        return () => {
+
+            document.body.removeChild(script);
+        };
+    }, [total]);
 
     return (
 
-        <Container className="main-container" >
+        <Container className="main-container">
             <h2 className="text-center m-2">Payment Confirmation</h2>
             <Card className="d-flex">
                 <Card.Body>
                     <Card.Title>Service Details</Card.Title>
-                    <div><strong>Service:</strong> {
-                        products && products.map((product) => {
-                            return (
-                                <div key={product.id + product.name}>{product.name}</div>
-                            )
-                        })
-                    }</div>
-                    <p><strong>Fairy:</strong> {fairy && `${fairy.name} ${fairy.surname}`}</p>
+                    <div>
+                        <strong>Service:</strong>{" "}
+                        {products &&
+                            products.map((product) => {
+                                
+                                return <div key={product.id + product.name}>{product.name}</div>;
+                            })}
+                    </div>
+                    <p>
+                        <strong>Fairy:</strong> {fairy && `${fairy.name} ${fairy.surname}`}
+                    </p>
                 </Card.Body>
             </Card>
 
@@ -89,37 +136,25 @@ const PaymentConfirmation = ({ }) => {
                     <Card.Title className="text-center">Payment Information</Card.Title>
                     <Form.Label className="fw-bold">Voucher</Form.Label>
                     <Form.Group controlId="formVoucher" className="mb-2 d-flex gap-2 align-items-center">
-
-                        <Form.Control
-                            type="text"
-                            placeholder="Enter voucher code"
-                            value={voucher}
-                            onChange={(e) => setVoucher(e.target.value)}
-                        />
-                        <Button variant="info text-white" >
-                            Apply
-                        </Button>
+                        <Form.Control type="text" placeholder="Enter voucher code" value={voucher} onChange={(e) => setVoucher(e.target.value)} />
+                        <Button variant="info text-white">Apply</Button>
                     </Form.Group>
 
                     <Form.Group controlId="formPaymentMethod">
                         <Form.Label className="mb-3">Payment Method</Form.Label>
 
-                        <Form.Control
-                            as="select"
-                            value={paymentMethod}
-                            onChange={(e) => setPaymentMethod(e.target.value)}
-                            className="mb-4"
-                        >
+                        <Form.Control as="select" value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)} className="mb-4">
                             <option value="credit_card">Credit Card</option>
                             <option value="debit_card">Debit Card</option>
                             <option value="paypal">PayPal</option>
-
                         </Form.Control>
 
                         <h4 className="text-center">Total</h4>
                         <h2 className="text-center">{total}</h2>
 
-                        <div className="visa d-flex gap-2 mb-3 ">
+                        <div id="paypal-button-container"></div>
+
+                        <div className="visa d-flex gap-2 mb-3">
                             <img src={visa} height={30} width={80} alt="visa" />
                             <p>******2334</p>
                             <input type="radio" />
@@ -134,20 +169,16 @@ const PaymentConfirmation = ({ }) => {
                             <p>mail@mail.com</p>
                             <input type="radio" />
                         </div>
-
-
                     </Form.Group>
                     <div className="d-flex justify-content-center wx-100">
-                        <Button variant="info text-white mt-2 " onClick={handlePayment}>Confirm Payment</Button>
+                        <Button variant="info text-white mt-2 " onClick={handlePayment}>
+                            Confirm Payment
+                        </Button>
                     </div>
-
-
                 </Card.Body>
             </Card>
-
         </Container>
     );
 };
-
 
 export default PaymentConfirmation;

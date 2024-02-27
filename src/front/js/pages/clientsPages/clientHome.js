@@ -3,12 +3,12 @@ import { Context } from "../../store/appContext";
 import { Button, Container, Row, Col, ProgressBar } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import Promotions from "../../component/promotions";
-import img1 from "../../../img/1.png";
-import img2 from "../../../img/2.png";
-import img3 from "../../../img/3.png";
-import img4 from "../../../img/4.png";
-import img5 from "../../../img/5.png";
-import img6 from "../../../img/6.png";
+import img1Facial from "../../../img/1.png";
+import img2HairCut from "../../../img/2.png";
+import img3Makeup from "../../../img/3.png";
+import img4Eyes from "../../../img/4.png";
+import img5Nails from "../../../img/5.png";
+import img6Wax from "../../../img/6.png";
 import facialCare from "../../../img/facialCare.png";
 import avatar from "../../../img/avatar.png";
 
@@ -18,12 +18,12 @@ const ClientHome = () => {
     const navigate = useNavigate();
 
     const serviceImages = {
-        1: img1,
-        2: img2,
-        3: img3,
-        4: img4,
-        5: img5,
-        6: img6
+        1: img5Nails,
+        2: img4Eyes,
+        3: img2HairCut,
+        4: img1Facial,
+        5: img3Makeup,
+        6: img6Wax
     };
 
     const handleServiceSelection = (service) => {

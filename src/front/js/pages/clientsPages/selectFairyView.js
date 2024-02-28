@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from '../../store/appContext';
 import { Card, Button, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import facialPromo2 from "../../../img/facialPromo2.png";
 
 
 
@@ -16,7 +17,7 @@ const UserCard = ({ user }) => {
 
     return (
 
-        <Card className="d-flex justify-content-center mt-4 mx-4" style={{ width: "18rem" }}>
+        <Card className="d-flex justify-content-center mt-4 mx-3" style={{ width: "18rem" }}>
             <Card.Img variant="top" src={user.avatar} />
             <Card.Body>
                 <Card.Title>{user.name} {user.surname}</Card.Title>
@@ -82,15 +83,10 @@ const GetFairies = () => {
                     ))}
                 </div>
 
-                <div className="card mt-4">
-                    <Card.Img variant="top" src="url" />
-                    <Card.Body>
-                        <Card.Title>Special Promotion</Card.Title>
-                        <Card.Text>
-                            Get 15% off on facial care
-                        </Card.Text>
-                    </Card.Body>
-                </div>
+                    <div className="mt-4 d-flex justify-content-center">
+                        <Card.Img src={facialPromo2} className="facialPromo2" />
+                    </div>
+                
             </Container>
         </div>
     );

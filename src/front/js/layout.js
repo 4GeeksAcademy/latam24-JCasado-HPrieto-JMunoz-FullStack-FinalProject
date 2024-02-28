@@ -14,7 +14,7 @@ import { ClientNavbar } from "./component/clientNavbar";
 import { Footer } from "./component/footer";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
-import PaymentConfirmation from "./pages/clientsPages/payment"
+import Payment from "./pages/clientsPages/payment"
 import { FairyDetails } from "./pages/clientsPages/fairyDetails";
 import { ClientDetails } from "./pages/clientDetails";
 import { ClientsAvailable } from "./pages/clientsAvailable";
@@ -43,13 +43,11 @@ const Layout = () => {
             <Route element={<Register />} path="/register" />
             <Route element={<FairySelection />} path="/select-fairy" />
             <Route element={<FairyDetails />} path="/fairy/details" />
-            <Route element={<PaymentConfirmation />} path="/payment/:id" />
+            <Route element={<Payment />} path="/payment/:id" />
             <Route element={<ClientsAvailable />} path={"/client/select/available"} />
             <Route element={<ClientDetails />} path="/client/details" />
             <Route element={<Single />} path="/single/:theid" />
             <Route element={<h1>Not found!</h1>} />
-
-
 
           </Routes>
           <Footer />

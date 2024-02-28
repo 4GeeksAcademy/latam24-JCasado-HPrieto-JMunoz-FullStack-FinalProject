@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import manicure from "../../img/manicure.png"
 import pedicure from "../../img/pedicure.png"
-import waxImage from "../../img/waxImage.png"
+import wax from "../../img/wax.png"
 
 function Promotions() {
 
@@ -24,7 +24,7 @@ function Promotions() {
 
                     <div className="mt-2 col-6 col-lg-3 ">
                         <div className="card text-center" role="button">
-                            <img src={waxImage} className="card-img-top promotion-img" height={175} alt="Promotion 2" />
+                            <img src={wax} className="card-img-top promotion-img" height={175} alt="Promotion 2" />
                             <div className="card-body">
                                 <h5 className="card-title">12% off</h5>
                                 <p className="card-text">Brazilian Bikini</p>

@@ -72,7 +72,6 @@ const ClientHome = () => {
                     <div className="card">
                         <Col md={12}>
                             <div className="nextAppointment card-body">
-
                                 <div className="d-flex align-items-center justify-content-center gap-3">
                                     <img src={avatar} alt="User Avatar" className="avatar-img" />
                                     <Col md={6}>

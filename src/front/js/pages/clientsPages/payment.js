@@ -5,9 +5,10 @@ import mastercard from "../../../img/mastercard.png";
 import paypal from "../../../img/paypal.png";
 import { useParams } from "react-router-dom";
 import { Context } from "../../store/appContext";
+import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 
 
-const PaymentConfirmation = () => {
+const Payment = () => {
 
     const { store, actions } = useContext(Context);
 
@@ -22,7 +23,7 @@ const PaymentConfirmation = () => {
     const [paymentMethod, setPaymentMethod] = useState("credit_card");
 
     const handlePayment = () => {
-       
+
     };
 
     const params = useParams();
@@ -36,6 +37,13 @@ const PaymentConfirmation = () => {
             console.log(fairyData);
             setFairy(fairyData);
         }
+    };
+
+    const PayPalInitialOptions = {
+
+        clientId: process.env.PAYPAL_CLIENT_ID,
+        currency: "USD",
+        intent: "capture",
     };
 
     useEffect(() => {
@@ -62,54 +70,6 @@ const PaymentConfirmation = () => {
         }
     }, []);
 
-    useEffect(() => {
-        
-        const script = document.createElement("script");
-
-        script.src = "https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID";
-
-        script.addEventListener("load", () => {
-            
-            window.paypal
-            
-                .Buttons({
-
-                    createOrder: (data, actions) => {
-
-                        return actions.order.create({
-
-                            purchase_units: [
-                                {
-                                    amount: {
-                                        value: total, 
-                                        currency_code: "USD", 
-                                    },
-                                },
-                            ],
-                        });
-                    },
-
-                    onApprove: async (data, actions) => {
-                       
-                        const order = await actions.order.capture();
-                        
-                        handlePayment();
-                    },
-                    onError: (err) => {
-                        console.error(err);
-                       
-                    },
-                })
-                .render("#paypal-button-container"); 
-        });
-        document.body.appendChild(script);
-
-        return () => {
-
-            document.body.removeChild(script);
-        };
-    }, [total]);
-
     return (
 
         <Container className="main-container">
@@ -121,7 +81,7 @@ const PaymentConfirmation = () => {
                         <strong>Service:</strong>{" "}
                         {products &&
                             products.map((product) => {
-                                
+
                                 return <div key={product.id + product.name}>{product.name}</div>;
                             })}
                     </div>
@@ -141,44 +101,17 @@ const PaymentConfirmation = () => {
                     </Form.Group>
 
                     <Form.Group controlId="formPaymentMethod">
-                        <Form.Label className="mb-3">Payment Method</Form.Label>
-
-                        <Form.Control as="select" value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)} className="mb-4">
-                            <option value="credit_card">Credit Card</option>
-                            <option value="debit_card">Debit Card</option>
-                            <option value="paypal">PayPal</option>
-                        </Form.Control>
-
+                        <Form.Label className="mb-3">Pay with PayPal</Form.Label>
+                        <PayPalScriptProvider options={PayPalInitialOptions}>
+                            <PayPalButtons total={total} style={{ layout: "horizontal" }} />
+                        </PayPalScriptProvider>
                         <h4 className="text-center">Total</h4>
                         <h2 className="text-center">{total}</h2>
-
-                        <div id="paypal-button-container"></div>
-
-                        <div className="visa d-flex gap-2 mb-3">
-                            <img src={visa} height={30} width={80} alt="visa" />
-                            <p>******2334</p>
-                            <input type="radio" />
-                        </div>
-                        <div className="mastercard d-flex gap-2 mb-3">
-                            <img src={mastercard} height={40} width={65} alt="visa" />
-                            <p>******3774</p>
-                            <input type="radio" />
-                        </div>
-                        <div className="paypal d-flex gap-2 mb-3">
-                            <img src={paypal} height={30} width={90} alt="visa" />
-                            <p>mail@mail.com</p>
-                            <input type="radio" />
-                        </div>
                     </Form.Group>
-                    <div className="d-flex justify-content-center wx-100">
-                        <Button variant="info text-white mt-2 " onClick={handlePayment}>
-                            Confirm Payment
-                        </Button>
-                    </div>
                 </Card.Body>
             </Card>
         </Container>
     );
 };
 
-export default PaymentConfirmation;
+export default Payment;

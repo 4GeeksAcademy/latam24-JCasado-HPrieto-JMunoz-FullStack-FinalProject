@@ -8,9 +8,9 @@
 .login {
   display: flex;
   justify-content: center;
-  margin-top: 25px;
-  margin-left: 10px;
-  margin-right: 10px;
+  background-color: white;
+  padding: 0%;
+  border-radius: 10px;
 }
 
 .image-login {
@@ -21,7 +21,6 @@
 .btn-login {
   background-color: #4589ff;
   position: absolute;
-  font-family: Mulish;
   font-size: 16px;
   font-weight: 400;
   color: #ffffffff;
@@ -54,17 +53,20 @@
 /* -------------------------------------------------------------------------------------------------*/
 /* Register */
 
+.form{
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+}
 
 .btn-register {
   background-color: #4589ff;
-  font-family: Mulish;
   font-size: 16px;
   font-weight: 400;
   color: #ffffffff;
   background: #3ebde0ff;
   border-radius: 6px;
-  width: 250px;
-  margin-left: 12px;
+  width: 300px;
 }
 
 .image-profile {
@@ -188,11 +190,6 @@ margin: 0px;
 }
 
 
-/* Promotion Component */
-
-
-
-
 
 /* -------------------------------------------------------------------------------------------------*/
 /* Footer NavBar */
@@ -278,17 +275,18 @@ border-color: #cbe8ff;
   justify-content: space-between;
 }
 
-
-/* SelectFairyView */
-
 .selectFairybtn {
   background-color: #3ebde0ff;
   border-color: white;
 }
 
-/* .client-distance {
-  background-color: green;
-} */
+/* Facial Promo 2 */
+
+.facialPromo2{
+  height: 180px;
+  width: 380px;
+}
+
 
 
 /* -------------------------------------------------------------------------------------------------*/

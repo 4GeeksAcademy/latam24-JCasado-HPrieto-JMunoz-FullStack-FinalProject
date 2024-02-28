@@ -24,9 +24,11 @@ export const Register = () => {
   };
 
   return (
-    <div className="register row">
-      <div className="register-form col-12 col-lg-6 d-flex justify-content-center p-0">
-        <div>
+
+    
+    <div className="main-container row">
+      <div className="col-12 d-flex justify-content-center p-0">
+        <div className="form mt-5 mb-4">
           <div className="image-login mt-3">
             <img src={profile_picture} className="image-profile" />
           </div>
@@ -57,7 +59,7 @@ export const Register = () => {
             <input
               type="text"
               name="surname"
-              id="inputName"
+              id="inputSurname"
               className="form-control"
               aria-describedby="nameHelpBlock"
               onChange={(event) => {
@@ -105,22 +107,21 @@ export const Register = () => {
             </div>
           </div>
 
-          {/* <div className="mt-2">
-            <label for="" className="form-label">State</label>
+          <div className="mt-2">
+            <label htmlFor="" className="form-label">State</label>
             <select className="form-select" aria-label="Default select example">
-              <option selected>Pick a state</option>
+              <option value="0">Pick a state</option>
               <option value="1">Arizona</option>
               <option value="2">California</option>
               <option value="3">Florida</option>
               <option value="4">Wyoming</option>
             </select>
-          </div> */}
-
+          </div>
 
           <div className="mt-2">
-            <label for="" className="form-label">Role</label>
+            <label htmlFor="userRole" className="form-label">Role</label>
             <select className="form-select" aria-label="Default select example">
-              <option selected>Pick your role</option>
+              <option value="0">Pick your role</option>
               <option value="1">Client</option>
               <option value="2">Fairy</option>
               <option value="3">Admin</option>
@@ -152,24 +153,20 @@ export const Register = () => {
 
           <button
             className="btn btn-register mb-5"
-            onClick={async () => {
-              if (await actions.newUser(data)) {
+
+            onClick={() => {
+
+              if (actions.newUser(data)) {
+
                 navigate("/Login");
               }
             }}
           >
             {" "}
-            Submit
+            Register
           </button>
-          <div className="pb-5"></div>
         </div>
       </div>
-
-      <div
-        className="register-image col-6"
-        ></div>
-        <img src={backgroundRegister}></img>
     </div>
-
   )
 }

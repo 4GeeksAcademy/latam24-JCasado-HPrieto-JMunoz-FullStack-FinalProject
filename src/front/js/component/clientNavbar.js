@@ -2,26 +2,35 @@ import React, { useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import tremyIsotipo from "../../img/tremy-isotipo.png";
-import selinaAvatar from "../../../front/img/Selina.jpg"
+import selinaAvatar from "../../../front/img/Selina.jpg";
+
 
 export const ClientNavbar = () => {
+
   const { store, actions } = useContext(Context);
+
   const navigate = useNavigate();
 
   useEffect(() => {
+
     console.log("Navbar");
+
   }, [store.token]);
 
   const handleClick = () => {
+
     if (store.token) {
+
       actions.logOut();
+
     } else {
+
       navigate("/login");
     }
   };
 
   return (
-    
+
     <nav className="client-navbar">
       <div className="container-fluid d-flex align-items-center justify-content-between">
         <div className="d-flex align-items-center">
@@ -32,8 +41,10 @@ export const ClientNavbar = () => {
             onClick={() => navigate("/")}
             alt="Tremy Isotipo"
           />
-          <h5 className="mb-0 mt-2"><strong>Hello Selina!</strong></h5>
+          
+          {store.user && <h5 className="mb-0 mt-2"><strong>Hello {store.user.name}!</strong></h5>}
         </div>
+
         <div className="d-flex align-items-center">
           {store.token && (
             <>
@@ -55,5 +66,3 @@ export const ClientNavbar = () => {
     </nav>
   );
 };
-
-{/* <img src={selinaAvatar}/> */}

@@ -25,9 +25,9 @@ export const Login = () => {
   return (
 
     <Container className="main-container">
-    <div className="login">
+    <div className="login mt-4 p-0">
       <div>
-        <div className="image-login">
+        <div className="image-login mt-3">
           <img
             src={tremyImageUrl}
             style={{
@@ -38,8 +38,8 @@ export const Login = () => {
         </div>
 
         <div className="">
-          <p className="mt-3 mb-2">Create Account</p>
-          <label htmlFor="inputEmail" className="form-label my-0">
+          <p className="mt-3 mb-3">Create Account</p>
+          <label htmlFor="inputEmail" className="form-label">
             Email
           </label>
 

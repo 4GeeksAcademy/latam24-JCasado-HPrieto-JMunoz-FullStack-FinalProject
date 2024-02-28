@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
-
-
 /* Login */
 
 .login {
@@ -48,7 +46,6 @@
   justify-content: center;
 }
 
-
 /* Register */
 
 .btn-register {
@@ -75,7 +72,6 @@
 .check-box {
   font-size: small;
 }
-
 
 /* ClientHome page */
 
@@ -107,16 +103,13 @@ body {
   background-color: #d8048390;
 }
 
-
 .icons {
-
-  background: #EBC5F663;
+  background: #ebc5f663;
   padding: 2px;
   margin-top: -2.5px;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
 }
-
 
 /* Next Appointment card: */
 
@@ -130,14 +123,13 @@ body {
 
 .icon_sparkle {
   width: 35px;
-  color: #BD3EE0FF;
+  color: #bd3ee0ff;
 }
 
 .icon_crown {
   width: 35px;
-  color: #BD3EE0FF;
+  color: #bd3ee0ff;
 }
-
 
 /* Footer NavBar */
 
@@ -155,7 +147,6 @@ body {
   margin-bottom: 80px;
   padding-bottom: 110px;
 }
-
 
 /* ClientHome Service Buttons */
 
@@ -191,8 +182,7 @@ body {
 }
 
 .icons {
-
-  background: #EBC5F663;
+  background: #ebc5f663;
   padding: 2px;
   margin-top: -2.5px;
   border-bottom-left-radius: 4px;
@@ -201,14 +191,13 @@ body {
 
 .icon_sparkle {
   width: 35px;
-  color: #BD3EE0FF;
+  color: #bd3ee0ff;
 }
 
 .icon_crown {
   width: 35px;
-  color: #BD3EE0FF;
+  color: #bd3ee0ff;
 }
-
 
 /* Feiry AboutView */
 /* Calendly Buttons */
@@ -244,14 +233,12 @@ body {
   margin: 0%;
 }
 
-
 /* ClientHome Facial Promotion-card */
 
 .publicity-card {
   background: #ebc5f60d;
   border-radius: 6px 6px 0px 0px;
 }
-
 
 /* Fairy Details */
 
@@ -266,7 +253,6 @@ body {
   justify-content: center;
 }
 
-
 /* Calendar */
 
 :root {
@@ -278,7 +264,6 @@ body {
   --c-text-primary: #1f1f25;
   --c-text-secondary: #999fa6;
 }
-
 
 button {
   font: inherit;
@@ -393,7 +378,6 @@ button {
   }
 }
 
-
 /* SelectFairyView */
 
 .calendar-icon {
@@ -404,7 +388,6 @@ button {
   display: flex;
   justify-content: space-between;
 }
-
 
 /* Fairy Rating  */
 
@@ -417,21 +400,18 @@ button {
   max-height: 40px;
 }
 
-
-/* Client Details */
-
-.client-distance {
-  background-color: green;
+.btn-accept-request {
+  background-color: #008ffd;
+  border-radius: 10px;
 }
-
 
 /*ProductsMenuView*/
 
 .productButton {
-  background: #EBC5F654;
+  background: #ebc5f654;
   border-radius: 6px;
   border-color: #1f9ec1ff;
-  }
+}
 
 .manicure_heading {
   background-color: rgb(204, 234, 245);
@@ -440,7 +420,7 @@ button {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   margin-bottom: -1px;
-  color: #BD3EE0FF;
+  color: #bd3ee0ff;
 }
 
 .pedicure_heading {
@@ -450,16 +430,15 @@ button {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   margin-bottom: -1px;
-  color: #BD3EE0FF;
+  color: #bd3ee0ff;
 }
 
 tbody {
-  background-color: #EBC5F663;
-
+  background-color: #ebc5f663;
 }
 
 .manicure_promo {
-  background-color: #EBC5F663;
+  background-color: #ebc5f663;
   padding: 1rem;
 }
 
@@ -468,11 +447,10 @@ tbody {
   font-size: 2rem;
 }
 
-
 /*PaymentView*/
 
 .visa {
-  background-color: #EBC5F663;
+  background-color: #ebc5f663;
   padding: 1rem;
   border-radius: 5px;
   flex-direction: row;
@@ -481,7 +459,7 @@ tbody {
 }
 
 .mastercard {
-  background-color: #EBC5F663;
+  background-color: #ebc5f663;
   padding: 1rem;
   border-radius: 5px;
   flex-direction: row;
@@ -490,7 +468,7 @@ tbody {
 }
 
 .paypal {
-  background-color: #EBC5F663;
+  background-color: #ebc5f663;
   padding: 1rem;
   border-radius: 5px;
   flex-direction: row;

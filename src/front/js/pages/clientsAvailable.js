@@ -27,27 +27,36 @@ export const ClientsAvailable = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-2 col-lg-1 rate">
-                        <div className="d-flex align-items-center w-100 btn">
-                            <span>Rate</span>
-                            <i className="fa-regular fa-star mx-2 mb-1"></i>
-                        </div>
+                    <div className="col-2 col-lg-2 rate">
+                        <span>
+                            Rate
+                        </span>
+                        <i className="fa-regular fa-star mx-2 mb-1"></i>
                     </div>
                 </div>
                 {/* Rate Button */}
-                <div className="data-container-fairy mx-3 mb-3 text-primary">
-                    <p className="client-distance">
-                        ETA 20min
-                    </p>
-                    <button className="btn btn-success text-dark">
-                        Accept reqquest
-                    </button>
+                <div className="row">
+                    <div className="col-6 col-lg-4 mb-3 text-primary">
+                        <p className="mx-3">
+                            ETA 20min
+                        </p>
+                    </div>
+                    <div className="d-flex flex-column col-6 col-lg-4">
+                        <span className="text-primary fw-bold d-flex justify-content-center">
+                            Requesting now
+                        </span>
+                        <div className="d-flex justify-content-center">
+                            <button className="btn btn-accept-request text-dark w-75 mb-3">
+                                Accept Request
+                            </button>
+                        </div>
+                    </div>
+                    <div className="col-12 d-flex justify-content-end col-lg-4 d-flex justify-content-center">
+                        <Link className="text-black mx-3" to={"/fairy/details"} role="button">
+                            About
+                        </Link>
+                    </div>
                 </div>
-                <Link to={"/fairy/details"}>
-                    <p className="text-black">
-                        About
-                    </p>
-                </Link>
             </div>
         </div>
 

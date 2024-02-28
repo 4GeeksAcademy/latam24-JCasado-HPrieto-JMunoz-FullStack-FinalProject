@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import tremyIsotipo from "../../img/tremy-isotipo.png";
-import selinaAvatar from "../../../front/img/Selina.jpg";
 
 
 export const ClientNavbar = () => {
@@ -41,7 +40,7 @@ export const ClientNavbar = () => {
             onClick={() => navigate("/")}
             alt="Tremy Isotipo"
           />
-          
+
           {store.user && <h5 className="mb-0 mt-2"><strong>Hello {store.user.name}!</strong></h5>}
         </div>
 

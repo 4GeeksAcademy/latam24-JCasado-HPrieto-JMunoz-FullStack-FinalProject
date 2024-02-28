@@ -47,7 +47,6 @@ class User(db.Model):
             "email": self.email,
             "date_of_birth": self.date_of_birth,       
             "address": self.address, 
-            "role": self.role,
             "phone": self.phone
         }
 

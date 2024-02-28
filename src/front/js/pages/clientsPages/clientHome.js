@@ -41,14 +41,14 @@ const ClientHome = () => {
                     <div className="mt-4 d-flex justify-content-center">
                         <div className="row container">
                             <div className="d-flex justify-content-end col-6">
-                                <div className="mt-5 mx-4">
+                                <div className="mt-5">
                                     <h1 className="facial_care card-title text-info">Facial Care Treatment</h1>
                                     <h4 className="facial_care-promo mt-2">15% Off</h4><br />
                                     <Button variant="info" className="text-white">Buy Now</Button>
                                 </div>
                             </div>
 
-                            <div className="promo-image-clinetView d-flex justify-content-start col-6">
+                            <div className="promo-image-clinetView d-flex justify-content-center col-6">
                                 <img className="rounded mt-2 mb-2" src={facialCare} height={290} width={260} alt="Facial Care" />
                             </div>
                         </div>

@@ -101,12 +101,11 @@ const Payment = () => {
                     </Form.Group>
 
                     <Form.Group controlId="formPaymentMethod">
-                        <Form.Label className="mb-3">Pay with PayPal</Form.Label>
+                        <h4 className="text-center mt-4">Total</h4>
+                        <h2 className="text-center mb-3">${total}</h2>
                         <PayPalScriptProvider options={PayPalInitialOptions}>
                             <PayPalButtons total={total} style={{ layout: "horizontal" }} />
                         </PayPalScriptProvider>
-                        <h4 className="text-center">Total</h4>
-                        <h2 className="text-center">{total}</h2>
                     </Form.Group>
                 </Card.Body>
             </Card>

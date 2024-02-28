@@ -2,8 +2,8 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import profile_picture from "../../img/profilephoto.jpg";
-import backgroundRegister from "../../img/backgroundRegister.png";
 import "../../styles/home.css";
+import { number } from "prop-types";
 
 
 export const Register = () => {
@@ -25,7 +25,7 @@ export const Register = () => {
 
   return (
 
-    
+
     <div className="main-container row">
       <div className="col-12 d-flex justify-content-center p-0">
         <div className="form mt-5 mb-4">
@@ -96,7 +96,7 @@ export const Register = () => {
 
             <input
               type="date"
-              name="Date_of_birth"
+              name="date_of_birth"
               id="inputDateOfBirth"
               className="form-control"
               aria-describedby="dateOfBirthHelpBlock"
@@ -109,23 +109,27 @@ export const Register = () => {
 
           <div className="mt-2">
             <label htmlFor="" className="form-label">State</label>
-            <select className="form-select" aria-label="Default select example">
-              <option value="0">Pick a state</option>
-              <option value="1">Arizona</option>
-              <option value="2">California</option>
-              <option value="3">Florida</option>
-              <option value="4">Wyoming</option>
+            <select className="form-select" aria-label="Default select example" name="address" onChange={handleChange}>
+              <option>Pick a state</option>
+              <option value="Arizona">Arizona</option>
+              <option value="California">California</option>
+              <option value="Florida">Florida</option>
+              <option value="Wyoming">Wyoming</option>
             </select>
           </div>
 
           <div className="mt-2">
             <label htmlFor="userRole" className="form-label">Role</label>
-            <select className="form-select" aria-label="Default select example">
-              <option value="0">Pick your role</option>
-              <option value="1">Client</option>
-              <option value="2">Fairy</option>
-              <option value="3">Admin</option>
+            <select className="form-select" aria-label="Default select example" name="role" onChange={handleChange}>
+              <option>Pick your role</option>
+              <option value="CLIENT">Client</option>
+              <option value="FAIRY">Fairy</option>
             </select>
+          </div>
+
+          <div className="mt-2">
+            <label htmlFor="phone" className="form-label">phone</label>
+            <input className="form-control" id="phone" type="number" name="phone" placeholder="Your phone number here" onChange={handleChange} />
           </div>
 
           <div className="mt-2">

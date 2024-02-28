@@ -93,10 +93,10 @@
 
 .client-navbar {
   background-color: #ebc5f6ff;
-  padding: 10px 0;
+  padding: 10px 50px;
 }
 
-.client-navbar .navbar-img {
+.navbar-img {
   width: 50px;
   height: auto;
 }
@@ -265,6 +265,19 @@ border-color: #cbe8ff;
 /* -------------------------------------------------------------------------------------------------*/
 /* SelectFairyView */
 
+.rate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(174, 214, 74);
+  border-radius: 20px;
+  max-height: 40px;
+}
+
+.btn-accept-request {
+  background-color: #008ffd;
+  border-radius: 10px;
+}
 
 .calendar-icon {
   font-size: larger;

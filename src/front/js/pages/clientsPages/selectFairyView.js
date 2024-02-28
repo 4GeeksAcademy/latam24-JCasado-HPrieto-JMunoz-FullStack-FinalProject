@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import facialPromo2 from "../../../img/facialPromo2.png";
 
 
-
 const UserCard = ({ user }) => {
 
     const navigate = useNavigate();
@@ -22,9 +21,9 @@ const UserCard = ({ user }) => {
             <Card.Body>
                 <Card.Title>{user.name} {user.surname}</Card.Title>
                 <Card.Text>
-                    <strong>Title:</strong> {user.professional_title}<br />
+                    {user.professional_title}<br />
 
-                    <strong>Rating:</strong> {user.rating}<br />
+                    <i className="fa-regular fa-star mx-2 mb-1"> {user.rating}</i><br />
 
                     <strong>Availability:</strong> {user.available ? "Available" : "Not Available"}<br />
 
@@ -38,7 +37,8 @@ const UserCard = ({ user }) => {
             </Card.Body>
         </Card>
     );
-};
+}
+
 
 
 const GetFairies = () => {
@@ -83,10 +83,10 @@ const GetFairies = () => {
                     ))}
                 </div>
 
-                    <div className="mt-4 d-flex justify-content-center">
-                        <Card.Img src={facialPromo2} className="facialPromo2" />
-                    </div>
-                
+                <div className="mt-4 d-flex justify-content-center">
+                    <Card.Img src={facialPromo2} className="facialPromo2" />
+                </div>
+
             </Container>
         </div>
     );
@@ -94,5 +94,6 @@ const GetFairies = () => {
 
 
 export default GetFairies;
+
 
 

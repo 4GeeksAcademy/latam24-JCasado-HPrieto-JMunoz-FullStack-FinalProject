@@ -86,7 +86,7 @@ def login():
 
         token = create_access_token(identity=email)
 
-        return {"token": token}, 200
+        return jsonify({"token": token, "user": user.serialize()}), 200
     
     return {"message": "Unauthorized", "authorize": False}, 401
 
@@ -268,3 +268,5 @@ def get_service_category(category_id):
     print (serviceCategories)
 
     return jsonify(serialized_services)
+
+

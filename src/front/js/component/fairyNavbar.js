@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import tremyIsotipo from "../../img/tremy-isotipo.png";
 
+
 export const FairyNavbar = () => {
     const { store, actions } = useContext(Context);
 
@@ -38,12 +39,12 @@ export const FairyNavbar = () => {
                             </button>
                             <i class="fa-solid fa-bell"></i>
                             <button className="btn btn-log" onClick={handleClick}>
-                                <i class="fa-solid fa-right-to-bracket"></i>
+                                <i className="fa-solid fa-right-to-bracket"></i>
                             </button>
                         </>
                     ) : (
                         <Link to="/login" role="button" className="btn btn-dark btn-log">
-                            <i class="fa-solid fa-user"></i>
+                            <i className="fa-solid fa-user"></i>
                         </Link>
                     )}
                     <Link to="/register" role="button" className="btn btn-dark mx-4 register-btn">

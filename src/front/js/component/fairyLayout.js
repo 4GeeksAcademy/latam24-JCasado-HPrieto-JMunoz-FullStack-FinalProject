@@ -1,20 +1,22 @@
 import React from "react";
 import { FairyNavbar } from "./fairyNavbar";
 import { Outlet } from "react-router-dom";
-import { Footer } from "./footer";
+import { FairyFooter } from "./fairyFooter";
+import "../../styles/fairy.css";
 
 
 const FairyLayout = () => {
 
     return (
-        
+
         <>
             <FairyNavbar />
+        <div className="fairyBody">
             <Outlet />
-            <Footer />
+        </div>    
+            <FairyFooter />
         </>
     )
 }
-
 
 export default FairyLayout;

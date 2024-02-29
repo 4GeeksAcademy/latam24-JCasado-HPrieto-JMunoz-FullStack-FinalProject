@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 
-export const Footer = () => (
-  
-  <footer className="footer container-fluid mt-auto py-3 text-center">
+export const ClientFooter = () => (
+
+  <footer className="clientFooter container-fluid mt-auto py-3 text-center">
     <div className="d-flex justify-content-center">
       <Link to="/">
         <button className="btn btn-home">
@@ -28,6 +28,9 @@ export const Footer = () => (
         <p className="gear-text">Settings</p>
       </button>
     </div>
-    
+
   </footer>
 );
+
+
+export default ClientFooter;

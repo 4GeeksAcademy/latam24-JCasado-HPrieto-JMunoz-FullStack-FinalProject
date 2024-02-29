@@ -114,22 +114,37 @@ def validate_user():
 
 
 @api.route("/add_product_to_user", methods=['POST'])
+@jwt_required()
 def add_product():
 
+    email = get_jwt_identity()
+    user = User.query.filter_by(email=email).one_or_none()
+
+    if user is None:
+
+        return jsonify({"message": "Invalid user"}), 401
+
     data = request.json
-    user_id = data.get("user_id")
-    product_id = data.get("product_id")
 
-    if not user_id or not product_id:
+    products = data.get("products") 
 
-        return jsonify({"message": "User ID and Product ID are required"}), 400
+    if products is None:
 
-    new_fairy_product = FairyProducts(user_id=user_id, product_id=product_id)
-    db.session.add(new_fairy_product)
+        return jsonify({"message": "Products are required"}), 400
+    
+    for product in products: 
+
+        product_in_db = Product.query.filter_by(id=product["id"]).one_or_none()
+
+        if product_in_db is None:
+
+            return jsonify({"message": "Product not found"}), 404
+        
+        new_fairy_product = FairyProducts(user_id=user.id, product_id=product_in_db.id)
+        db.session.add(new_fairy_product)
     db.session.commit()
 
     return jsonify({"message": "Product added to user successfully"}), 200
-
 
 
 def verify_records(ids):

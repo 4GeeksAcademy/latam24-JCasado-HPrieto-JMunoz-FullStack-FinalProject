@@ -5,53 +5,63 @@ import tremyIsotipo from "../../img/tremy-isotipo.png";
 
 
 export const FairyNavbar = () => {
-    const { store, actions } = useContext(Context);
 
-    const navigate = useNavigate();
+  const { store, actions } = useContext(Context);
 
-    useEffect(() => {
-        console.log("Navbar");
-    }, [store.token]);
+  const navigate = useNavigate();
 
-    const handleClick = () => {
-        if (store.token) {
-            actions.logOut();
-        } else {
-            navigate("/login");
-        }
-    };
+  useEffect(() => {
 
-    return (
-        <nav className="fairy-navbar">
-            <div className="container-fluid d-flex">
-                <img
-                    className="navbar-img mx-3"
-                    role="button"
-                    src={tremyIsotipo}
-                    onClick={() => navigate("/")}
-                ></img>
+    console.log("Navbar");
 
-                <div className="ml-auto">
-                    {store.token ? (
-                        <>
-                            <button className="btn">
-                                <i class="fa-solid fa-bell"></i>
-                            </button>
-                            <i class="fa-solid fa-bell"></i>
-                            <button className="btn btn-log" onClick={handleClick}>
-                                <i className="fa-solid fa-right-to-bracket"></i>
-                            </button>
-                        </>
-                    ) : (
-                        <Link to="/login" role="button" className="btn btn-dark btn-log">
-                            <i className="fa-solid fa-user"></i>
-                        </Link>
-                    )}
-                    <Link to="/register" role="button" className="btn btn-dark mx-4 register-btn">
-                        <i className="fa-solid fa-user"></i>
-                    </Link>
-                </div>
-            </div>
-        </nav>
-    );
+  }, [store.token]);
+
+  const handleClick = () => {
+
+    if (store.token) {
+
+      actions.logOut();
+
+    } else {
+
+      navigate("/login");
+    }
+  };
+
+  return (
+
+    <nav className="fairy-navbar">
+      <div className="container-fluid d-flex align-items-center justify-content-between">
+        <div className="d-flex align-items-center">
+          <img
+            className="navbar-img mx-3"
+            role="button"
+            src={tremyIsotipo}
+            onClick={() => navigate("/")}
+            alt="Tremy Isotipo"
+          />
+
+          {store.user && <h5 className="mb-0 mt-2"><strong>Hello {store.user.name}!</strong></h5>}
+        </div>
+
+        <div className="d-flex align-items-center">
+          {store.token && (
+            <>
+              <button className="btn mr-3">
+                <i className="fa-regular fa-bell"></i>
+              </button>
+            </>
+          )}
+
+          {!store.token && (
+            <Link to="/login" role="button" className="btn btn-light btn-log mr-3">
+            </Link>
+          )}
+          <Link to="/register" role="button" className="btn btn-light register-btn">
+            <i className="fa-regular fa-user"></i>
+          </Link>
+        </div>
+      </div>
+    </nav>
+  );
 };

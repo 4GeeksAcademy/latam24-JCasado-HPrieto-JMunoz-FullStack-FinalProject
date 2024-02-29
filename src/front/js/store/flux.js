@@ -213,20 +213,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return data
 			},
 
-			
+
 			createOrder: async (data, products) => {
 
 				const response = await fetch(process.env.BACKEND_URL + "/api/users_with_all_products/", {
 
 					method: "POST",
 					headers: {
-						
+
 						"Content-type": "application/json"
 					},
 
 					body: JSON.stringify({
 
-						data: data, 
+						data: data,
 						products: products
 					})
 				});
@@ -234,7 +234,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const res = await response.json()
 
 				console.log(res);
+			},
+
+
+			addProductToFairy: async (products) => {
+
+				const store = getStore();
+
+				const response = await fetch(process.env.BACKEND_URL + "/api/add_product_to_user/", {
+					method: "POST",
+					headers: {
+						"Content-type": "application/json",
+						"Authorization": `Bearer ${store.token}`
+					},
+
+					body: JSON.stringify({
+
+						products: products
+					})
+				});
+
+				if (response.ok) {
+
+					return true;
+
+				}
+
+				return false;
+
 			}
+
 		}
 	}
 };

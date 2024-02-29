@@ -13,8 +13,11 @@ import facialCare from "../../../img/facialCare.png";
 import avatar from "../../../img/avatar.png";
 
 const ClientHome = () => {
+
     const { store } = useContext(Context);
+
     const [selectedService, setSelectedService] = useState(null);
+
     const navigate = useNavigate();
 
     const serviceImages = {
@@ -127,5 +130,6 @@ const ClientHome = () => {
         </>
     );
 };
+
 
 export default ClientHome;

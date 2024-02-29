@@ -192,10 +192,10 @@ margin: 0px;
 
 
 /* -------------------------------------------------------------------------------------------------*/
-/* Footer NavBar */
+/* ClientFooter NavBar */
 
 
-.footer {
+.clientFooter {
   background: #ebc5f6ff;
   border-radius: 0px;
   padding: 0%;
@@ -254,6 +254,10 @@ margin: 0px;
   border-radius: 6px;
   border-color: white;
   }
+
+.productActive{
+  background: rgb(194, 237, 249);
+}
 
 .serviceName {
 background-color: #cbe8ff;
@@ -507,3 +511,91 @@ button {
   margin: 0%;
 }
 
+
+
+
+/* -------------------------------------------------------------------------------------------------*/
+/* -------------------------------------------------------------------------------------------------*/
+/* FairyView */
+
+
+.fairyBody{
+  background-color: #F2FAFDFF;
+}
+
+
+/* FairyNavbar */
+
+.fairy-navbar{
+    background-color: rgb(194, 237, 249);
+    padding: 10px 50px;
+  }
+  
+  .navbar-img {
+    width: 50px;
+    height: auto;
+  }
+  
+  .client-navbar .btn {
+    padding: 0.5rem 1rem;
+  }
+  
+  .register-btn {
+    margin-right: 0;
+    border-radius: 100%;
+  }
+  
+  .serviceBtn{
+  background-color: #ebc5f6ff;
+  border-color: white;
+  border-radius: 1%;
+  }
+
+
+/* appointmentCard */
+
+.mapImage{
+  border: 2px solid rgb(194, 237, 249);
+  border-radius: 1.5%;
+}
+
+
+/* FairyFooter NavBar */
+
+.fairyFooter {
+  background-color: rgb(194, 237, 249);
+  border-radius: 0px;
+  padding: 0%;
+  position: absolute;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  z-index: 1;
+}
+
+.message-icon {
+  font-size: large;
+}
+
+.message-text {
+  font-size: small;
+  margin: 0%;
+}
+
+.gear-icon {
+  font-size: larger;
+}
+
+.gear-text {
+  font-size: small;
+  margin: 0%;
+}
+
+.home-icon {
+  font-size: larger;
+}
+
+.home-text {
+  font-size: small;
+  margin: 0%;
+}

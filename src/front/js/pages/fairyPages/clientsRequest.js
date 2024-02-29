@@ -1,9 +1,12 @@
 import React from "react";
-import clientPhoto from "../../img/client_profile_photo.jpg"
+import clientPhoto from "../../../img/client_profile_photo.jpg"
 import { Link } from "react-router-dom";
 
-export const ClientsAvailable = () => {
+
+export const ClientsRequest = () => {
+
     return (
+
         <div className="main-container">
             <h2 className="d-flex justify-content-center fw-bold mt-2 mb-3">
                 Choose your Clients
@@ -53,3 +56,4 @@ export const ClientsAvailable = () => {
 
     )
 }
+

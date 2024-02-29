@@ -4,8 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Context } from '../../store/appContext';
 
 
-
-const FairyProductsMenu = () => {
+const FairyMenuView = () => {
 
   const { store, actions } = useContext(Context)
 
@@ -13,16 +12,21 @@ const FairyProductsMenu = () => {
 
   const navigate = useNavigate()
 
-  const handleNavigation = () => {
+  const handleNavigation = async () => {
 
-    if (selectedProducts.length == 0) {
+    const response = await actions.addProductToFairy(selectedProducts)
 
-      return
+    if (response) {
+
+      navigate("/fairy/home");
+
+    } else {
+
+      alert("error");
+
     }
 
-    localStorage.setItem("products", JSON.stringify(selectedProducts))
-
-    navigate("/fairyHome")
+    console.log(selectedProducts);
   }
 
   const params = useParams()
@@ -49,19 +53,18 @@ const FairyProductsMenu = () => {
 
   return (
 
-    <Container fluid className='main-container'>
-      <OfferCard />
+    <Container fluid className="main-container">
 
-      <Row className="justify-content-center mt-4">
+      <Row className="justify-content-center mt-5">
         {services.map((service) => (
-          <Col key={service.id + "serviceId"} md={4} className="text-center">
-            <h2>{service.name}</h2>
+          <Col key={service.id + "serviceId"} md={5} className="text-center">
+            <h3 className="serviceName card mb-3">{service.name}</h3>
             <Row>
               {service.service_products.map((product) => (
                 <Col key={product.id + "product"} md={12} className="mb-3">
                   <Card className="h-100 border-0">
-                    <button className="productButton btn" onClick={() => selectProduct(product)}>
-                      <Card.Body className="d-flex align-items-center justify-content-center border-0">
+                    <button className={`productButton btn ${selectedProducts.includes(product) && "productActive"}`} onClick={() => selectProduct(product)}>
+                      <Card.Body className="d-flex align-items-center justify-content-center">
                         {product.name} ${product.price}
                       </Card.Body>
                     </button>
@@ -83,7 +86,8 @@ const FairyProductsMenu = () => {
 };
 
 
-export default FairyProductsMenu;
+export default FairyMenuView;
+
 
 
 

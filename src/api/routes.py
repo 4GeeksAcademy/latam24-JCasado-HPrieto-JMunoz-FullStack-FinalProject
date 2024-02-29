@@ -7,7 +7,8 @@ from sqlalchemy.exc import IntegrityError
 from flask_cors import CORS
 import re
 import os
-
+import base64
+import requests
 
 api = Blueprint('api', __name__)
 
@@ -284,4 +285,75 @@ def get_service_category(category_id):
 
     return jsonify(serialized_services)
 
+# PAYPAL ______________________________________________________________________________________________________
 
+@app.route("/create/paypal", methods=['POST'])
+def create_paypal_order():
+    
+    paypal_client = os.environ.get("PAYPAL_CLIENT_ID")
+    paypal_client_secret = os.environ.get("PAYPAL_CLIENT_SECRET")
+    
+    body = request.json
+    products = body.get("products", None)
+    
+    if products is None:
+        return jsonify({"Error":"the product is not defined"}), 400
+    
+    products_in_db = []
+    
+    for product in products:
+        
+        created_products = Product.query.filter(product).one_or_none()
+        
+        if created_products is None:
+            return jsonify({"Error":"This product does not exist"}), 404
+        
+        products_in_db.append(created_products)
+
+    paypal_products = [{
+        
+        "name": product.name, 
+        "unit_amount": {
+            "currency_code":"USD",
+            "value": product.price
+        },
+        "quantity": 1,
+        } for product in products_in_db]
+    
+    total_value = sum( product.price for product in products_in_db)
+    
+    order = {
+        
+        "intent":"CAPTURE",
+        
+        "application_context": {
+          "brand_name":"Tremy",
+          "landing_page":"NO_PREFERENCE",
+          "use_action":"PAY_NOW",
+        },
+        
+        "purchase_units": [{
+            "amount": {
+                "currency_code":"USD",
+                "value": total_value,
+                "breakdown": {
+                    "item_total": {
+                        "currency_code":"USD",
+                        "value": total_value,
+                    }
+                }
+            },
+            "items": paypal_products,
+        }]
+    }
+    
+    headers = {
+        "Authorization":f"Basic {base64.b64encode(f'{paypal_client}:{paypal_client_secret}'.encode()).decode()}" 
+    }
+    response = requests.post("https://api.sandbox.paypal.com/v2/checkout/orders", headers = headers, json = order)
+    
+    if response.status_code == 201:
+        order_data = response.json()
+        return jsonify({"order_id":order_data["id"]})
+    
+    return jsonify(response.json()), response.status_code

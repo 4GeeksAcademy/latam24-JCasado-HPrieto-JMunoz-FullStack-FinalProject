@@ -3,6 +3,7 @@ import { ClientNavbar } from "./clientNavbar";
 import { Outlet } from "react-router-dom";
 import { ClientFooter } from "./clientFooter";
 import "../../styles/index.css";
+import "../../styles/client.css";
 
 
 const ClientLayout = () => {

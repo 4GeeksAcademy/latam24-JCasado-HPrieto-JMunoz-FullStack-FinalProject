@@ -1,9 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
-import profile_picture from "../../img/profilephoto.jpg";
-import "../../styles/home.css";
-import { number } from "prop-types";
+import registerImage from "../../img/tremy-logo.png";
 
 
 export const Register = () => {
@@ -25,12 +23,11 @@ export const Register = () => {
 
   return (
 
-
     <div className="main-container row">
       <div className="col-12 d-flex justify-content-center p-0">
         <div className="form mt-5 mb-4">
           <div className="image-login mt-3">
-            <img src={profile_picture} className="image-profile" />
+            <img src={registerImage} className="registerLogo" />
           </div>
 
           <div className="mt-0">
@@ -162,7 +159,7 @@ export const Register = () => {
 
               if (actions.newUser(data)) {
 
-                navigate("/Login");
+                navigate("/");
               }
             }}
           >

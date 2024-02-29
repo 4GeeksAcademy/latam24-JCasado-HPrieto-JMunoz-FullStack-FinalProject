@@ -54,7 +54,9 @@ const FairyMenuView = () => {
   return (
 
     <Container fluid className="main-container">
-
+      <div className="container mb-2 mt-5">
+        <h5 className="productSelectText">Please select the line of services you are willing to provide:</h5>
+      </div>
       <Row className="justify-content-center mt-5">
         {services.map((service) => (
           <Col key={service.id + "serviceId"} md={5} className="text-center">

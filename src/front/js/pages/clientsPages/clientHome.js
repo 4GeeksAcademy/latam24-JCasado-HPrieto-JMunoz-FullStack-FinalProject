@@ -78,7 +78,7 @@ const ClientHome = () => {
                                 <div className="d-flex align-items-center justify-content-center gap-3">
                                     <img src={avatar} alt="User Avatar" className="avatar-img" />
                                     <Col md={6}>
-                                        <h5 className="card-title">Miss Ororo Munroe</h5>
+                                        <h5 className="card-title">Miss Barbara Gordon</h5>
                                         <p className="title">Cosmetologist / Nail Tech</p>
                                         <p className="time-text d-flex align-items-center gap-1">
                                             10:02 AM

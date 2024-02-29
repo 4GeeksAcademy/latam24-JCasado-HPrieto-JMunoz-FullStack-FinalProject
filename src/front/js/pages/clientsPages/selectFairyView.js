@@ -23,9 +23,9 @@ const UserCard = ({ user }) => {
                 <Card.Text>
                     {user.professional_title}<br />
 
-                    <i className="fa-regular fa-star mx-2 mb-1"> {user.rating}</i><br />
+                    <strong>{user.rating}</strong><i className="fa-regular fa-star mb-1"></i><br />
 
-                    <strong>Availability:</strong> {user.available ? "Available" : "Not Available"}<br />
+                    <p className="AvailableTag">Available</p><br />
 
                     <strong>ETA:</strong> {user.ETA}20 mins<br />
                 </Card.Text>
@@ -38,7 +38,6 @@ const UserCard = ({ user }) => {
         </Card>
     );
 }
-
 
 
 const GetFairies = () => {

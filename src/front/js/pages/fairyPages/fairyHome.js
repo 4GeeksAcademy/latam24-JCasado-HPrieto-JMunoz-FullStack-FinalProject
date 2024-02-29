@@ -90,7 +90,7 @@ const FairyHome = () => {
                             <div className="d-flex align-items-center justify-content-center gap-3">
                                 <img src={avatar2} alt="User Avatar" className="avatar-img" />
                                 <Col md={4}>
-                                    <h5 className="card-title mb-2">Barbara Gordon</h5>
+                                    <h5 className="card-title mb-2">Ororo Munroe</h5>
                                     <h5 className="card-title mb-2"></h5>
                                     <p className="time-text d-flex align-items-center gap-1">
                                         01:30 PM
@@ -136,7 +136,7 @@ const FairyHome = () => {
                             </Col>
                         ))}
                     </Row>
-
+                    <h4 className="mx-3 mb-3"><strong>Options</strong></h4>
                     <FairyOptionsCard />
 
                 </Container>
@@ -144,5 +144,6 @@ const FairyHome = () => {
         </>
     );
 };
+
 
 export default FairyHome;

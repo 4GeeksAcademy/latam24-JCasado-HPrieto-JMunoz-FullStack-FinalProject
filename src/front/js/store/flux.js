@@ -1,6 +1,7 @@
 
 const API_URL = "https://curly-memory-4xwwq4xxjxqcjjrr-3001.app.github.dev/api";
 
+
 const getState = ({ getStore, getActions, setStore }) => {
 
 	return {
@@ -27,6 +28,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			makeLogin: async (userData) => {
+
+				console.log(userData);
 
 				try {
 
@@ -57,11 +60,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					return true
 				}
+
 				catch (error) {
 
 					console.log(error)
 				}
 			},
+
 
 			logOut: () => {
 
@@ -111,6 +116,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error)
 				}
 			},
+
 
 			getUsers: () => {
 

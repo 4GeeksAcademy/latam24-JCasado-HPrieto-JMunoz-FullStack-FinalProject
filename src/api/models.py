@@ -16,7 +16,6 @@ class UserRole(Enum):
     ADMIN = "admin" 
 
 
-
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
@@ -28,7 +27,7 @@ class User(db.Model):
     phone = db.Column(db.Integer, nullable=False)
     rating = db.Column(db.Integer, nullable=True)
     date_of_birth = db.Column(db.String(10), nullable=True)
-    professional_title = db.Column(db.String(10), nullable=True)
+    professional_title = db.Column(db.String(50), nullable=True)
     avatar = db.Column(db.String(250), unique=False, nullable=True)
 
     FairyProducts = db.relationship("FairyProducts", backref="user-products")
@@ -47,7 +46,8 @@ class User(db.Model):
             "email": self.email,
             "date_of_birth": self.date_of_birth,       
             "address": self.address, 
-            "phone": self.phone
+            "phone": self.phone,
+            "role": self.role.name
         }
 
     def serialize_fairies(self):
@@ -60,7 +60,8 @@ class User(db.Model):
             "phone": self.phone,
             "rating": self.rating,
             "professional_title": self.professional_title,
-            "avatar": self.avatar
+            "avatar": self.avatar,
+            "role": self.role.name
         }
 
 

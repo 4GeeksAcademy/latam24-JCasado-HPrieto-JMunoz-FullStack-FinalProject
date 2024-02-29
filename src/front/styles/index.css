@@ -3,6 +3,7 @@
 
 /* Login */
 
+
 .login {
   display: flex;
   justify-content: center;
@@ -51,6 +52,7 @@
 /* -------------------------------------------------------------------------------------------------*/
 /* Register */
 
+
 .form {
   background-color: white;
   padding: 2rem;
@@ -67,9 +69,9 @@
   width: 300px;
 }
 
-.image-profile {
-  border-radius: 100%;
-  width: 100px;
+.registerLogo {
+  width: 270px;
+  height: 115px;
 }
 
 .register-image {
@@ -85,10 +87,6 @@
 /* -------------------------------------------------------------------------------------------------*/
 /* ClientHome page */
 
-
-body {
-  background-color: #faf2fdff;
-}
 
 .main-container {
   margin-bottom: 80px;
@@ -182,6 +180,7 @@ body {
 /* -------------------------------------------------------------------------------------------------*/
 /* ClientFooter NavBar */
 
+
 .clientFooter {
   background: #ebc5f6ff;
   border-radius: 0px;
@@ -241,6 +240,7 @@ body {
   border-radius: 1%;
 }
 
+
 /* Products Selection Buttons*/
 
 .productButton {
@@ -263,6 +263,7 @@ body {
 /* -------------------------------------------------------------------------------------------------*/
 /* SelectFairyView */
 
+
 .rate {
   display: flex;
   align-items: center;
@@ -270,11 +271,6 @@ body {
   background-color: rgb(174, 214, 74);
   border-radius: 20px;
   max-height: 40px;
-}
-
-.btn-accept-request {
-  background-color: #008ffd;
-  border-radius: 10px;
 }
 
 .calendar-icon {
@@ -286,52 +282,25 @@ body {
   justify-content: space-between;
 }
 
+.AvailableTag{
+  margin: 0%;
+}
+
 .selectFairybtn {
   background-color: #3ebde0ff;
   border-color: white;
 }
 
+.selectFairybtn:hover{
+  background-color: rgb(104, 222, 255);
+  border-color: White;
+}
 
 /* Facial Promo 2 */
 
 .facialPromo2 {
   height: 180px;
   width: 380px;
-}
-
-
-/* -------------------------------------------------------------------------------------------------*/
-/*PaymentView*/
-
-.visa {
-  background-color: #ebc5f663;
-  padding: 1rem;
-  border-radius: 5px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.mastercard {
-  background-color: #ebc5f663;
-  padding: 1rem;
-  border-radius: 5px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.paypal {
-  background-color: #ebc5f663;
-  padding: 1rem;
-  border-radius: 5px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.promotion {
-  padding-bottom: 20px;
 }
 
 
@@ -569,8 +538,18 @@ button {
 
 /* FairyOptionsCard */
 
+.fairyOptionsCard{
+  padding: 5%;
+}
+
 .optionsButton{
-  background-color: #008ffd;
+  background-color: #3ebde0ff;
+  border-color: white;
+}
+
+.optionsButton:hover{
+  background-color: rgb(104, 222, 255);
+  border-color: White;
 }
 
 
@@ -619,14 +598,13 @@ button {
 }
 
 
+
 /* -------------------------------------------------------------------------------------------------*/
 /*FairyMenuView*/
 
 
-.productButton {
-  background: rgb(204, 234, 245);
-  border-radius: 6px;
-  border-color: #1f9ec1ff;
+.productSelectText{
+margin-left: 22%;
 }
 
 .manicure_heading {

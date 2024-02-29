@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Card, Container, Form, Button } from "react-bootstrap";
-import visa from "../../../img/visa.png";
-import mastercard from "../../../img/mastercard.png";
-import paypal from "../../../img/paypal.png";
 import { useParams } from "react-router-dom";
 import { Context } from "../../store/appContext";
 import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";

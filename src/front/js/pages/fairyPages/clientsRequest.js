@@ -1,5 +1,5 @@
 import React from "react";
-import clientPhoto from "../../../img/client_profile_photo.jpg"
+import clientAvatar from "../../../img/clientAvatar1.png"
 import { Link } from "react-router-dom";
 
 
@@ -11,19 +11,19 @@ export const ClientsRequest = () => {
             <h2 className="d-flex justify-content-center fw-bold mt-2 mb-3">
                 Choose your Clients
             </h2>
-            {/*FAIRY CARD */}
+            
             <div className="data-card container">
 
                 <div className="row my-3">
                     <div className="col-12 col-lg-3 d-flex justify-content-center mb-3">
-                        <img src={clientPhoto} className="rounded-circle profile-picture" />
+                        <img src={clientAvatar} className="rounded-circle profile-picture" />
                     </div>
 
                     <div className="col-10 col-lg-7">
                         <div className="d-flex justify-content-start">
                             <h3 className="card-title">Client Name</h3>
                         </div>
-                        {/* info */}
+                     
                         <div>
                             <div>
                                 <p>Details...</p>
@@ -37,7 +37,7 @@ export const ClientsRequest = () => {
                         <i className="fa-regular fa-star mx-2 mb-1"></i>
                     </div>
                 </div>
-                {/* Rate Button */}
+                
                 <div className="row">
                     <div className="col-6 col-lg-4 mb-3 text-primary">
                         <p className="mx-3">

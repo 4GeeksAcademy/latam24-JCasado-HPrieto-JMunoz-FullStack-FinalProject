@@ -160,8 +160,6 @@ def verify_records(ids):
 
             user_record_ids = [fairy_product.id for fairy_product in user_records]
 
-            # if set(ids).issubset(set(user_record_ids)):
-
             print(user)
 
             users.append(user.serialize_fairies())
@@ -285,9 +283,15 @@ def get_service_category(category_id):
 
     return jsonify(serialized_services)
 
-# PAYPAL ______________________________________________________________________________________________________
 
-@app.route("/create/paypal", methods=['POST'])
+
+# -------------------------------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------------------------
+# PayPal:
+
+
+
+@api.route("/create/paypal", methods=['POST'])
 def create_paypal_order():
     
     paypal_client = os.environ.get("PAYPAL_CLIENT_ID")
@@ -297,6 +301,7 @@ def create_paypal_order():
     products = body.get("products", None)
     
     if products is None:
+
         return jsonify({"Error":"the product is not defined"}), 400
     
     products_in_db = []
@@ -306,6 +311,7 @@ def create_paypal_order():
         created_products = Product.query.filter(product).one_or_none()
         
         if created_products is None:
+
             return jsonify({"Error":"This product does not exist"}), 404
         
         products_in_db.append(created_products)
@@ -350,10 +356,13 @@ def create_paypal_order():
     headers = {
         "Authorization":f"Basic {base64.b64encode(f'{paypal_client}:{paypal_client_secret}'.encode()).decode()}" 
     }
+
     response = requests.post("https://api.sandbox.paypal.com/v2/checkout/orders", headers = headers, json = order)
     
     if response.status_code == 201:
+
         order_data = response.json()
+        
         return jsonify({"order_id":order_data["id"]})
     
     return jsonify(response.json()), response.status_code

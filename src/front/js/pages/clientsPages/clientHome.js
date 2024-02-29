@@ -9,8 +9,8 @@ import img3Makeup from "../../../img/3.png";
 import img4Eyes from "../../../img/4.png";
 import img5Nails from "../../../img/5.png";
 import img6Wax from "../../../img/6.png";
-import facialCare from "../../../img/facialCare.png";
-import avatar from "../../../img/avatar.png";
+import facialPromo1 from "../../../img/facialPromo1.png";
+import avatar from "../../../img/ororoMunroe.png";
 
 const ClientHome = () => {
 
@@ -52,7 +52,7 @@ const ClientHome = () => {
                             </div>
 
                             <div className="promo-image-clinetView d-flex justify-content-center col-6">
-                                <img className="rounded mt-2 mb-2" src={facialCare} height={290} width={260} alt="Facial Care" />
+                                <img className="rounded mt-2 mb-2" src={facialPromo1} height={290} width={260} alt="Facial Care" />
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Context } from "../../store/appContext";
-import { Button, Container, Row, Col, ProgressBar } from 'react-bootstrap';
+import { Button, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
+import FairyOptionsCard from "../../component/fairyOptionsCard"
 import img1Facial from "../../../img/1.png";
 import img2HairCut from "../../../img/2.png";
 import img3Makeup from "../../../img/3.png";
@@ -11,6 +12,7 @@ import img6Wax from "../../../img/6.png";
 import avatar from "../../../img/selinaKyle.png";
 import avatar2 from "../../../img/barbaraGordon.png";
 import map from "../../../img/map.png";
+
 
 const FairyHome = () => {
 
@@ -88,6 +90,7 @@ const FairyHome = () => {
                             <div className="d-flex align-items-center justify-content-center gap-3">
                                 <img src={avatar2} alt="User Avatar" className="avatar-img" />
                                 <Col md={4}>
+                                    <h5 className="card-title mb-2">Barbara Gordon</h5>
                                     <h5 className="card-title mb-2"></h5>
                                     <p className="time-text d-flex align-items-center gap-1">
                                         01:30 PM
@@ -133,6 +136,8 @@ const FairyHome = () => {
                             </Col>
                         ))}
                     </Row>
+
+                    <FairyOptionsCard />
 
                 </Container>
             </div>

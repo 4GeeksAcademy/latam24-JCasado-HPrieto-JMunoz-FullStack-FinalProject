@@ -22,7 +22,7 @@ function Promotions() {
                         </div>
                     </div>
 
-                    <div className="mt-2 col-6 col-lg-3 ">
+                    {/* <div className="mt-2 col-6 col-lg-3 ">
                         <div className="card text-center" role="button">
                             <img src={wax} className="card-img-top promotion-img" height={175} alt="Promotion 2" />
                             <div className="card-body">
@@ -30,7 +30,7 @@ function Promotions() {
                                 <p className="card-text">Brazilian Bikini</p>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="mt-2 col-6 col-lg-3 ">
                         <div className="card text-center" role="button">

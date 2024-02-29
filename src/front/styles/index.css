@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
+
 /* Login */
 
 .login {
@@ -45,6 +46,8 @@
   justify-content: center;
 }
 
+
+
 /* -------------------------------------------------------------------------------------------------*/
 /* Register */
 
@@ -77,10 +80,25 @@
   font-size: small;
 }
 
-/* ClientHome page */
+
 
 /* -------------------------------------------------------------------------------------------------*/
-/*ClientView*/
+/* ClientHome page */
+
+
+body {
+  background-color: #faf2fdff;
+}
+
+.main-container {
+  margin-bottom: 80px;
+  padding-bottom: 110px;
+}
+
+.mb-0 {
+  margin: 0;
+}
+
 
 /* ClientNavbar */
 
@@ -109,74 +127,17 @@
   border-radius: 1%;
 }
 
-/* ClientHome page */
-
-body {
-  background-color: #faf2fdff;
-}
-
-.mb-0 {
-  margin: 0;
-}
-
-.btn-log {
-  background-color: #d8048390;
-}
-
-.register-btn {
-  border-radius: 100%;
-  background-color: #d8048390;
-}
-
-.icons {
-  background: #ebc5f663;
-  padding: 2px;
-  margin-top: -2.5px;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-
-/* Next Appointment card: */
-
-.profile-picture {
-  width: 120px;
-}
-
-.promotion-manicure-img {
-  min-width: 100px;
-}
-
-.icon_sparkle {
-  width: 35px;
-  color: #bd3ee0ff;
-}
-
-.icon_crown {
-  width: 35px;
-  color: #bd3ee0ff;
-}
-
-/* Footer NavBar */
-
-.footer {
-  background: #ebc5f6ff;
-  border-radius: 0px;
-  padding: 0%;
-  position: absolute;
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
-}
-
-.main-container {
-  margin-bottom: 80px;
-  padding-bottom: 110px;
-}
 
 /* Next Appointment card: */
 
 .nextAppointment {
   background-color: white;
+}
+
+.avatar-img {
+  border-radius: 100%;
+  height: 80px;
+  width: 80px;
 }
 
 .card-title {
@@ -196,6 +157,12 @@ body {
   margin: 0px;
 }
 
+.button_whatsapp {
+  background-color: rgb(241, 253, 244);
+  color: rgb(56, 121, 60);
+  border-radius: 30px;
+}
+
 .icon_sparkle {
   width: 35px;
   color: #bd3ee0ff;
@@ -210,17 +177,7 @@ body {
   margin: 0 10px;
 }
 
-.avatar-img {
-  border-radius: 100%;
-  height: 80px;
-  width: 80px;
-}
 
-.button_whatsapp {
-  background-color: rgb(241, 253, 244);
-  color: rgb(56, 121, 60);
-  border-radius: 30px;
-}
 
 /* -------------------------------------------------------------------------------------------------*/
 /* ClientFooter NavBar */
@@ -242,30 +199,6 @@ body {
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
 }
-
-.icon_sparkle {
-  width: 35px;
-  color: #bd3ee0ff;
-}
-
-.icon_crown {
-  width: 35px;
-  color: #bd3ee0ff;
-}
-
-/* Feiry AboutView */
-/* Calendly Buttons */
-
-.calendar-icon {
-  font-size: larger;
-}
-
-.calendar-text {
-  font-size: small;
-  margin: 0%;
-}
-
-/* Notofications Button */
 
 .message-icon {
   font-size: large;
@@ -293,10 +226,12 @@ body {
   font-size: small;
   margin: 0%;
 }
-/* ClientHome Facial Promotion-card */
+
+
 
 /* -------------------------------------------------------------------------------------------------*/
 /*ProductsMenuView*/
+
 
 /* Promotion Card */
 
@@ -322,6 +257,8 @@ body {
   background-color: #cbe8ff;
   border-color: #cbe8ff;
 }
+
+
 
 /* -------------------------------------------------------------------------------------------------*/
 /* SelectFairyView */
@@ -354,12 +291,14 @@ body {
   border-color: white;
 }
 
+
 /* Facial Promo 2 */
 
 .facialPromo2 {
   height: 180px;
   width: 380px;
 }
+
 
 /* -------------------------------------------------------------------------------------------------*/
 /*PaymentView*/
@@ -395,10 +334,26 @@ body {
   padding-bottom: 20px;
 }
 
+
+
 /* -------------------------------------------------------------------------------------------------*/
 /* Feiry AboutView */
 
+
+.calendar-icon {
+  font-size: larger;
+}
+
+.calendar-text {
+  font-size: small;
+  margin: 0%;
+}
+
+
+
+/* -------------------------------------------------------------------------------------------------*/
 /* Fairy Rating  */
+
 
 .rate {
   display: flex;
@@ -409,6 +364,9 @@ body {
   max-height: 40px;
 }
 
+
+
+/* -------------------------------------------------------------------------------------------------*/
 /* Fairy Details */
 
 .data-card {
@@ -421,6 +379,7 @@ body {
   display: flex;
   justify-content: center;
 }
+
 
 /* Calendar */
 
@@ -547,6 +506,7 @@ button {
   }
 }
 
+
 /* Calendly Buttons */
 
 .calendar-icon {
@@ -558,13 +518,18 @@ button {
   margin: 0%;
 }
 
+
+
+
 /* -------------------------------------------------------------------------------------------------*/
 /* -------------------------------------------------------------------------------------------------*/
 /* FairyView */
 
+
 .fairyBody {
   background-color: #f2fafdff;
 }
+
 
 /* FairyNavbar */
 
@@ -593,12 +558,21 @@ button {
   border-radius: 1%;
 }
 
+
 /* appointmentCard */
 
 .mapImage {
   border: 2px solid rgb(194, 237, 249);
   border-radius: 1.5%;
 }
+
+
+/* FairyOptionsCard */
+
+.optionsButton{
+  background-color: #008ffd;
+}
+
 
 /* FairyFooter NavBar */
 
@@ -644,10 +618,13 @@ button {
   border-radius: 10px;
 }
 
-/*ProductsMenuView*/
+
+/* -------------------------------------------------------------------------------------------------*/
+/*FairyMenuView*/
+
 
 .productButton {
-  background: #ebc5f654;
+  background: rgb(204, 234, 245);
   border-radius: 6px;
   border-color: #1f9ec1ff;
 }
@@ -670,51 +647,4 @@ button {
   border-top-right-radius: 5px;
   margin-bottom: -1px;
   color: #bd3ee0ff;
-}
-
-tbody {
-  background-color: #ebc5f663;
-}
-
-.manicure_promo {
-  background-color: #ebc5f663;
-  padding: 1rem;
-}
-
-.manicure_promo-text {
-  color: rgb(73, 73, 73);
-  font-size: 2rem;
-}
-
-/*PaymentView*/
-
-.visa {
-  background-color: #ebc5f663;
-  padding: 1rem;
-  border-radius: 5px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.mastercard {
-  background-color: #ebc5f663;
-  padding: 1rem;
-  border-radius: 5px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.paypal {
-  background-color: #ebc5f663;
-  padding: 1rem;
-  border-radius: 5px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.promotion {
-  padding-bottom: 20px;
 }

@@ -297,7 +297,8 @@ def create_paypal_order():
     paypal_client = os.environ.get("PAYPAL_CLIENT_ID")
     paypal_client_secret = os.environ.get("PAYPAL_CLIENT_SECRET")
     
-    body = request.json
+    body = request.get_json()
+
     products = body.get("products", None)
     
     if products is None:
@@ -308,7 +309,7 @@ def create_paypal_order():
     
     for product in products:
         
-        created_products = Product.query.filter(product).one_or_none()
+        created_products = Product.query.get(int(product))
         
         if created_products is None:
 

@@ -39,9 +39,35 @@ const Payment = () => {
     const PayPalInitialOptions = {
 
         clientId: process.env.PAYPAL_CLIENT_ID,
-        currency: "USD",
-        intent: "capture",
     };
+
+
+    const createOrder = async () => {
+
+        const response = await fetch(
+
+            process.env.BACKEND_URL + "/api/create/paypal",
+
+            {
+                method: 'POST',
+                headers: {
+                    "Content-type": "application/json"
+                },
+
+                body: JSON.stringify({ products: products.map((product) => product.id) })
+            }
+        )
+
+        if (response.ok) {
+
+            const data = await response.json()
+
+            console.log(data)
+
+            return data.order_id;
+        }
+    }
+
 
     useEffect(() => {
 
@@ -100,8 +126,8 @@ const Payment = () => {
                     <Form.Group controlId="formPaymentMethod">
                         <h4 className="text-center mt-4">Total</h4>
                         <h2 className="text-center mb-3">${total}</h2>
-                        <PayPalScriptProvider options={PayPalInitialOptions}>
-                            <PayPalButtons total={total} style={{ layout: "horizontal" }} />
+                        <PayPalScriptProvider options={{ clientId: process.env.PAYPAL_CLIENT_ID }}>
+                            <PayPalButtons createOrder={createOrder} style={{ layout: "horizontal" }} />
                         </PayPalScriptProvider>
                     </Form.Group>
                 </Card.Body>

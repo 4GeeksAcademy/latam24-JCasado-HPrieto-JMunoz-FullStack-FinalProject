@@ -4,6 +4,15 @@
 /* Login */
 
 
+.main-container {
+  margin-bottom: 80px;
+  padding-bottom: 110px;
+}
+
+.logiRegisterBody{
+  background-color: #ebc5f6ff;
+}
+
 .login {
   display: flex;
   justify-content: center;
@@ -88,17 +97,22 @@
 /* ClientHome page */
 
 
-.main-container {
-  margin-bottom: 80px;
-  padding-bottom: 110px;
-}
-
 .mb-0 {
   margin: 0;
 }
 
 
 /* ClientNavbar */
+
+.userButton{
+  border-radius: 100%;
+  font-size: large;
+}
+
+.notificationBell{
+  font-size: large;
+  margin-right: 5px;
+}
 
 .client-navbar {
   background-color: #ebc5f6ff;
@@ -495,8 +509,21 @@ button {
 /* FairyView */
 
 
-.fairyBody {
-  background-color: #f2fafdff;
+/* FairyHome Gretting */
+
+.fairyHomegretting{
+  margin-top: 5%;
+  
+}
+
+.findClientButton{
+  background-color: #3ebde0ff;
+  border-color: white;
+}
+
+.findClientButton:hover{
+  background-color: rgb(104, 222, 255);
+  border-color: White;
 }
 
 
@@ -604,7 +631,7 @@ button {
 
 
 .productSelectText{
-margin-left: 22%;
+margin-left: 25%;
 }
 
 .manicure_heading {

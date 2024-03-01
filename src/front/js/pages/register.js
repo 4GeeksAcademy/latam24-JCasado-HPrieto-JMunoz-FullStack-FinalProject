@@ -24,7 +24,7 @@ export const Register = () => {
   return (
 
     <div className="main-container row">
-      <div className="col-12 d-flex justify-content-center p-0">
+      <div className="col-12 w-75 mx-auto">
         <div className="form mt-5 mb-4">
           <div className="image-login mt-3">
             <img src={registerImage} className="registerLogo" />
@@ -145,27 +145,28 @@ export const Register = () => {
               Please enter a valid password
             </div>
           </div>
+          <div className="d-flex flex-column justify-content-center align-items-center">
+            <p className="mt-3 mx-2 check-box">
+              <input type="checkbox" required className="checkbox"></input>I agree
+              with
+              <a className="text-primary"> Terms & Conditions</a>
+            </p>
 
-          <p className="mt-3 mx-2 check-box">
-            <input type="checkbox" required className="checkbox"></input>I agree
-            with
-            <a className="text-primary"> Terms & Conditions</a>
-          </p>
+            <button
+              className="btn btn-register mb-5"
 
-          <button
-            className="btn btn-register mb-5"
+              onClick={() => {
 
-            onClick={() => {
+                if (actions.newUser(data)) {
 
-              if (actions.newUser(data)) {
-
-                navigate("/");
-              }
-            }}
-          >
-            {" "}
-            Register
-          </button>
+                  navigate("/");
+                }
+              }}
+            >
+              {" "}
+              Register
+            </button>
+          </div>
         </div>
       </div>
     </div>

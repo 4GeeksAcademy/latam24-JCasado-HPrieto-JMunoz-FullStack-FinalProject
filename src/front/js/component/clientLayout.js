@@ -11,7 +11,9 @@ const ClientLayout = () => {
     return (
         <>
             <ClientNavbar />
-            <Outlet />
+            <div className="clientBody">
+                <Outlet />
+            </div>
             <ClientFooter />
         </>
     )

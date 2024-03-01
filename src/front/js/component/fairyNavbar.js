@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import tremyIsotipo from "../../img/tremy-isotipo.png";
 
@@ -16,18 +16,6 @@ export const FairyNavbar = () => {
 
   }, [store.token]);
 
-  const handleClick = () => {
-
-    if (store.token) {
-
-      actions.logOut();
-
-    } else {
-
-      navigate("/login");
-    }
-  };
-
   return (
 
     <nav className="fairy-navbar">
@@ -37,7 +25,7 @@ export const FairyNavbar = () => {
             className="navbar-img mx-3"
             role="button"
             src={tremyIsotipo}
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/fairy/home")}
             alt="Tremy Isotipo"
           />
 
@@ -47,19 +35,15 @@ export const FairyNavbar = () => {
         <div className="d-flex align-items-center">
           {store.token && (
             <>
-              <button className="btn mr-3">
+              <button className="notificationBell btn mr-3">
                 <i className="fa-regular fa-bell"></i>
               </button>
             </>
           )}
 
-          {!store.token && (
-            <Link to="/login" role="button" className="btn btn-light btn-log mr-3">
-            </Link>
-          )}
-          <Link to="/register" role="button" className="btn btn-light register-btn">
-            <i className="fa-regular fa-user"></i>
-          </Link>
+          <button className="userButton btn btn-light">
+            <i className="fa-regular fa-user rounded"></i>
+          </button>
         </div>
       </div>
     </nav>

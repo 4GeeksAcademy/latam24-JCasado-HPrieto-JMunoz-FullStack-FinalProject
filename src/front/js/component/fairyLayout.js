@@ -11,9 +11,9 @@ const FairyLayout = () => {
 
         <>
             <FairyNavbar />
-        <div className="fairyBody">
-            <Outlet />
-        </div>    
+            <div className="fairyBody">
+                <Outlet />
+            </div>
             <FairyFooter />
         </>
     )

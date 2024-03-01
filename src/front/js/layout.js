@@ -6,6 +6,7 @@ import injectContext from "./store/appContext";
 
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
+import AuthorizatioLayaout from "./component/authorizationLayout";
 
 //------------------------------------------------------------------------------------------------------
 import ClientLayout from "./component/clientLayout";
@@ -37,7 +38,7 @@ const Layout = () => {
         <ScrollToTop>
 
           <Routes>
-            <Route>
+            <Route element={<AuthorizatioLayaout />}>
               <Route element={<Login />} path="/" />
               <Route element={<Register />} path="/register" />
             </Route>

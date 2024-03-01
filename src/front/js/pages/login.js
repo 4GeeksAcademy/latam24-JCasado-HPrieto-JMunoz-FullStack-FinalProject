@@ -25,8 +25,8 @@ export const Login = () => {
 
   return (
 
-    <Container className="main-container">
-      <div className="login mt-4 p-0">
+    <Container className="py-4">
+      <div className="login p-4">
         <div>
           <div className="image-login mt-3">
             <img

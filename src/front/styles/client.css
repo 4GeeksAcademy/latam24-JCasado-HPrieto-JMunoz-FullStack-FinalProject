@@ -1,4 +1,5 @@
 
-body {
+.clientBody {
     background-color: #faf2fdff;
+    min-height: 60vh;
   }

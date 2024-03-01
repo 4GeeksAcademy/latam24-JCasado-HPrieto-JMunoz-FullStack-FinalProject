@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../../store/appContext";
 import { Button, Container, Row, Col } from 'react-bootstrap';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import FairyOptionsCard from "../../component/fairyOptionsCard"
 import img1Facial from "../../../img/1.png";
 import img2HairCut from "../../../img/2.png";
@@ -15,6 +15,7 @@ import map from "../../../img/map.png";
 
 
 const FairyHome = () => {
+
 
     const { store } = useContext(Context);
 
@@ -42,8 +43,17 @@ const FairyHome = () => {
 
         <>
             <div className="FairyHome">
-                <Container fluid className="main-container">
-                    <h4 className="mx-3 mt-5 mb-3"><strong>Next Appointments</strong></h4>
+                <Container fluid className="main-container mt-4">
+                    <div className="container d-flex justify-content-center">
+                        <div>
+                            <h2 className="fairyHomegretting">Ok fairy, let's spread some beauty today!</h2><br />
+                            <div className="d-flex justify-content-center">
+                                <Link to="/client/request" className="findClientButton btn text-light mb-2">Find a new client now</Link>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 className="mx-3 mt-4 mb-3"><strong>Next Appointments</strong></h4>
 
                     <div className="card">
                         <div className="nextAppointment card-body">
@@ -124,7 +134,7 @@ const FairyHome = () => {
                     </div>
 
                     <Row className="mt-4">
-                        <h4 className="mx-3 mb-3"><strong>Services</strong></h4>
+                        <h4 className="mx-3 mb-3 mt-4"><strong>Services</strong></h4>
                         {store.services.map((service, index) => (
                             <Col md={4} onClick={() => navigate(`/fairy/fairy-products/${service.id}`)} key={index} className="mb-4  d-flex justify-content-center ">
                                 <div className={`card w-75 ${selectedService === service ? 'selected' : ''}`} role="button" >
@@ -136,7 +146,7 @@ const FairyHome = () => {
                             </Col>
                         ))}
                     </Row>
-                    <h4 className="mx-3 mb-3"><strong>Options</strong></h4>
+                    <h4 className="mx-3 mb-3 mt-4"><strong>Options</strong></h4>
                     <FairyOptionsCard />
 
                 </Container>

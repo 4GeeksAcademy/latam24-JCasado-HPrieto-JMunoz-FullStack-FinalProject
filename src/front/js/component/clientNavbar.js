@@ -16,18 +16,6 @@ export const ClientNavbar = () => {
 
   }, [store.token]);
 
-  const handleClick = () => {
-
-    if (store.token) {
-
-      actions.logOut();
-
-    } else {
-
-      navigate("/login");
-    }
-  };
-
   return (
 
     <nav className="client-navbar">
@@ -37,7 +25,7 @@ export const ClientNavbar = () => {
             className="navbar-img mx-3"
             role="button"
             src={tremyIsotipo}
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/client/home")}
             alt="Tremy Isotipo"
           />
 
@@ -47,19 +35,15 @@ export const ClientNavbar = () => {
         <div className="d-flex align-items-center">
           {store.token && (
             <>
-              <button className="btn mr-3">
+              <button className="notificationBell btn mr-3">
                 <i className="fa-regular fa-bell"></i>
               </button>
             </>
           )}
 
-          {!store.token && (
-            <Link to="/login" role="button" className="btn btn-light btn-log mr-3">
-            </Link>
-          )}
-          <Link to="/register" role="button" className="btn btn-light register-btn">
+          <button className="userButton btn btn-light">
             <i className="fa-regular fa-user"></i>
-          </Link>
+          </button>
         </div>
       </div>
     </nav>

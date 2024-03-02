@@ -69,6 +69,31 @@ const Payment = () => {
     }
 
 
+    const onApprove = async (data) => {
+
+        console.log(data);
+
+        const response = await fetch(
+
+            process.env.BACKEND_URL + "/api/create/order",
+
+            {
+                method: 'POST',
+                headers: {
+                    "Authorization": `Bearer ${store.token}`,
+                    "Content-type": "application/json"
+                },
+
+                body: JSON.stringify({ payment_confirmation: data.paymentId, fairy_id: params.id, price: total, items: products })
+
+            }
+
+        )
+
+        console.log(response);
+    }
+
+
     useEffect(() => {
 
         getFairyById();
@@ -91,6 +116,7 @@ const Payment = () => {
 
             console.log(JSON.parse(localProducts));
         }
+
     }, []);
 
     return (
@@ -116,7 +142,7 @@ const Payment = () => {
 
             <Card className="mt-4">
                 <Card.Body>
-                    <Card.Title className="text-center">Payment Information</Card.Title>
+                    <Card.Title className="text-center mt-5">Payment Information</Card.Title>
                     <Form.Label className="fw-bold">Voucher</Form.Label>
                     <Form.Group controlId="formVoucher" className="mb-2 d-flex gap-2 align-items-center">
                         <Form.Control type="text" placeholder="Enter voucher code" value={voucher} onChange={(e) => setVoucher(e.target.value)} />
@@ -126,14 +152,18 @@ const Payment = () => {
                     <Form.Group controlId="formPaymentMethod">
                         <h4 className="text-center mt-4">Total</h4>
                         <h2 className="text-center mb-3">${total}</h2>
-                        <PayPalScriptProvider options={{ clientId: process.env.PAYPAL_CLIENT_ID }}>
-                            <PayPalButtons createOrder={createOrder} style={{ layout: "horizontal" }} />
-                        </PayPalScriptProvider>
+
+                        <div className="paypalButtonContainer">
+                            <PayPalScriptProvider options={{ clientId: process.env.PAYPAL_CLIENT_ID }}>
+                                <PayPalButtons createOrder={createOrder} onApprove={onApprove} style={{ layout: "horizontal" }} />
+                            </PayPalScriptProvider>
+                        </div>
                     </Form.Group>
                 </Card.Body>
             </Card>
         </Container>
     );
 };
+
 
 export default Payment;

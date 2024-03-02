@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 import injectContext from "./store/appContext";
+// import { ToastContainer } from "react-toastify";
 
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
@@ -19,7 +20,7 @@ import Payment from "./pages/clientsPages/payment"
 import FairyLayout from "./component/fairyLayout";
 import FairyHome from "./pages/fairyPages/fairyHome";
 import FairyMenuView from "./pages/fairyPages/fairyMenuView";
-import { ClientsRequest } from "./pages/fairyPages/clientsRequest";
+import ClientsRequest from "./pages/fairyPages/clientsRequest";
 
 
 
@@ -36,6 +37,7 @@ const Layout = () => {
     <div>
       <BrowserRouter basename={basename}>
         <ScrollToTop>
+          {/* <ToastContainer /> */}
 
           <Routes>
             <Route element={<AuthorizatioLayaout />}>

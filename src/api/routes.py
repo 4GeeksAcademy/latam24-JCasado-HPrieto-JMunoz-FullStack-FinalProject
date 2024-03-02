@@ -1,4 +1,4 @@
-from api.models import db, User, Product, Services, Review, FairyProducts, ServiceCategories
+from api.models import db, User, Product, Services, Review, FairyProducts, ServiceCategories, Orders, OrderProducts
 from flask import Flask, request, jsonify, Blueprint, current_app
 from api.utils import APIException
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
@@ -367,3 +367,55 @@ def create_paypal_order():
         return jsonify({"order_id":order_data["id"]})
     
     return jsonify(response.json()), response.status_code
+
+
+@api.route("/create/order", methods=['POST'])
+@jwt_required()
+def createOrder():
+
+    body = request.get_json()
+    user = User.query.filter_by(email=get_jwt_identity()).one_or_none()
+    items = body.get("items", None) 
+    fairy_id = body.get("fairy_id", None)
+    price = body.get("price", None)
+    payment_confirmation = body.get("payment_confirmation", None)
+
+    new_order = Orders(price=price, payment_confirmation=payment_confirmation, fairy_id=fairy_id, client_id=user.id)
+
+    db.session.add(new_order)
+    db.session.commit()
+    db.session.refresh(new_order) 
+
+    for item in items: 
+
+        print(item)
+
+        new_order_product = OrderProducts(product_id=item["id"], order_id=new_order.id)
+
+        db.session.add(new_order_product)
+        db.session.commit()
+
+    return jsonify(new_order.serialize())
+
+
+
+# -------------------------------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------------------------
+# Select Customer Order (Select Customer):
+
+
+
+@api.route("/client/requests")
+@jwt_required()
+def client_requests():
+
+    email = get_jwt_identity()
+    user = User.query.filter_by(email=email).first()
+
+    if user is None:
+        return {"message": "User not found"}, 401
+    
+    clients = Orders.query.filter_by(fairy_id=user.id).all()
+    clients = list(map(lambda item: item.serialize_clients_and_products(), clients))
+
+    return jsonify(clients), 200

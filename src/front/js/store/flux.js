@@ -248,6 +248,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 
 				const response = await fetch(process.env.BACKEND_URL + "/api/add_product_to_user/", {
+
 					method: "POST",
 					headers: {
 						"Content-type": "application/json",
@@ -263,14 +264,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (response.ok) {
 
 					return true;
-
 				}
 
 				return false;
-
 			}
+		},
 
-		}
+
+
+		// ---------------------------------------------------------------------------------------------------------------------------------------
+			// Client Orders / Select Client:
+
+			
+			getClients: async (clients) => {
+
+			const response = await fetch(process.env.BACKEND_URL + "/api/client/request" + clients)
+
+			const data = await response.json()
+
+			return data
+		},
 	}
 };
 

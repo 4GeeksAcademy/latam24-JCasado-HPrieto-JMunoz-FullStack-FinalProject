@@ -63,6 +63,17 @@ class User(db.Model):
             "avatar": self.avatar,
             "role": self.role.name
         }
+    
+    def serialize_order(self):
+
+        return {
+            "id": self.id,
+            "name": self.name,
+            "surname": self.surname,
+            "email": self.email,
+            "address": self.address, 
+            "phone": self.phone,
+        }
 
 
 class Services (db.Model):
@@ -173,10 +184,12 @@ class OrderProducts (db.Model):
 
     def serialize(self):
         
+        product = Product.query.get(self.product_id)
+
         return {
 
             "id": self.id,
-            "product_id": self.product_id,
+            "product": product.serialize(),
             "order_id": self.order_id
         }
     
@@ -193,12 +206,12 @@ class RatingEnum(Enum):
 
 class Orders(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.String(256), nullable=False)
+    price = db.Column(db.Integer)
+    payment_confirmation = db.Column(db.String(300))
+    confirmed = db.Column(db.Boolean, default=False)
     client_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     fairy_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    product_id = db.Column(db.Integer, db.ForeignKey('FairySelectedProducts.id'), nullable=False)
-    rating = db.Column(db.Enum(RatingEnum), nullable=False)
+    # rating = db.Column(db.Enum(RatingEnum), nullable=False)
     
     fairy = db.relationship("User", foreign_keys=[fairy_id])
     client = db.relationship("User", foreign_keys=[client_id]) 
@@ -206,20 +219,37 @@ class Orders(db.Model):
 
     def __repr__(self):
 
-        return f'<Products {self.id}>'
+        return f'<Orders {self.id}>'
     
     def serialize(self):
-
+ 
         return {
 
             "id": self.id,
-            "name": self.name,
-            "description": self.description,
-            "user_id": self.user_id,
-            "product": self.product,
-            "service_id": self.service_id
+            "price": self.price,
+            "payment_confirmation": self.payment_confirmation,
+            "confirmed": self.confirmed,
+            "client_id": self.client_id,
+            "fairy_id": self.fairy_id
         }
 
+    def serialize_clients_and_products(self):
+        
+        client = User.query.get(self.client_id)
+        products = OrderProducts.query.filter_by(order_id=self.id).all()
+        print(products)
+        
+        products = list(map(lambda item: item.serialize(), products))
+
+        return {
+            "id": self.id,
+            "price": self.price,
+            "payment_confirmation": self.payment_confirmation,
+            "confirmed": self.confirmed,
+            "client": client.serialize_order(),
+            "products": products
+        }
+    
 
 
 class Review(db.Model):

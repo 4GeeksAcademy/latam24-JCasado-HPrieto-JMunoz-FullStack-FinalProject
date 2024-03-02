@@ -2,20 +2,21 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Context } from '../../store/appContext';
+// import { toast } from "react-toastify";
 
 
 const FairyMenuView = () => {
-
+  
   const { store, actions } = useContext(Context)
-
+  
   const [selectedProducts, setSelectedProducts] = useState([])
 
   const navigate = useNavigate()
-
+  
   const handleNavigation = async () => {
 
     const response = await actions.addProductToFairy(selectedProducts)
-
+    
     if (response) {
 
       navigate("/fairy/home");
@@ -40,7 +41,10 @@ const FairyMenuView = () => {
     setServices(response)
   }
 
+  // const notify = () => toast.success("Products added to your profile successfully!");
+  
   const selectProduct = (product) => {
+
 
     setSelectedProducts([...selectedProducts, product])
   }
@@ -52,7 +56,7 @@ const FairyMenuView = () => {
   }, [])
 
   return (
-
+    
     <Container fluid className="main-container">
       <div className="container mb-2 mt-5">
         <h5 className="productSelectText">Please select the line of services you are willing to provide:</h5>

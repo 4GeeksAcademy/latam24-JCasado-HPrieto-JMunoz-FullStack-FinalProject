@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import tremyIsotipo from "../../img/tremy-isotipo.png";
 
@@ -44,6 +44,10 @@ export const FairyNavbar = () => {
           <button className="userButton btn btn-light">
             <i className="fa-regular fa-user rounded"></i>
           </button>
+
+          <Link to="/" className="btn">
+            <i className="fa-solid fa-right-from-bracket"></i>
+          </Link>
         </div>
       </div>
     </nav>

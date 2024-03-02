@@ -177,14 +177,14 @@
 
 .icon_sparkle {
   width: 35px;
-  color: #bd3ee0ff;
+  color: rgb(224, 62, 183);
   flex: 0 0 auto;
   margin: 0 10px;
 }
 
 .icon_crown {
   width: 35px;
-  color: #bd3ee0ff;
+  color: rgb(224, 62, 183);
   flex: 0 0 auto;
   margin: 0 10px;
 }
@@ -203,6 +203,7 @@
   position: fixed;
   bottom: 0px;
   width: 100%;
+  z-index: 100;
 }
 
 .icons {
@@ -300,6 +301,14 @@
   margin: 0%;
 }
 
+.eta{
+  color: #1DD75BFF ;
+}
+
+.star{
+  color: rgb(224, 62, 183);
+}
+
 .selectFairybtn {
   background-color: #3ebde0ff;
   border-color: white;
@@ -309,6 +318,7 @@
   background-color: rgb(104, 222, 255);
   border-color: White;
 }
+
 
 /* Facial Promo 2 */
 
@@ -525,7 +535,7 @@ button {
 
 .fairyHomegretting{
   margin-top: 5%;
-  
+  color: rgb(224, 62, 183);
 }
 
 .findClientButton{
@@ -602,7 +612,7 @@ button {
   position: fixed;
   bottom: 0px;
   width: 100%;
-  z-index: 1;
+  z-index: 100;
 }
 
 .message-icon {
@@ -653,7 +663,7 @@ margin-left: 25%;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   margin-bottom: -1px;
-  color: #bd3ee0ff;
+  color: rgb(224, 62, 183);
 }
 
 .pedicure_heading {
@@ -663,5 +673,32 @@ margin-left: 25%;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   margin-bottom: -1px;
-  color: #bd3ee0ff;
+  color: rgb(224, 62, 183);
+}
+
+
+
+/* -------------------------------------------------------------------------------------------------*/
+/*ClientRequestView*/
+
+
+.selectClientbtn {
+  background-color: #3ebde0ff;
+  border-color: white;
+}
+
+.declineClientbtn {
+  background-color: rgb(224, 62, 183);
+  border-color: white;
+}
+
+.aboutFairybtn{
+  color: rgb(224, 62, 183);
+  font-weight: bold;
+}
+
+.orderProductList{
+  background-color: #ebc5f6ff;
+  color: black;
+  
 }

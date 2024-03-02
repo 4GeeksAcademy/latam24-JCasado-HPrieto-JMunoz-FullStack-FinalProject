@@ -6,7 +6,7 @@ export const ClientFooter = () => (
 
   <footer className="clientFooter container-fluid mt-auto py-3 text-center">
     <div className="d-flex justify-content-center">
-      <Link to="/">
+      <Link to="/client/home">
         <button className="btn btn-home">
           <i className="fa-solid fa-house home-icon"></i>
           <p className="home-text">Home</p>

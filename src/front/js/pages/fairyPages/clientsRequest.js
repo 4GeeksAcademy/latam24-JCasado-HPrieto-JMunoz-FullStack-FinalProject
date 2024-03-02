@@ -2,37 +2,43 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from '../../store/appContext';
 import { Card, Button, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import facialPromo2 from "../../../img/facialPromo2.png";
 
 
-const UserCard = ({ user }) => {
+const UserCard = ({ order }) => {
+
+    console.log(order)
 
     const navigate = useNavigate();
 
     const handleSelect = () => {
 
-        navigate(`/fairy/home ${user.id}`);
+        // navigate(`/fairy/home ${user.id}`);
     };
 
     return (
 
         <Card className="d-flex justify-content-center mt-4 mx-3" style={{ width: "18rem" }}>
-            <Card.Img variant="top" src={user.avatar} />
+            {/* <Card.Img variant="top" src={order.avatar} /> */}
             <Card.Body>
-                <Card.Title>{user.name} {user.surname}</Card.Title>
+                <div className="d-flex justify-content-between">
+                    <Card.Title>{order.client.name} {order.client.surname}</Card.Title>
+                    <p className="aboutFairybtn ml-auto" role="button">About</p>
+                </div>
                 <Card.Text>
-                    {user.professional_title}<br />
+                    {order.client.address}<br />
 
-                    <strong>{user.rating}</strong><i className="fa-regular fa-star mb-1"></i><br />
-
-                    <p className="AvailableTag">Available</p><br />
-
-                    <strong>ETA:</strong> {user.ETA}20 mins<br />
+                    <strong>{order.client.rating}</strong><i className="fa-regular fa-star mb-1"></i><br />
+                    <strong>ETA:</strong> {order.client.ETA}20 mins<br />
                 </Card.Text>
 
+                <ul className="list-group mb-1">{order.products.map((product) => (<li key={`${product.id}`} className="orderProductList list-group-item">{product.product.name}</li>))}</ul>
+                <div className="d-flex justify-content-between mx-3">
+                    <strong><p>Total</p></strong>
+                    <Card.Text><strong>${order.price} </strong></Card.Text>
+                </div>
                 <div className="d-flex justify-content-between">
-                    <Button onClick={handleSelect} className="selectFairybtn mr-auto">Select</Button>
-                    <p className="aboutFairybtn ml-auto mt-3" role="button">About</p>
+                    <Button onClick={handleSelect} className="selectClientbtn mr-auto">Accept</Button><br />
+                    <Button onClick={handleSelect} className="declineClientbtn mr-auto">Decline</Button>
                 </div>
             </Card.Body>
         </Card>
@@ -50,9 +56,13 @@ const GetClients = () => {
 
     const selectedClients = async () => {
 
-        const products = localStorage.getItem("products");
+        const clients = await actions.getClients();
 
-        if (!products) navigate("/");
+        console.log(clients)
+
+        if (clients.msg) return
+
+        setUsers(clients);
 
     }
 
@@ -65,20 +75,21 @@ const GetClients = () => {
     }, []);
 
 
+
     return (
 
         <div className="main-container">
             <Container fluid>
                 <div className="d-flex flex-wrap">
-                    {users.map((user, index) => (
-                        <div key={index} className="mb-4 mr-3">
-                            <UserCard user={user} />
+                    {users.map((order, index) => (
+                        <div key={`${index}-${order.id}`} className="mb-4 mr-3">
+                            <UserCard order={order} />
                         </div>
                     ))}
                 </div>
 
                 <div className="mt-4 d-flex justify-content-center">
-                    
+
                 </div>
 
             </Container>

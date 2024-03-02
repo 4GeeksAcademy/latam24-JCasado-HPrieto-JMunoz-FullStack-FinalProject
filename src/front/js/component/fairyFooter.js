@@ -6,7 +6,7 @@ export const FairyFooter = () => (
   
   <footer className="fairyFooter container-fluid mt-auto py-3 text-center">
     <div className="d-flex justify-content-center">
-      <Link to="/">
+      <Link to="/fairy/home">
         <button className="btn btn-home">
           <i className="fa-solid fa-house home-icon"></i>
           <p className="home-text">Home</p>

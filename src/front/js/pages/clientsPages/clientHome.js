@@ -10,7 +10,7 @@ import img4Eyes from "../../../img/4.png";
 import img5Nails from "../../../img/5.png";
 import img6Wax from "../../../img/6.png";
 import facialPromo1 from "../../../img/facialPromo1.png";
-import avatar from "../../../img/ororoMunroe.png";
+import avatar from "../../../img/barbaraGordon.png";4
 
 const ClientHome = () => {
 
@@ -21,12 +21,12 @@ const ClientHome = () => {
     const navigate = useNavigate();
 
     const serviceImages = {
-        1: img5Nails,
-        2: img4Eyes,
-        3: img2HairCut,
-        4: img1Facial,
-        5: img3Makeup,
-        6: img6Wax
+        "manicure-&-pedicure": img5Nails,
+        "lashes-&-eyebrows": img4Eyes,
+        "hairdressing": img2HairCut,
+        "facial-treatments": img1Facial,
+        "makeup": img3Makeup,
+        "waxing": img6Wax
     };
 
     const handleServiceSelection = (service) => {
@@ -41,8 +41,8 @@ const ClientHome = () => {
         <>
             <div className="clientHome">
                 <Container fluid className="main-container">
-                    <div className="mt-4 d-flex justify-content-center">
-                        <div className="row container">
+                    <div className="d-flex justify-content-center">
+                        <div className="row container mt-4">
                             <div className="d-flex justify-content-end col-6">
                                 <div className="mt-5">
                                     <h1 className="facial_care card-title text-info">Facial Care Treatment</h1>
@@ -63,7 +63,7 @@ const ClientHome = () => {
                             <Col md={4} onClick={() => navigate(`/products/${service.id}`)} key={index} className="mb-4  d-flex justify-content-center ">
                                 <div className={`card w-75 ${selectedService === service ? 'selected' : ''}`} role="button" >
                                     <div className="card-body d-flex gap-3 align-items-center">
-                                        <img src={serviceImages[service.id]} alt={`Service ${service.id}`} />
+                                        <img src={serviceImages[service.name.replaceAll(" ","-").toLowerCase()]} alt={`Service ${service.id}`} />
                                         <h5>{service.name}</h5>
                                     </div>
                                 </div>

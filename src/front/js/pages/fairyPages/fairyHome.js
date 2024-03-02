@@ -10,7 +10,7 @@ import img4Eyes from "../../../img/4.png";
 import img5Nails from "../../../img/5.png";
 import img6Wax from "../../../img/6.png";
 import avatar from "../../../img/selinaKyle.png";
-import avatar2 from "../../../img/barbaraGordon.png";
+import avatar2 from "../../../img/ororoMunroe.png";
 import map from "../../../img/map.png";
 
 
@@ -24,13 +24,14 @@ const FairyHome = () => {
     const navigate = useNavigate();
 
     const serviceImages = {
-        1: img5Nails,
-        2: img4Eyes,
-        3: img2HairCut,
-        4: img1Facial,
-        5: img3Makeup,
-        6: img6Wax
+        "manicure-&-pedicure": img5Nails,
+        "lashes-&-eyebrows": img4Eyes,
+        "hairdressing": img2HairCut,
+        "facial-treatments": img1Facial,
+        "makeup": img3Makeup,
+        "waxing": img6Wax
     };
+
 
     const handleServiceSelection = (service) => {
 
@@ -43,7 +44,7 @@ const FairyHome = () => {
 
         <>
             <div className="FairyHome">
-                <Container fluid className="main-container mt-4">
+                <Container fluid className="main-container">
                     <div className="container d-flex justify-content-center">
                         <div>
                             <h2 className="fairyHomegretting">Ok fairy, let's spread some beauty today!</h2><br />
@@ -139,7 +140,7 @@ const FairyHome = () => {
                             <Col md={4} onClick={() => navigate(`/fairy/fairy-products/${service.id}`)} key={index} className="mb-4  d-flex justify-content-center ">
                                 <div className={`card w-75 ${selectedService === service ? 'selected' : ''}`} role="button" >
                                     <div className="card-body d-flex gap-3 align-items-center">
-                                        <img src={serviceImages[service.id]} alt={`Service ${service.id}`} />
+                                        <img src={serviceImages[service.name.replaceAll(" ", "-").toLowerCase()]} alt={`Service ${service.id}`} />
                                         <h5>{service.name}</h5>
                                     </div>
                                 </div>

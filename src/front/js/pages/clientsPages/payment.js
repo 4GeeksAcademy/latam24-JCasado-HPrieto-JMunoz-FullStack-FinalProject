@@ -122,7 +122,7 @@ const Payment = () => {
     return (
 
         <Container className="main-container">
-            <h2 className="text-center m-2">Payment Confirmation</h2>
+            <h2 className="text-center">Payment Confirmation</h2>
             <Card className="d-flex">
                 <Card.Body>
                     <Card.Title>Service Details</Card.Title>
@@ -135,7 +135,7 @@ const Payment = () => {
                             })}
                     </div>
                     <p>
-                        <strong>Fairy:</strong> {fairy && `${fairy.name} ${fairy.surname}`}
+                        <strong>Fairy:</strong><span className="fairyNamePayment"> {fairy && `${fairy.name} ${fairy.surname}`}</span> 
                     </p>
                 </Card.Body>
             </Card>

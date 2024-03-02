@@ -267,23 +267,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 
 				return false;
-			}
-		},
+			},
+
 
 
 
 		// ---------------------------------------------------------------------------------------------------------------------------------------
-			// Client Orders / Select Client:
+		// Client Orders / Select Client:
 
-			
-			getClients: async (clients) => {
 
-			const response = await fetch(process.env.BACKEND_URL + "/api/client/request" + clients)
+		getClients: async () => {
 
-			const data = await response.json()
+				const store = getStore()
 
-			return data
-		},
+				const response = await fetch(process.env.BACKEND_URL + "/api/client/requests",
+
+					{
+						headers: {
+
+							"Authorization": `Bearer ${store.token}`
+						}
+					})
+
+				const data = await response.json()
+
+				return data
+			},
+		}
 	}
 };
 

@@ -23,11 +23,11 @@ const UserCard = ({ user }) => {
                 <Card.Text>
                     {user.professional_title}<br />
 
-                    <strong>{user.rating}</strong><i className="fa-regular fa-star mb-1"></i><br />
+                    <strong>{user.rating}</strong><i className="star fa-regular fa-star mb-1"></i><br />
 
                     <p className="AvailableTag">Available</p><br />
 
-                    <strong>ETA:</strong> {user.ETA}20 mins<br />
+                    <strong>ETA:</strong><span className="eta"> {user.ETA}20 mins</span><br />
                 </Card.Text>
 
                 <div className="d-flex justify-content-between">

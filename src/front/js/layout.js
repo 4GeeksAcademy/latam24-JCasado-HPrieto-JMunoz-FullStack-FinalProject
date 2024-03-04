@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 import injectContext from "./store/appContext";
-// import { ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
@@ -21,7 +21,7 @@ import FairyLayout from "./component/fairyLayout";
 import FairyHome from "./pages/fairyPages/fairyHome";
 import FairyMenuView from "./pages/fairyPages/fairyMenuView";
 import ClientsRequest from "./pages/fairyPages/clientsRequest";
-
+// import FairyProfile from "./pages/fairyPages/fairyProfile"; 
 
 
 const Layout = () => {
@@ -37,7 +37,7 @@ const Layout = () => {
     <div>
       <BrowserRouter basename={basename}>
         <ScrollToTop>
-          {/* <ToastContainer /> */}
+          <ToastContainer />
 
           <Routes>
             <Route element={<AuthorizatioLayaout />}>
@@ -56,6 +56,7 @@ const Layout = () => {
               <Route element={<FairyHome />} path="/fairy/home" />
               <Route element={<FairyMenuView />} path="/fairy/fairy-products/:categoryId" />
               <Route element={<ClientsRequest />} path="/client/request" />
+              {/* <Route element={<FairyProfile />} path="/fairy/profile" /> */}
             </Route>
 
             <Route element={<h1>Not found!</h1>} />

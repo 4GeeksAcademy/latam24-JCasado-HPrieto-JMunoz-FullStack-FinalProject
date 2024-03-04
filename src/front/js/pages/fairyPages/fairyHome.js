@@ -70,7 +70,8 @@ const FairyHome = () => {
                                         <br />
                                     </p>
                                     <p className="productsAppointmentCard">
-                                        Acrylic Manicure <br./>?.flex align-items-center gap-1">
+                                        Acrylic Manicure <br/> Semi Permanent Pedicure</p>
+                                    <p className="time-text d-flex align-items-center gap-1">
                                         9725 NW 52 st #410 Gotham City 33178 </p>
                                 </Col>
                                 <Col md={3}>

@@ -63,7 +63,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				catch (error) {
 
-					console.log(error)
+					console.log(error);
 				}
 			},
 
@@ -293,6 +293,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				return data
 			},
+
+
+
+
+		// ---------------------------------------------------------------------------------------------------------------------------------------
+		// Client Profile:
+
+
+		// getClient: async () => {
+
+		// 	const store = getStore()
+
+		// 	const response = await fetch(process.env.BACKEND_URL + "/api/client/profile",
+
+		// 		{
+		// 			headers: {
+
+		// 				"Authorization": `Bearer ${store.token}`
+		// 			}
+		// 		})
+
+		// 	const data = await response.json()
+
+		// 	return data
+		// },
+
 		}
 	}
 };

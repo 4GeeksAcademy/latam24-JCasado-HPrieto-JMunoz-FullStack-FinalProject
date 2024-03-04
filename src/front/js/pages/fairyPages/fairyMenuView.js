@@ -2,33 +2,16 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Context } from '../../store/appContext';
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 
 const FairyMenuView = () => {
-  
+
   const { store, actions } = useContext(Context)
-  
+
   const [selectedProducts, setSelectedProducts] = useState([])
 
   const navigate = useNavigate()
-  
-  const handleNavigation = async () => {
-
-    const response = await actions.addProductToFairy(selectedProducts)
-    
-    if (response) {
-
-      navigate("/fairy/home");
-
-    } else {
-
-      alert("error");
-
-    }
-
-    console.log(selectedProducts);
-  }
 
   const params = useParams()
 
@@ -41,10 +24,7 @@ const FairyMenuView = () => {
     setServices(response)
   }
 
-  // const notify = () => toast.success("Products added to your profile successfully!");
-  
   const selectProduct = (product) => {
-
 
     setSelectedProducts([...selectedProducts, product])
   }
@@ -52,14 +32,29 @@ const FairyMenuView = () => {
   useEffect(() => {
 
     getProducts()
-
   }, [])
 
-  return (
+  const handleNavigation = async () => {
     
-    <Container fluid className="main-container">
-      <div className="container mb-2 mt-5">
-        <h5 className="productSelectText">Please select the line of services you are willing to provide:</h5>
+    const response = await actions.addProductToFairy(selectedProducts)
+
+    if (response) {
+
+      navigate("/fairy/home");
+
+      toast.success("Products added to your profile successfully!");
+
+    } else {
+
+      alert("error");
+    }
+  }
+
+  return (
+
+    <div className="">
+      <div className="container d-flex justify-content-center">
+        <h5 className="productSelectText mt-5">Please select the line of services you are willing to provide:</h5>
       </div>
       <Row className="justify-content-center mt-5">
         {services.map((service) => (
@@ -87,7 +82,7 @@ const FairyMenuView = () => {
           <Button variant="info" className='text-white' onClick={() => handleNavigation()}>Confirm Selection</Button>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 };
 

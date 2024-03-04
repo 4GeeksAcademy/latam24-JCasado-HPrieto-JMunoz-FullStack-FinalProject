@@ -41,15 +41,39 @@ export const ClientNavbar = () => {
             </>
           )}
 
-          <button className="userButton btn btn-light">
-            <i className="fa-regular fa-user"></i>
-          </button>
-
-          <Link to="/" className="btn">
-            <i className="fa-solid fa-right-from-bracket"></i>
-          </Link>
+          <div className="dropdown">
+            <button className="userButton btn btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i className="fa-regular fa-user rounded"></i>
+            </button>
+            <ul className="clientDropdown dropdown-menu">
+              <li><Link to="/fairy/details" className="dropdown-item text-secondary btn">User Profile</Link></li>
+              <li><button className="dropdown-item text-secondary" type="button">Account Details</button></li>
+              <li><button className="dropdown-item text-secondary" type="button">Purchase History</button></li>
+              <li><button className="dropdown-item text-secondary" type="button">Get Help</button></li>
+              <li><p className="clientDropdownLine">________________________</p></li>
+              <li><Link to="/" className="dropdown-item btn">Log Out <i className="fa-solid fa-right-from-bracket"></i>
+              </Link></li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
   );
 };
+
+
+
+{/* <div className="dropdown">
+<button className="userButton btn btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <i className="fa-regular fa-user rounded"></i>
+</button>
+<ul className="clientDropdown-menu">
+  <li><Link to="/fairy/details" className="dropdown-item btn">User Profile</Link></li>
+  <li><button className="dropdown-item" type="button">Account Details</button></li>
+  <li><button className="dropdown-item" type="button">Purchase History</button></li>
+  <li><button className="dropdown-item" type="button">Get Help</button></li>
+  <li><p className="clientDropdownLine">________________________</p></li>
+  <li><Link to="/" className="dropdown-item btn">Log Out <i className="fa-solid fa-right-from-bracket"></i>
+  </Link></li>
+</ul>
+</div> */}

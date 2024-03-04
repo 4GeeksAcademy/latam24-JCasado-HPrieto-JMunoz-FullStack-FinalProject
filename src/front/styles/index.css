@@ -137,6 +137,15 @@
   border-radius: 100%;
 }
 
+.clientDropdownLine{
+  color: rgb(104, 222, 255);
+  margin: 0%;
+}
+
+.clientDropdown{
+  border: 1px solid #ebc5f6ff;
+}
+
 
 /* Client Home Services Cards */
 
@@ -653,10 +662,14 @@ button {
   border-radius: 100%;
 }
 
-.serviceBtn {
-  background-color: #ebc5f6ff;
-  border-color: white;
-  border-radius: 1%;
+
+.fairyDropdownLine{
+  color: #ebc5f6ff;
+  margin: 0%;
+}
+
+.fairydropdown{
+  border: 1px solid rgb(104, 222, 255);
 }
 
 
@@ -753,7 +766,8 @@ button {
 
 
 .productSelectText{
-margin-left: 25%;
+color: rgb(224, 62, 183); 
+font-weight: 700;
 }
 
 .manicure_heading {
@@ -776,6 +790,11 @@ margin-left: 25%;
   color: rgb(224, 62, 183);
 }
 
+.serviceBtn {
+  background-color: #ebc5f6ff;
+  border-color: white;
+  border-radius: 1%;
+}
 
 
 /* -------------------------------------------------------------------------------------------------*/

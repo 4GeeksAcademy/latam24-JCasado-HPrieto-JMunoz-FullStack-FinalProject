@@ -419,3 +419,23 @@ def client_requests():
     clients = list(map(lambda item: item.serialize_clients_and_products(), clients))
 
     return jsonify(clients), 200
+
+
+
+# -------------------------------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------------------------
+# View User Profile:
+
+
+
+# @api.route("/client/profile")
+# @jwt_required()
+# def client_requests():
+
+#     email = get_jwt_identity()
+#     user = User.query.filter_by(email=email).first()
+
+#     if user is None:
+#         return {"message": "User not found"}, 401
+
+#     return jsonify(user), 200

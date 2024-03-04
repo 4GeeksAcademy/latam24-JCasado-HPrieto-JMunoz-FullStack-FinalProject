@@ -339,6 +339,40 @@
   align-items: center;
 }
 
+.paymentTitle1{
+  color: #3ebde0ff;
+  font-weight: 700;
+}
+
+.paymentTitle2{
+  color: rgb(224, 62, 183);
+  font-weight: 700;
+  margin-top: 0%;
+}
+
+.paymentDetails{
+  color: #3ebde0ff;
+  font-weight: 600;
+}
+
+.paymentDetailsAvailable{
+  font-size: small;
+}
+
+.confirmOrderCard{
+  background-color: rgb(242, 226, 247);
+  border-color: rgb(242, 226, 247);
+}
+
+.voucherText{
+  font-size: medium;
+}
+
+.bigPayPalButton {
+  transform: scale(1.5);
+  margin-top: 10px;
+}
+
 
 
 /* -------------------------------------------------------------------------------------------------*/

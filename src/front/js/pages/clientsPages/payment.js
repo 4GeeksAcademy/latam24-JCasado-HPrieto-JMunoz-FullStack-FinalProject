@@ -122,40 +122,44 @@ const Payment = () => {
     return (
 
         <Container className="main-container">
-            <h2 className="text-center">Payment Confirmation</h2>
-            <Card className="d-flex">
+            <h3 className="paymentTitle1 text-center">Payment Confirmation</h3>
+            <Card className="confirmOrderCard d-flex">
                 <Card.Body>
-                    <Card.Title>Service Details</Card.Title>
+                    <Card.Title><h5 className="mb-2">Order Details</h5></Card.Title>
                     <div>
-                        <strong>Service:</strong>{" "}
-                        {products &&
-                            products.map((product) => {
-
-                                return <div key={product.id + product.name}>{product.name}</div>;
-                            })}
+                        <strong>Service: </strong>
+                        {products && products.map((product) => (
+                            <span className="paymentDetails" key={product.id + product.name}>{product.name}{" "}</span>
+                        ))}
                     </div>
                     <p>
-                        <strong>Fairy:</strong><span className="fairyNamePayment"> {fairy && `${fairy.name} ${fairy.surname}`}</span> 
+                        <strong>Fairy:</strong>
+                        <span className="paymentDetails"> {fairy && `${fairy.name} ${fairy.surname}`} </span>
+                        <span className="paymentDetailsAvailable">
+                            (available now <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="clock" style={{ width: '1em', height: '1em' }}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>)
+                        </span>
                     </p>
                 </Card.Body>
             </Card>
 
-            <Card className="mt-4">
+            <Card className="confirmOrderCard mt-4">
                 <Card.Body>
-                    <Card.Title className="text-center mt-5">Payment Information</Card.Title>
-                    <Form.Label className="fw-bold">Voucher</Form.Label>
+                    <Card.Title><h5 className="paymentTitle2 text-center mt-2 mb-2">Please confirm your oder!</h5></Card.Title>
+                    <div className="voucherText fw-bold mb-1">Apply Voucher</div>
                     <Form.Group controlId="formVoucher" className="mb-2 d-flex gap-2 align-items-center">
                         <Form.Control type="text" placeholder="Enter voucher code" value={voucher} onChange={(e) => setVoucher(e.target.value)} />
                         <Button variant="info text-white">Apply</Button>
                     </Form.Group>
 
                     <Form.Group controlId="formPaymentMethod">
-                        <h4 className="text-center mt-4">Total</h4>
-                        <h2 className="text-center mb-3">${total}</h2>
+                        <h4 className="totalText text-center mt-2">Total</h4>
+                        <h2 className="text-center mb-2">${total}</h2>
 
                         <div className="paypalButtonContainer">
                             <PayPalScriptProvider options={{ clientId: process.env.PAYPAL_CLIENT_ID }}>
-                                <PayPalButtons createOrder={createOrder} onApprove={onApprove} style={{ layout: "horizontal" }} />
+                                <PayPalButtons createOrder={createOrder} onApprove={onApprove} className="bigPayPalButton" style={{ layout: "horizontal" }} />
                             </PayPalScriptProvider>
                         </div>
                     </Form.Group>

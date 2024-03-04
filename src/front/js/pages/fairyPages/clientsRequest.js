@@ -8,11 +8,12 @@ const UserCard = ({ order }) => {
 
     console.log(order)
 
+    
     const navigate = useNavigate();
 
     const handleSelect = () => {
 
-        // navigate(`/fairy/home ${user.id}`);
+        navigate(`/fairy/home`);
     };
 
     return (
@@ -28,7 +29,7 @@ const UserCard = ({ order }) => {
                     {order.client.address}<br />
 
                     <strong>{order.client.rating}</strong><i className="fa-regular fa-star mb-1"></i><br />
-                    <strong>ETA:</strong> {order.client.ETA}20 mins<br />
+                    <strong>ETA:</strong><span className="eta"> {order.client.ETA}20 minutes</span> <br />
                 </Card.Text>
 
                 <ul className="list-group mb-1">{order.products.map((product) => (<li key={`${product.id}`} className="orderProductList list-group-item">{product.product.name}</li>))}</ul>

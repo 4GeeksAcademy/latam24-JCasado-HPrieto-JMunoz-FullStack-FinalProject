@@ -108,10 +108,10 @@ export const Register = () => {
             <label htmlFor="" className="form-label">State</label>
             <select className="form-select" aria-label="Default select example" name="address" onChange={handleChange}>
               <option>Pick a state</option>
-              <option value="Arizona">Arizona</option>
-              <option value="California">California</option>
-              <option value="Florida">Florida</option>
-              <option value="Wyoming">Wyoming</option>
+              <option value="Arizona">Gotham</option>
+              <option value="California">Metropolis</option>
+              <option value="Florida">Star City</option>
+              <option value="Wyoming">Central City</option>
             </select>
           </div>
 

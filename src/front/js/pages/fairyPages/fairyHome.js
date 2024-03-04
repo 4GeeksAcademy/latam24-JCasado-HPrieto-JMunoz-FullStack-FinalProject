@@ -56,12 +56,12 @@ const FairyHome = () => {
 
                     <h4 className="mx-3 mt-4 mb-3"><strong>Next Appointments</strong></h4>
 
-                    <div className="card">
+                    <div className="card" style={{ borderColor: 'rgb(194, 237, 249)' }}>
                         <div className="nextAppointment card-body">
                             <div className="d-flex align-items-center justify-content-center gap-3">
                                 <img src={avatar} alt="User Avatar" className="avatar-img" />
                                 <Col md={4}>
-                                    <h5 className="card-title mb-2">Selina Kyle</h5>
+                                    <h5 className="card-title mb-2">Barbara Gordon</h5>
                                     <p className="time-text d-flex align-items-center gap-1">
                                         10:02 AM
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="clock">
@@ -70,11 +70,11 @@ const FairyHome = () => {
                                         <br />
                                     </p>
                                     <p className="time-text d-flex align-items-center gap-1">
-                                        9725 NW 52 st #410 Miami FL 33178 </p>
+                                        9725 NW 52 st #410 Gotham City 33178 </p>
                                 </Col>
                                 <Col md={3}>
                                     <div className="button gap-2 d-flex justify-content-end">
-                                        <Button variant="success" className="button_whatsapp" >
+                                        <Button variant="whatsapp" className="button_whatsapp">
                                             <span> Chat </span>
                                             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 5000 5000" preserveAspectRatio="xMidYMid meet">
                                                 <g id="layer101" fill="#000000" stroke="none">
@@ -96,7 +96,7 @@ const FairyHome = () => {
                         </div>
                     </div>
 
-                    <div className="card mt-4">
+                    <div className="card mt-4" style={{ borderColor: 'rgb(194, 237, 249)' }}>
                         <div className="nextAppointment card-body">
                             <div className="d-flex align-items-center justify-content-center gap-3">
                                 <img src={avatar2} alt="User Avatar" className="avatar-img" />
@@ -111,11 +111,11 @@ const FairyHome = () => {
                                         <br />
                                     </p>
                                     <p className="time-text d-flex align-items-center gap-1">
-                                        9725 SW 51 st #215 Miami FL 33034 </p>
+                                        9725 SW 51 st #215 Gotham City 33034 </p>
                                 </Col>
                                 <Col md={3}>
                                     <div className="button gap-2 d-flex justify-content-end">
-                                        <Button variant="success" className="button_whatsapp" >
+                                        <Button variant="whatsapp" className="button_whatsapp">
                                             <span> Chat </span>
                                             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 5000 5000" preserveAspectRatio="xMidYMid meet">
                                                 <g id="layer101" fill="#000000" stroke="none">
@@ -138,8 +138,8 @@ const FairyHome = () => {
                         <h4 className="mx-3 mb-3 mt-4"><strong>Services</strong></h4>
                         {store.services.map((service, index) => (
                             <Col md={4} onClick={() => navigate(`/fairy/fairy-products/${service.id}`)} key={index} className="mb-4  d-flex justify-content-center ">
-                                <div className={`card w-75 ${selectedService === service ? 'selected' : ''}`} role="button" >
-                                    <div className="card-body d-flex gap-3 align-items-center">
+                                <div className={`card w-75 ${selectedService === service ? 'selected' : ''}`} role="button" style={{ borderColor: 'rgb(194, 237, 249)' }}>
+                                    <div className="fairyServicesCardBtn card-body d-flex gap-3 align-items-center">
                                         <img src={serviceImages[service.name.replaceAll(" ", "-").toLowerCase()]} alt={`Service ${service.id}`} />
                                         <h5>{service.name}</h5>
                                     </div>

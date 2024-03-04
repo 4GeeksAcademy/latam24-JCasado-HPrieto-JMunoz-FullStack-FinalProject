@@ -10,7 +10,7 @@ import img4Eyes from "../../../img/4.png";
 import img5Nails from "../../../img/5.png";
 import img6Wax from "../../../img/6.png";
 import facialPromo1 from "../../../img/facialPromo1.png";
-import avatar from "../../../img/barbaraGordon.png";4
+import avatar from "../../../img/barbaraGordon.png"; 4
 
 const ClientHome = () => {
 
@@ -41,12 +41,13 @@ const ClientHome = () => {
         <>
             <div className="clientHome">
                 <Container fluid className="main-container">
+
                     <div className="d-flex justify-content-center">
                         <div className="row container mt-4">
                             <div className="d-flex justify-content-end col-6">
                                 <div className="mt-5">
-                                    <h1 className="facial_care card-title text-info">Facial Care Treatment</h1>
-                                    <h4 className="facial_care-promo mt-2">15% Off</h4><br />
+                                    <h1 className="facialCarePromo1 card-title text-info">Facial Care Treatment</h1>
+                                    <h4 className="facialCarePromo1 mt-2">15% Off</h4><br />
                                     <Button variant="info" className="text-white">Buy Now</Button>
                                 </div>
                             </div>
@@ -60,10 +61,10 @@ const ClientHome = () => {
                     <Row className="mt-4">
                         <h4 className="mx-3 mb-3"><strong>Services</strong></h4>
                         {store.services.map((service, index) => (
-                            <Col md={4} onClick={() => navigate(`/products/${service.id}`)} key={index} className="mb-4  d-flex justify-content-center ">
-                                <div className={`card w-75 ${selectedService === service ? 'selected' : ''}`} role="button" >
-                                    <div className="card-body d-flex gap-3 align-items-center">
-                                        <img src={serviceImages[service.name.replaceAll(" ","-").toLowerCase()]} alt={`Service ${service.id}`} />
+                            <Col md={4} onClick={() => navigate(`/products/${service.id}`)} key={index} className="mb-4 d-flex justify-content-center">
+                                <div className={`card w-75 ${selectedService === service ? 'selected' : ''}`} role="button" style={{ borderColor: 'rgb(242, 226, 247)' }}>
+                                    <div className="clientServicesCardBtn card-body d-flex gap-3 align-items-center">
+                                        <img src={serviceImages[service.name.replaceAll(" ", "-").toLowerCase()]} alt={`Service ${service.id}`} />
                                         <h5>{service.name}</h5>
                                     </div>
                                 </div>
@@ -72,13 +73,13 @@ const ClientHome = () => {
                     </Row>
 
                     <h4 className="mx-3 mt-4 mb-3"><strong>Next Appointment</strong></h4>
-                    <div className="card">
+                    <div className="card" style={{ borderColor: 'rgb(242, 226, 247)' }}>
                         <Col md={12}>
                             <div className="nextAppointment card-body">
                                 <div className="d-flex align-items-center justify-content-center gap-3">
                                     <img src={avatar} alt="User Avatar" className="avatar-img" />
                                     <Col md={6}>
-                                        <h5 className="card-title">Miss Barbara Gordon</h5>
+                                        <h5 className="card-title">Miss Selina Kyle</h5>
                                         <p className="title">Cosmetologist / Nail Tech</p>
                                         <p className="time-text d-flex align-items-center gap-1">
                                             10:02 AM
@@ -90,7 +91,7 @@ const ClientHome = () => {
                                     </Col>
 
                                     <div className="button gap-2 d-flex justify-content-end">
-                                        <Button variant="success" className="button_whatsapp" >
+                                        <Button variant="whatsapp" className="button_whatsapp">
                                             <span> Chat </span>
                                             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 5000 5000" preserveAspectRatio="xMidYMid meet">
                                                 <g id="layer101" fill="#000000" stroke="none">

@@ -7,7 +7,7 @@ const FairyOptionsCard = () => {
 
     return (
 
-        <Card>
+        <Card style={{ borderColor: 'rgb(194, 237, 249)' }}>
             <Card.Body className="fairyOptionsCard">
                 <div className="row d-flex justify-content-center">
                     <div className="col-md-7 mt-2">

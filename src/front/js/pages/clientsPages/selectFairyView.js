@@ -16,28 +16,24 @@ const UserCard = ({ user }) => {
 
     return (
 
-        <Card className="d-flex justify-content-center mt-4 mx-3" style={{ width: "18rem" }}>
+        <Card className="d-flex justify-content-center mt-4 mx-3" style={{ width: "18rem", borderColor: 'rgb(242, 226, 247)' }}>
             <Card.Img variant="top" src={user.avatar} />
             <Card.Body>
                 <Card.Title>{user.name} {user.surname}</Card.Title>
                 <Card.Text>
                     {user.professional_title}<br />
-
                     <strong>{user.rating}</strong><i className="star fa-regular fa-star mb-1"></i><br />
-
-                    <p className="AvailableTag">Available</p><br />
-
+                    <span className="AvailableTag">Available</span><br />
                     <strong>ETA:</strong><span className="eta"> {user.ETA}20 mins</span><br />
                 </Card.Text>
-
                 <div className="d-flex justify-content-between">
                     <Button onClick={handleSelect} className="selectFairybtn mr-auto">Select</Button>
-                    <p className="aboutFairybtn ml-auto mt-3" role="button">About</p>
+                    <span className="aboutFairybtn ml-auto mt-3" role="button">About</span>
                 </div>
             </Card.Body>
         </Card>
     );
-}
+};
 
 
 const GetFairies = () => {

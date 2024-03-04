@@ -18,7 +18,7 @@ const UserCard = ({ order }) => {
 
     return (
 
-        <Card className="d-flex justify-content-center mt-4 mx-3" style={{ width: "18rem" }}>
+        <Card className="d-flex justify-content-center mt-4 mx-3" style={{ width: "18rem", borderColor: 'rgb(194, 237, 249)' }}>
             {/* <Card.Img variant="top" src={order.avatar} /> */}
             <Card.Body>
                 <div className="d-flex justify-content-between">

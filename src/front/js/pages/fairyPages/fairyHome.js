@@ -69,7 +69,8 @@ const FairyHome = () => {
                                         </svg>
                                         <br />
                                     </p>
-                                    <p className="time-text d-flex align-items-center gap-1">
+                                    <p className="productsAppointmentCard">
+                                        Acrylic Manicure <br./>?.flex align-items-center gap-1">
                                         9725 NW 52 st #410 Gotham City 33178 </p>
                                 </Col>
                                 <Col md={3}>
@@ -110,6 +111,8 @@ const FairyHome = () => {
                                         </svg>
                                         <br />
                                     </p>
+                                    <p className="productsAppointmentCard">
+                                        Construction Gel Manicure <br/> Semi Permanent Pedicure</p>
                                     <p className="time-text d-flex align-items-center gap-1">
                                         9725 SW 51 st #215 Gotham City 33034 </p>
                                 </Col>

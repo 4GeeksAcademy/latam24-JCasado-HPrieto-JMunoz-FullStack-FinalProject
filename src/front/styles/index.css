@@ -618,6 +618,7 @@ button {
 .fairyHomegretting{
   margin-top: 5%;
   color: rgb(224, 62, 183);
+  font-weight: 650;
 }
 
 .findClientButton{
@@ -664,6 +665,11 @@ button {
 .mapImage {
   border: 2px solid rgb(218, 218, 218);
   border-radius: 1.5%;
+}
+
+.productsAppointmentCard{
+  color: rgb(37, 208, 255);
+  font-weight: 500;
 }
 
 

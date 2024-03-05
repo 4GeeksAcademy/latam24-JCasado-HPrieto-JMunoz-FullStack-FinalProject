@@ -29,15 +29,16 @@ const UserCard = ({ user }) => {
                     <span className="AvailableTag">Available</span><br />
                     <strong>ETA:</strong><span className="eta"> {user.ETA}20 mins</span><br />
                 </Card.Text>
+                <h5>Services:</h5>
                 {products.map((product) => {
-                    return (<div key={product.id}>
+                    return (<div className="mb-1 fw-bold text-muted" key={product.id}>
                         {product.name} ${product.price}
                     </div>)
                 })}
 
-                <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-between mt-4">
                     <Button onClick={handleSelect} className="selectFairybtn mr-auto">Select</Button>
-                    <span className="aboutFairybtn ml-auto mt-3" role="button">About</span>
+                    <span className="aboutFairybtn ml-auto mt-2" role="button">About</span>
                 </div>
             </Card.Body>
         </Card>

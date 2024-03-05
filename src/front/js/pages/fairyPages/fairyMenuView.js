@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState, useRef } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Context } from '../../store/appContext';
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 
 const FairyMenuView = () => {

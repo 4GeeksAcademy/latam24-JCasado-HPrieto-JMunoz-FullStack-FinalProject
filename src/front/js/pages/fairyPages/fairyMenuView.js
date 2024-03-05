@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Context } from '../../store/appContext';
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 
 const FairyMenuView = () => {
@@ -41,7 +41,7 @@ const FairyMenuView = () => {
     setServices(response)
   }
 
-  // const notify = () => toast.success("Products added to your profile successfully!");
+  const notify = () => toast.success("Products added to your profile successfully!");
   
   const selectProduct = (product) => {
 

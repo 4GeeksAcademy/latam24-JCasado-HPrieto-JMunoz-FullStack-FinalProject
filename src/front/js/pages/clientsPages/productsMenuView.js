@@ -9,7 +9,7 @@ const OfferCard = () => {
 
   return (
 
-    <div className="manicure_promo d-flex container align-items-center mt-5">
+    <div className="manicure_promo d-flex container align-items-center">
       <div className="card-body">
         <h3 className="manicure_promo-text card-title">Express traditional manicure</h3>
         <h5 className="manicure_promo-text card-text" >Done in 20 minutes!</h5><br />
@@ -68,7 +68,7 @@ const ProductsMenu = () => {
     <Container fluid className="main-container">
       <OfferCard />
 
-      <div className="container mb-2 mt-5">
+      <div className="container mb-2 mt-5 d-flex justify-content-center">
         <h5 className="productSelectText">Please select the line of services you are going to get:</h5>
       </div>
 

@@ -48,7 +48,7 @@ const ClientHome = () => {
                                 <div className="mt-5">
                                     <h1 className="facialCarePromo1 text-info">Facial Care Treatment</h1>
                                     <h4 className="facialCarePromo1 mt-2">15% Off</h4><br />
-                                    <Button className="optionsButton text-white">Buy Now</Button>
+                                    <Button variant="info" className="text-white">Buy Now</Button>
                                 </div>
                             </div>
 

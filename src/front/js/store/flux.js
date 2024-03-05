@@ -1,6 +1,4 @@
 
-const API_URL = "https://curly-memory-4xwwq4xxjxqcjjrr-3001.app.github.dev/api";
-
 
 const getState = ({ getStore, getActions, setStore }) => {
 
@@ -43,7 +41,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						body: JSON.stringify(userData)
 					}
 
-					const response = await fetch(API_URL + "/login", requestConfig);
+					const response = await fetch(process.env.BACKEND_URL + "/api/login", requestConfig);
 
 					if (response.status != 200) {
 
@@ -98,7 +96,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						body: JSON.stringify(newContactData)
 					}
 
-					const response = await fetch(API_URL + "/register", requestConfig);
+					const response = await fetch(process.env.BACKEND_URL + "/api/register", requestConfig);
 
 					if (response.status != 201) {
 
@@ -272,11 +270,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 
-		// ---------------------------------------------------------------------------------------------------------------------------------------
-		// Client Orders / Select Client:
+			// ---------------------------------------------------------------------------------------------------------------------------------------
+			// Client Orders / Select Client:
 
 
-		getClients: async () => {
+			getClients: async () => {
 
 				const store = getStore()
 
@@ -293,32 +291,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				return data
 			},
-
-
-
-
-		// ---------------------------------------------------------------------------------------------------------------------------------------
-		// Client Profile:
-
-
-		// getClient: async () => {
-
-		// 	const store = getStore()
-
-		// 	const response = await fetch(process.env.BACKEND_URL + "/api/client/profile",
-
-		// 		{
-		// 			headers: {
-
-		// 				"Authorization": `Bearer ${store.token}`
-		// 			}
-		// 		})
-
-		// 	const data = await response.json()
-
-		// 	return data
-		// },
-
 		}
 	}
 };

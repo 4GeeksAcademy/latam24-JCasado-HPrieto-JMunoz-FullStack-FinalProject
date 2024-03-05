@@ -7,6 +7,10 @@ import facialPromo2 from "../../../img/facialPromo2.png";
 
 const UserCard = ({ user }) => {
 
+    const products = JSON.parse(localStorage.getItem("products"))
+
+    console.log(products);
+
     const navigate = useNavigate();
 
     const handleSelect = () => {
@@ -17,7 +21,6 @@ const UserCard = ({ user }) => {
     return (
 
         <Card className="d-flex justify-content-center mt-4 mx-3" style={{ width: "18rem", borderColor: 'rgb(242, 226, 247)' }}>
-            <Card.Img variant="top" src={user.avatar} />
             <Card.Body>
                 <Card.Title>{user.name} {user.surname}</Card.Title>
                 <Card.Text>
@@ -26,6 +29,12 @@ const UserCard = ({ user }) => {
                     <span className="AvailableTag">Available</span><br />
                     <strong>ETA:</strong><span className="eta"> {user.ETA}20 mins</span><br />
                 </Card.Text>
+                {products.map((product) => {
+                    return (<div key={product.id}>
+                        {product.name} ${product.price}
+                    </div>)
+                })}
+
                 <div className="d-flex justify-content-between">
                     <Button onClick={handleSelect} className="selectFairybtn mr-auto">Select</Button>
                     <span className="aboutFairybtn ml-auto mt-3" role="button">About</span>
@@ -55,8 +64,6 @@ const GetFairies = () => {
         setUsers(fairies);
 
     }
-
-    console.log(store.user);
 
     useEffect(() => {
 

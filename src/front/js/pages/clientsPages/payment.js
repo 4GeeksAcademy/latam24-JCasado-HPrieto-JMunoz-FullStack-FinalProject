@@ -32,6 +32,7 @@ const Payment = () => {
         if (fairyData) {
 
             console.log(fairyData);
+
             setFairy(fairyData);
         }
     };
@@ -42,7 +43,9 @@ const Payment = () => {
     };
 
 
-    const createOrder = async () => {
+    const createOrder = async (productList) => {
+
+        console.log(products);
 
         const response = await fetch(
 
@@ -54,7 +57,7 @@ const Payment = () => {
                     "Content-type": "application/json"
                 },
 
-                body: JSON.stringify({ products: products.map((product) => product.id) })
+                body: JSON.stringify({ products: productList.map((product) => product.id) })
             }
         )
 
@@ -159,7 +162,9 @@ const Payment = () => {
 
                         <div className="paypalButtonContainer">
                             <PayPalScriptProvider options={{ clientId: process.env.PAYPAL_CLIENT_ID }}>
-                                <PayPalButtons createOrder={createOrder} onApprove={onApprove} className="bigPayPalButton" style={{ layout: "horizontal" }} />
+                                <PayPalButtons createOrder={() =>
+                                    createOrder(products)
+                                } onApprove={onApprove} className="bigPayPalButton" style={{ layout: "horizontal" }} />
                             </PayPalScriptProvider>
                         </div>
                     </Form.Group>
